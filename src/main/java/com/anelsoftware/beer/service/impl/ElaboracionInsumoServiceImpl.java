@@ -9,14 +9,12 @@ import com.anelsoftware.beer.service.mapper.ElaboracionInsumoMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 import static org.elasticsearch.index.query.QueryBuilders.*;
 
@@ -61,15 +59,15 @@ public class ElaboracionInsumoServiceImpl implements ElaboracionInsumoService {
     /**
      * Get all the elaboracionInsumos.
      *
+     * @param pageable the pagination information
      * @return the list of entities
      */
     @Override
     @Transactional(readOnly = true)
-    public List<ElaboracionInsumoDTO> findAll() {
+    public Page<ElaboracionInsumoDTO> findAll(Pageable pageable) {
         log.debug("Request to get all ElaboracionInsumos");
-        return elaboracionInsumoRepository.findAll().stream()
-            .map(elaboracionInsumoMapper::toDto)
-            .collect(Collectors.toCollection(LinkedList::new));
+        return elaboracionInsumoRepository.findAll(pageable)
+            .map(elaboracionInsumoMapper::toDto);
     }
 
 
@@ -103,15 +101,14 @@ public class ElaboracionInsumoServiceImpl implements ElaboracionInsumoService {
      * Search for the elaboracionInsumo corresponding to the query.
      *
      * @param query the query of the search
+     * @param pageable the pagination information
      * @return the list of entities
      */
     @Override
     @Transactional(readOnly = true)
-    public List<ElaboracionInsumoDTO> search(String query) {
-        log.debug("Request to search ElaboracionInsumos for query {}", query);
-        return StreamSupport
-            .stream(elaboracionInsumoSearchRepository.search(queryStringQuery(query)).spliterator(), false)
-            .map(elaboracionInsumoMapper::toDto)
-            .collect(Collectors.toList());
+    public Page<ElaboracionInsumoDTO> search(String query, Pageable pageable) {
+        log.debug("Request to search for a page of ElaboracionInsumos for query {}", query);
+        return elaboracionInsumoSearchRepository.search(queryStringQuery(query), pageable)
+            .map(elaboracionInsumoMapper::toDto);
     }
 }

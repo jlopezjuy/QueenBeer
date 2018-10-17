@@ -4,10 +4,15 @@ import com.codahale.metrics.annotation.Timed;
 import com.anelsoftware.beer.service.ElaboracionService;
 import com.anelsoftware.beer.web.rest.errors.BadRequestAlertException;
 import com.anelsoftware.beer.web.rest.util.HeaderUtil;
+import com.anelsoftware.beer.web.rest.util.PaginationUtil;
 import com.anelsoftware.beer.service.dto.ElaboracionDTO;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -82,13 +87,16 @@ public class ElaboracionResource {
     /**
      * GET  /elaboracions : get all the elaboracions.
      *
+     * @param pageable the pagination information
      * @return the ResponseEntity with status 200 (OK) and the list of elaboracions in body
      */
     @GetMapping("/elaboracions")
     @Timed
-    public List<ElaboracionDTO> getAllElaboracions() {
-        log.debug("REST request to get all Elaboracions");
-        return elaboracionService.findAll();
+    public ResponseEntity<List<ElaboracionDTO>> getAllElaboracions(Pageable pageable) {
+        log.debug("REST request to get a page of Elaboracions");
+        Page<ElaboracionDTO> page = elaboracionService.findAll(pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/elaboracions");
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
     /**
@@ -124,13 +132,16 @@ public class ElaboracionResource {
      * to the query.
      *
      * @param query the query of the elaboracion search
+     * @param pageable the pagination information
      * @return the result of the search
      */
     @GetMapping("/_search/elaboracions")
     @Timed
-    public List<ElaboracionDTO> searchElaboracions(@RequestParam String query) {
-        log.debug("REST request to search Elaboracions for query {}", query);
-        return elaboracionService.search(query);
+    public ResponseEntity<List<ElaboracionDTO>> searchElaboracions(@RequestParam String query, Pageable pageable) {
+        log.debug("REST request to search for a page of Elaboracions for query {}", query);
+        Page<ElaboracionDTO> page = elaboracionService.search(query, pageable);
+        HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/elaboracions");
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
 }

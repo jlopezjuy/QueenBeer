@@ -60,7 +60,7 @@
     "changelogDate": "20181017191608",
     "entityTableName": "proveedor",
     "dto": "mapstruct",
-    "pagination": "no",
+    "pagination": "pager",
     "service": "serviceImpl",
     "jpaMetamodelFiltering": false,
     "fluentMethods": true,

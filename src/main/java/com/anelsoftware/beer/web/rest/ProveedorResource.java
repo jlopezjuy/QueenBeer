@@ -4,10 +4,15 @@ import com.codahale.metrics.annotation.Timed;
 import com.anelsoftware.beer.service.ProveedorService;
 import com.anelsoftware.beer.web.rest.errors.BadRequestAlertException;
 import com.anelsoftware.beer.web.rest.util.HeaderUtil;
+import com.anelsoftware.beer.web.rest.util.PaginationUtil;
 import com.anelsoftware.beer.service.dto.ProveedorDTO;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -82,13 +87,16 @@ public class ProveedorResource {
     /**
      * GET  /proveedors : get all the proveedors.
      *
+     * @param pageable the pagination information
      * @return the ResponseEntity with status 200 (OK) and the list of proveedors in body
      */
     @GetMapping("/proveedors")
     @Timed
-    public List<ProveedorDTO> getAllProveedors() {
-        log.debug("REST request to get all Proveedors");
-        return proveedorService.findAll();
+    public ResponseEntity<List<ProveedorDTO>> getAllProveedors(Pageable pageable) {
+        log.debug("REST request to get a page of Proveedors");
+        Page<ProveedorDTO> page = proveedorService.findAll(pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/proveedors");
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
     /**
@@ -124,13 +132,16 @@ public class ProveedorResource {
      * to the query.
      *
      * @param query the query of the proveedor search
+     * @param pageable the pagination information
      * @return the result of the search
      */
     @GetMapping("/_search/proveedors")
     @Timed
-    public List<ProveedorDTO> searchProveedors(@RequestParam String query) {
-        log.debug("REST request to search Proveedors for query {}", query);
-        return proveedorService.search(query);
+    public ResponseEntity<List<ProveedorDTO>> searchProveedors(@RequestParam String query, Pageable pageable) {
+        log.debug("REST request to search for a page of Proveedors for query {}", query);
+        Page<ProveedorDTO> page = proveedorService.search(query, pageable);
+        HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/proveedors");
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
 }

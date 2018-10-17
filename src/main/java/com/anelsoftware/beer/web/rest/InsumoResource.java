@@ -4,10 +4,15 @@ import com.codahale.metrics.annotation.Timed;
 import com.anelsoftware.beer.service.InsumoService;
 import com.anelsoftware.beer.web.rest.errors.BadRequestAlertException;
 import com.anelsoftware.beer.web.rest.util.HeaderUtil;
+import com.anelsoftware.beer.web.rest.util.PaginationUtil;
 import com.anelsoftware.beer.service.dto.InsumoDTO;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -82,13 +87,16 @@ public class InsumoResource {
     /**
      * GET  /insumos : get all the insumos.
      *
+     * @param pageable the pagination information
      * @return the ResponseEntity with status 200 (OK) and the list of insumos in body
      */
     @GetMapping("/insumos")
     @Timed
-    public List<InsumoDTO> getAllInsumos() {
-        log.debug("REST request to get all Insumos");
-        return insumoService.findAll();
+    public ResponseEntity<List<InsumoDTO>> getAllInsumos(Pageable pageable) {
+        log.debug("REST request to get a page of Insumos");
+        Page<InsumoDTO> page = insumoService.findAll(pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/insumos");
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
     /**
@@ -124,13 +132,16 @@ public class InsumoResource {
      * to the query.
      *
      * @param query the query of the insumo search
+     * @param pageable the pagination information
      * @return the result of the search
      */
     @GetMapping("/_search/insumos")
     @Timed
-    public List<InsumoDTO> searchInsumos(@RequestParam String query) {
-        log.debug("REST request to search Insumos for query {}", query);
-        return insumoService.search(query);
+    public ResponseEntity<List<InsumoDTO>> searchInsumos(@RequestParam String query, Pageable pageable) {
+        log.debug("REST request to search for a page of Insumos for query {}", query);
+        Page<InsumoDTO> page = insumoService.search(query, pageable);
+        HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/insumos");
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
 }

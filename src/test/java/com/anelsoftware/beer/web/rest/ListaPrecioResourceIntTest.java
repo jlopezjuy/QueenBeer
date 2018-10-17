@@ -16,6 +16,8 @@ import org.junit.runner.RunWith;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
@@ -280,8 +282,8 @@ public class ListaPrecioResourceIntTest {
     public void searchListaPrecio() throws Exception {
         // Initialize the database
         listaPrecioRepository.saveAndFlush(listaPrecio);
-        when(mockListaPrecioSearchRepository.search(queryStringQuery("id:" + listaPrecio.getId())))
-            .thenReturn(Collections.singletonList(listaPrecio));
+        when(mockListaPrecioSearchRepository.search(queryStringQuery("id:" + listaPrecio.getId()), PageRequest.of(0, 20)))
+            .thenReturn(new PageImpl<>(Collections.singletonList(listaPrecio), PageRequest.of(0, 1), 1));
         // Search the listaPrecio
         restListaPrecioMockMvc.perform(get("/api/_search/lista-precios?query=id:" + listaPrecio.getId()))
             .andExpect(status().isOk())

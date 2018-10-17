@@ -9,14 +9,12 @@ import com.anelsoftware.beer.service.mapper.ProveedorMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 import static org.elasticsearch.index.query.QueryBuilders.*;
 
@@ -61,15 +59,15 @@ public class ProveedorServiceImpl implements ProveedorService {
     /**
      * Get all the proveedors.
      *
+     * @param pageable the pagination information
      * @return the list of entities
      */
     @Override
     @Transactional(readOnly = true)
-    public List<ProveedorDTO> findAll() {
+    public Page<ProveedorDTO> findAll(Pageable pageable) {
         log.debug("Request to get all Proveedors");
-        return proveedorRepository.findAll().stream()
-            .map(proveedorMapper::toDto)
-            .collect(Collectors.toCollection(LinkedList::new));
+        return proveedorRepository.findAll(pageable)
+            .map(proveedorMapper::toDto);
     }
 
 
@@ -103,15 +101,14 @@ public class ProveedorServiceImpl implements ProveedorService {
      * Search for the proveedor corresponding to the query.
      *
      * @param query the query of the search
+     * @param pageable the pagination information
      * @return the list of entities
      */
     @Override
     @Transactional(readOnly = true)
-    public List<ProveedorDTO> search(String query) {
-        log.debug("Request to search Proveedors for query {}", query);
-        return StreamSupport
-            .stream(proveedorSearchRepository.search(queryStringQuery(query)).spliterator(), false)
-            .map(proveedorMapper::toDto)
-            .collect(Collectors.toList());
+    public Page<ProveedorDTO> search(String query, Pageable pageable) {
+        log.debug("Request to search for a page of Proveedors for query {}", query);
+        return proveedorSearchRepository.search(queryStringQuery(query), pageable)
+            .map(proveedorMapper::toDto);
     }
 }

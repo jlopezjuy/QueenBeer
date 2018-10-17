@@ -28,10 +28,10 @@
     <div class="table-responsive" *ngIf="elaboracionInsumos">
         <table class="table table-striped">
             <thead>
-            <tr>
-            <th><span jhiTranslate="global.field.id">ID</span></th>
-            <th><span jhiTranslate="queenBeerApp.elaboracionInsumo.elaboracion">Elaboracion</span></th>
-            <th><span jhiTranslate="queenBeerApp.elaboracionInsumo.insumo">Insumo</span></th>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="elaboracionId"><span jhiTranslate="queenBeerApp.elaboracionInsumo.elaboracion">Elaboracion</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="insumoId"><span jhiTranslate="queenBeerApp.elaboracionInsumo.insumo">Insumo</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
             </thead>
@@ -75,5 +75,14 @@
             </tr>
             </tbody>
         </table>
+    </div>
+    <!-- Pager is not implemented yet, so this is normal pagination instead -->
+    <div *ngIf="elaboracionInsumos && elaboracionInsumos.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
     </div>
 </div>

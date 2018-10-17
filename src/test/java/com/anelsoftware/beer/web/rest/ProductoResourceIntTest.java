@@ -16,6 +16,8 @@ import org.junit.runner.RunWith;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
@@ -335,8 +337,8 @@ public class ProductoResourceIntTest {
     public void searchProducto() throws Exception {
         // Initialize the database
         productoRepository.saveAndFlush(producto);
-        when(mockProductoSearchRepository.search(queryStringQuery("id:" + producto.getId())))
-            .thenReturn(Collections.singletonList(producto));
+        when(mockProductoSearchRepository.search(queryStringQuery("id:" + producto.getId()), PageRequest.of(0, 20)))
+            .thenReturn(new PageImpl<>(Collections.singletonList(producto), PageRequest.of(0, 1), 1));
         // Search the producto
         restProductoMockMvc.perform(get("/api/_search/productos?query=id:" + producto.getId()))
             .andExpect(status().isOk())

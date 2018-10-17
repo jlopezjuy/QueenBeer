@@ -40,7 +40,7 @@
     "changelogDate": "20181017191609",
     "entityTableName": "insumo",
     "dto": "mapstruct",
-    "pagination": "no",
+    "pagination": "pager",
     "service": "serviceImpl",
     "jpaMetamodelFiltering": false,
     "fluentMethods": true,

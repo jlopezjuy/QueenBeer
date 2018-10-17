@@ -16,6 +16,8 @@ import org.junit.runner.RunWith;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
@@ -260,8 +262,8 @@ public class ElaboracionInsumoResourceIntTest {
     public void searchElaboracionInsumo() throws Exception {
         // Initialize the database
         elaboracionInsumoRepository.saveAndFlush(elaboracionInsumo);
-        when(mockElaboracionInsumoSearchRepository.search(queryStringQuery("id:" + elaboracionInsumo.getId())))
-            .thenReturn(Collections.singletonList(elaboracionInsumo));
+        when(mockElaboracionInsumoSearchRepository.search(queryStringQuery("id:" + elaboracionInsumo.getId()), PageRequest.of(0, 20)))
+            .thenReturn(new PageImpl<>(Collections.singletonList(elaboracionInsumo), PageRequest.of(0, 1), 1));
         // Search the elaboracionInsumo
         restElaboracionInsumoMockMvc.perform(get("/api/_search/elaboracion-insumos?query=id:" + elaboracionInsumo.getId()))
             .andExpect(status().isOk())

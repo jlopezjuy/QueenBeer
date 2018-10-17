@@ -9,14 +9,12 @@ import com.anelsoftware.beer.service.mapper.ClienteMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 import static org.elasticsearch.index.query.QueryBuilders.*;
 
@@ -61,15 +59,15 @@ public class ClienteServiceImpl implements ClienteService {
     /**
      * Get all the clientes.
      *
+     * @param pageable the pagination information
      * @return the list of entities
      */
     @Override
     @Transactional(readOnly = true)
-    public List<ClienteDTO> findAll() {
+    public Page<ClienteDTO> findAll(Pageable pageable) {
         log.debug("Request to get all Clientes");
-        return clienteRepository.findAll().stream()
-            .map(clienteMapper::toDto)
-            .collect(Collectors.toCollection(LinkedList::new));
+        return clienteRepository.findAll(pageable)
+            .map(clienteMapper::toDto);
     }
 
 
@@ -103,15 +101,14 @@ public class ClienteServiceImpl implements ClienteService {
      * Search for the cliente corresponding to the query.
      *
      * @param query the query of the search
+     * @param pageable the pagination information
      * @return the list of entities
      */
     @Override
     @Transactional(readOnly = true)
-    public List<ClienteDTO> search(String query) {
-        log.debug("Request to search Clientes for query {}", query);
-        return StreamSupport
-            .stream(clienteSearchRepository.search(queryStringQuery(query)).spliterator(), false)
-            .map(clienteMapper::toDto)
-            .collect(Collectors.toList());
+    public Page<ClienteDTO> search(String query, Pageable pageable) {
+        log.debug("Request to search for a page of Clientes for query {}", query);
+        return clienteSearchRepository.search(queryStringQuery(query), pageable)
+            .map(clienteMapper::toDto);
     }
 }

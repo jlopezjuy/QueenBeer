@@ -18,7 +18,7 @@
     "changelogDate": "20181017191611",
     "entityTableName": "elaboracion_insumo",
     "dto": "mapstruct",
-    "pagination": "no",
+    "pagination": "pager",
     "service": "serviceImpl",
     "jpaMetamodelFiltering": false,
     "fluentMethods": true,

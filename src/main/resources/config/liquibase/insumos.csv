@@ -1,0 +1,157 @@
+nombre;marca;unidad; tipo
+Avena;;KILOGRAMO;MALTA
+Munich I;Avangard;VEINTICINCO_KILOS;MALTA
+Pale Ale;Avangard;VEINTICINCO_KILOS;MALTA
+Pilsner;Avangard;VEINTICINCO_KILOS;MALTA
+Vienna;Avangard;VEINTICINCO_KILOS;MALTA
+Wheat;Avangard;VEINTICINCO_KILOS;MALTA
+Ahumada;BA-Malt;KILOGRAMO;MALTA
+Biscuit;BA-Malt;KILOGRAMO;MALTA
+Brown;BA-Malt;KILOGRAMO;MALTA
+Caramelo 120;BA-Malt;KILOGRAMO;MALTA
+Caramelo 140;BA-Malt;KILOGRAMO;MALTA
+Caramelo 30;BA-Malt;KILOGRAMO;MALTA
+Caramelo 60;BA-Malt;KILOGRAMO;MALTA
+Carapils;BA-Malt;KILOGRAMO;MALTA
+Cebada tostada;BA-Malt;KILOGRAMO;MALTA
+Chocolate;BA-Malt;KILOGRAMO;MALTA
+Cramel wheat;BA-Malt;KILOGRAMO;MALTA
+Dextrina;BA-Malt;KILOGRAMO;MALTA
+Malta tostada;BA-Malt;KILOGRAMO;MALTA
+Melanoidina;BA-Malt;KILOGRAMO;MALTA
+Munich I;BA-Malt;KILOGRAMO;MALTA
+Munich II;BA-Malt;KILOGRAMO;MALTA
+Pale Ale;BA-Malt;KILOGRAMO;MALTA
+Pale chocolate;BA-Malt;KILOGRAMO;MALTA
+Pilsen;BA-Malt;KILOGRAMO;MALTA
+Roasted wheat;BA-Malt;KILOGRAMO;MALTA
+Trigo Malteado;BA-Malt;KILOGRAMO;MALTA
+Vienna;BA-Malt;KILOGRAMO;MALTA
+Wheat malt;BA-Malt;KILOGRAMO;MALTA
+Acidulated;Bestmalz;KILOGRAMO;MALTA
+Black;Bestmalz;KILOGRAMO;MALTA
+Black eXtra;Bestmalz;KILOGRAMO;MALTA
+Caramel Amber;Bestmalz;KILOGRAMO;MALTA
+Caramel Hell;Bestmalz;KILOGRAMO;MALTA
+Caramel Munich I;Bestmalz;KILOGRAMO;MALTA
+Caramel Munich II;Bestmalz;KILOGRAMO;MALTA
+Caramel Munich III;Bestmalz;KILOGRAMO;MALTA
+Caramel Pils;Bestmalz;KILOGRAMO;MALTA
+Chit;Bestmalz;KILOGRAMO;MALTA
+Chocolate;Bestmalz;KILOGRAMO;MALTA
+Heidelberg;Bestmalz;KILOGRAMO;MALTA
+Heidelberg Wheat;Bestmalz;KILOGRAMO;MALTA
+Melanoidin;Bestmalz;KILOGRAMO;MALTA
+Melanoidin Light;Bestmalz;KILOGRAMO;MALTA
+Munich;Bestmalz;KILOGRAMO;MALTA
+Pale Ale;Bestmalz;KILOGRAMO;MALTA
+Pilsen;Bestmalz;KILOGRAMO;MALTA
+Red X;Bestmalz;KILOGRAMO;MALTA
+Roasted Barley;Bestmalz;KILOGRAMO;MALTA
+Smoked;Bestmalz;KILOGRAMO;MALTA
+Special X;Bestmalz;KILOGRAMO;MALTA
+Spelt;Bestmalz;KILOGRAMO;MALTA
+Vienna;Bestmalz;KILOGRAMO;MALTA
+Wheat;Bestmalz;KILOGRAMO;MALTA
+Wheat Dark;Bestmalz;KILOGRAMO;MALTA
+Black Malt;Cargill;KILOGRAMO;MALTA
+Caramel (30);Cargill;KILOGRAMO;MALTA
+Caramel (60);Cargill;KILOGRAMO;MALTA
+Caramel (80);Cargill;KILOGRAMO;MALTA
+Chocolate Malt;Cargill;KILOGRAMO;MALTA
+Malted White Wheat;Cargill;KILOGRAMO;MALTA
+Munich (AUS);Cargill;KILOGRAMO;MALTA
+Munich (US);Cargill;KILOGRAMO;MALTA
+Pale Ale (ARG);Cargill;KILOGRAMO;MALTA
+Pilsen (ARG);Cargill;KILOGRAMO;MALTA
+Roasted Malt;Cargill;KILOGRAMO;MALTA
+Chateau Roasted Barley;Castle Malting;KILOGRAMO;MALTA
+Malt Chateau;Castle Malting;KILOGRAMO;MALTA
+Malt Chateau Abbey;Castle Malting;KILOGRAMO;MALTA
+Malt Chateau Arome;Castle Malting;KILOGRAMO;MALTA
+Malt Chateau Biscuit;Castle Malting;KILOGRAMO;MALTA
+Malt Chateau Black;Castle Malting;KILOGRAMO;MALTA
+Malt Chateau Cafe Light;Castle Malting;KILOGRAMO;MALTA
+Malt Chateau Cara Blonde;Castle Malting;KILOGRAMO;MALTA
+Malt Chateau Cara Clair;Castle Malting;KILOGRAMO;MALTA
+Malt Chateau Cara Gold;Castle Malting;KILOGRAMO;MALTA
+Malt Chateau Cara Ruby;Castle Malting;KILOGRAMO;MALTA
+Malt Chateau Chocolate;Castle Malting;KILOGRAMO;MALTA
+Malt Chateau Crystal;Castle Malting;KILOGRAMO;MALTA
+Malt Chateau Melano;Castle Malting;KILOGRAMO;MALTA
+Malt Chateau Munich;Castle Malting;KILOGRAMO;MALTA
+Malt Chateau Munich Light;Castle Malting;KILOGRAMO;MALTA
+Malt Chateau Pale Ale;Castle Malting;KILOGRAMO;MALTA
+Malt Chateau Pale Ale Nature;Castle Malting;KILOGRAMO;MALTA
+Malt Chateau Rye;Castle Malting;KILOGRAMO;MALTA
+Malt Chateau Smoked;Castle Malting;KILOGRAMO;MALTA
+Malt Chateau Special B;Castle Malting;KILOGRAMO;MALTA
+Malt Chateau Vienna;Castle Malting;KILOGRAMO;MALTA
+Malt Chateau Wheat Blanc;Castle Malting;KILOGRAMO;MALTA
+Malt Chateau Whisky;Castle Malting;KILOGRAMO;MALTA
+Pilsen;Castle Malting;KILOGRAMO;MALTA
+Caramelo 120;Maltear;KILOGRAMO;MALTA
+Caramelo 30;Maltear;KILOGRAMO;MALTA
+Caramelo 60;Maltear;KILOGRAMO;MALTA
+Cebada tostada;Maltear;KILOGRAMO;MALTA
+Chocolate;Maltear;KILOGRAMO;MALTA
+Diast�sica;Maltear;KILOGRAMO;MALTA
+Munich;Maltear;KILOGRAMO;MALTA
+Negra;Maltear;KILOGRAMO;MALTA
+Pilsen;Maltear;KILOGRAMO;MALTA
+Trigo malteado;Maltear;KILOGRAMO;MALTA
+Viena;Maltear;KILOGRAMO;MALTA
+Brown 115L;Patagonia Malt;KILOGRAMO;MALTA
+Caramel 110L;Patagonia Malt;KILOGRAMO;MALTA
+Caramel 140L;Patagonia Malt;KILOGRAMO;MALTA
+Caramel 15L;Patagonia Malt;KILOGRAMO;MALTA
+Caramel 170L;Patagonia Malt;KILOGRAMO;MALTA
+Caramel 190L;Patagonia Malt;KILOGRAMO;MALTA
+Caramel 25L;Patagonia Malt;KILOGRAMO;MALTA
+Caramel 35L;Patagonia Malt;KILOGRAMO;MALTA
+Caramel 45L;Patagonia Malt;KILOGRAMO;MALTA
+Caramel 55L;Patagonia Malt;KILOGRAMO;MALTA
+Caramel 70L;Patagonia Malt;KILOGRAMO;MALTA
+Caramel 90L;Patagonia Malt;KILOGRAMO;MALTA
+Cebada Tostada;Patagonia Malt;KILOGRAMO;MALTA
+Chocolate 350L;Patagonia Malt;KILOGRAMO;MALTA
+Coffee 230L;Patagonia Malt;KILOGRAMO;MALTA
+Extra Pale;Patagonia Malt;KILOGRAMO;MALTA
+Munich;Patagonia Malt;KILOGRAMO;MALTA
+Pale Ale;Patagonia Malt;KILOGRAMO;MALTA
+Perla Negra 340L;Patagonia Malt;KILOGRAMO;MALTA
+Pilsen;Patagonia Malt;KILOGRAMO;MALTA
+Trigo;Patagonia Malt;KILOGRAMO;MALTA
+Vienna;Patagonia Malt;KILOGRAMO;MALTA
+Pale Ale;Tai Pan;KILOGRAMO;MALTA
+Pilsen;Tai Pan;KILOGRAMO;MALTA
+Abbey;Weyermann;KILOGRAMO;MALTA
+Acidulated;Weyermann;KILOGRAMO;MALTA
+Beech Smoked Barley;Weyermann;KILOGRAMO;MALTA
+Cara Wheat;Weyermann;KILOGRAMO;MALTA
+Caraamber;Weyermann;KILOGRAMO;MALTA
+Caraaroma;Weyermann;KILOGRAMO;MALTA
+Carabelg;Weyermann;KILOGRAMO;MALTA
+Carafa I;Weyermann;KILOGRAMO;MALTA
+Carafa II;Weyermann;KILOGRAMO;MALTA
+Carafa III;Weyermann;KILOGRAMO;MALTA
+Carafa special I;Weyermann;KILOGRAMO;MALTA
+Carafa special III;Weyermann;KILOGRAMO;MALTA
+Carafoam;Weyermann;KILOGRAMO;MALTA
+Carahell;Weyermann;KILOGRAMO;MALTA
+Caramunich I (Type 1);Weyermann;KILOGRAMO;MALTA
+Caramunich I (Type 2);Weyermann;KILOGRAMO;MALTA
+Caramunich I (Type 3);Weyermann;KILOGRAMO;MALTA
+Carapils;Weyermann;KILOGRAMO;MALTA
+Carared;Weyermann;KILOGRAMO;MALTA
+Chocolate Wheat;Weyermann;KILOGRAMO;MALTA
+Melanoidin;Weyermann;KILOGRAMO;MALTA
+Munich I (Type 1);Weyermann;KILOGRAMO;MALTA
+Munich II (Type 2);Weyermann;KILOGRAMO;MALTA
+Pale Ale;Weyermann;KILOGRAMO;MALTA
+Pale Rye;Weyermann;KILOGRAMO;MALTA
+Pale Wheat;Weyermann;KILOGRAMO;MALTA
+Pilsen;Weyermann;KILOGRAMO;MALTA
+Roasted Barley;Weyermann;KILOGRAMO;MALTA
+Special W;Weyermann;KILOGRAMO;MALTA
+Vienna;Weyermann;KILOGRAMO;MALTA

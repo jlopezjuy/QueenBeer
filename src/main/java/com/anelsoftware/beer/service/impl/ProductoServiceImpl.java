@@ -9,14 +9,12 @@ import com.anelsoftware.beer.service.mapper.ProductoMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 import static org.elasticsearch.index.query.QueryBuilders.*;
 
@@ -61,15 +59,15 @@ public class ProductoServiceImpl implements ProductoService {
     /**
      * Get all the productos.
      *
+     * @param pageable the pagination information
      * @return the list of entities
      */
     @Override
     @Transactional(readOnly = true)
-    public List<ProductoDTO> findAll() {
+    public Page<ProductoDTO> findAll(Pageable pageable) {
         log.debug("Request to get all Productos");
-        return productoRepository.findAll().stream()
-            .map(productoMapper::toDto)
-            .collect(Collectors.toCollection(LinkedList::new));
+        return productoRepository.findAll(pageable)
+            .map(productoMapper::toDto);
     }
 
 
@@ -103,15 +101,14 @@ public class ProductoServiceImpl implements ProductoService {
      * Search for the producto corresponding to the query.
      *
      * @param query the query of the search
+     * @param pageable the pagination information
      * @return the list of entities
      */
     @Override
     @Transactional(readOnly = true)
-    public List<ProductoDTO> search(String query) {
-        log.debug("Request to search Productos for query {}", query);
-        return StreamSupport
-            .stream(productoSearchRepository.search(queryStringQuery(query)).spliterator(), false)
-            .map(productoMapper::toDto)
-            .collect(Collectors.toList());
+    public Page<ProductoDTO> search(String query, Pageable pageable) {
+        log.debug("Request to search for a page of Productos for query {}", query);
+        return productoSearchRepository.search(queryStringQuery(query), pageable)
+            .map(productoMapper::toDto);
     }
 }

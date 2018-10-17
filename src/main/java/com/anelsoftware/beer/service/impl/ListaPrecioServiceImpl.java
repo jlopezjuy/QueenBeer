@@ -9,14 +9,12 @@ import com.anelsoftware.beer.service.mapper.ListaPrecioMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 import static org.elasticsearch.index.query.QueryBuilders.*;
 
@@ -61,15 +59,15 @@ public class ListaPrecioServiceImpl implements ListaPrecioService {
     /**
      * Get all the listaPrecios.
      *
+     * @param pageable the pagination information
      * @return the list of entities
      */
     @Override
     @Transactional(readOnly = true)
-    public List<ListaPrecioDTO> findAll() {
+    public Page<ListaPrecioDTO> findAll(Pageable pageable) {
         log.debug("Request to get all ListaPrecios");
-        return listaPrecioRepository.findAll().stream()
-            .map(listaPrecioMapper::toDto)
-            .collect(Collectors.toCollection(LinkedList::new));
+        return listaPrecioRepository.findAll(pageable)
+            .map(listaPrecioMapper::toDto);
     }
 
 
@@ -103,15 +101,14 @@ public class ListaPrecioServiceImpl implements ListaPrecioService {
      * Search for the listaPrecio corresponding to the query.
      *
      * @param query the query of the search
+     * @param pageable the pagination information
      * @return the list of entities
      */
     @Override
     @Transactional(readOnly = true)
-    public List<ListaPrecioDTO> search(String query) {
-        log.debug("Request to search ListaPrecios for query {}", query);
-        return StreamSupport
-            .stream(listaPrecioSearchRepository.search(queryStringQuery(query)).spliterator(), false)
-            .map(listaPrecioMapper::toDto)
-            .collect(Collectors.toList());
+    public Page<ListaPrecioDTO> search(String query, Pageable pageable) {
+        log.debug("Request to search for a page of ListaPrecios for query {}", query);
+        return listaPrecioSearchRepository.search(queryStringQuery(query), pageable)
+            .map(listaPrecioMapper::toDto);
     }
 }

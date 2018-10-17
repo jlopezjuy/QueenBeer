@@ -4,10 +4,15 @@ import com.codahale.metrics.annotation.Timed;
 import com.anelsoftware.beer.service.ClienteService;
 import com.anelsoftware.beer.web.rest.errors.BadRequestAlertException;
 import com.anelsoftware.beer.web.rest.util.HeaderUtil;
+import com.anelsoftware.beer.web.rest.util.PaginationUtil;
 import com.anelsoftware.beer.service.dto.ClienteDTO;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -82,13 +87,16 @@ public class ClienteResource {
     /**
      * GET  /clientes : get all the clientes.
      *
+     * @param pageable the pagination information
      * @return the ResponseEntity with status 200 (OK) and the list of clientes in body
      */
     @GetMapping("/clientes")
     @Timed
-    public List<ClienteDTO> getAllClientes() {
-        log.debug("REST request to get all Clientes");
-        return clienteService.findAll();
+    public ResponseEntity<List<ClienteDTO>> getAllClientes(Pageable pageable) {
+        log.debug("REST request to get a page of Clientes");
+        Page<ClienteDTO> page = clienteService.findAll(pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/clientes");
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
     /**
@@ -124,13 +132,16 @@ public class ClienteResource {
      * to the query.
      *
      * @param query the query of the cliente search
+     * @param pageable the pagination information
      * @return the result of the search
      */
     @GetMapping("/_search/clientes")
     @Timed
-    public List<ClienteDTO> searchClientes(@RequestParam String query) {
-        log.debug("REST request to search Clientes for query {}", query);
-        return clienteService.search(query);
+    public ResponseEntity<List<ClienteDTO>> searchClientes(@RequestParam String query, Pageable pageable) {
+        log.debug("REST request to search for a page of Clientes for query {}", query);
+        Page<ClienteDTO> page = clienteService.search(query, pageable);
+        HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/clientes");
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
 }

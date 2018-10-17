@@ -2,7 +2,9 @@ package com.anelsoftware.beer.service;
 
 import com.anelsoftware.beer.service.dto.InsumoDTO;
 
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import java.util.Optional;
 
 /**
@@ -21,9 +23,10 @@ public interface InsumoService {
     /**
      * Get all the insumos.
      *
+     * @param pageable the pagination information
      * @return the list of entities
      */
-    List<InsumoDTO> findAll();
+    Page<InsumoDTO> findAll(Pageable pageable);
 
 
     /**
@@ -46,7 +49,8 @@ public interface InsumoService {
      *
      * @param query the query of the search
      * 
+     * @param pageable the pagination information
      * @return the list of entities
      */
-    List<InsumoDTO> search(String query);
+    Page<InsumoDTO> search(String query, Pageable pageable);
 }

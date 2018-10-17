@@ -36,7 +36,7 @@
     "changelogDate": "20181017191607",
     "entityTableName": "producto",
     "dto": "mapstruct",
-    "pagination": "no",
+    "pagination": "pager",
     "service": "serviceImpl",
     "jpaMetamodelFiltering": false,
     "fluentMethods": true,

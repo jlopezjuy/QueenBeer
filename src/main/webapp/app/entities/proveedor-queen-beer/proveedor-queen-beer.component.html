@@ -28,21 +28,21 @@
     <div class="table-responsive" *ngIf="proveedors">
         <table class="table table-striped">
             <thead>
-            <tr>
-            <th><span jhiTranslate="global.field.id">ID</span></th>
-            <th><span jhiTranslate="queenBeerApp.proveedor.nombreFantasia">Nombre Fantasia</span></th>
-            <th><span jhiTranslate="queenBeerApp.proveedor.razonSocial">Razon Social</span></th>
-            <th><span jhiTranslate="queenBeerApp.proveedor.cuit">Cuit</span></th>
-            <th><span jhiTranslate="queenBeerApp.proveedor.condicionFiscal">Condicion Fiscal</span></th>
-            <th><span jhiTranslate="queenBeerApp.proveedor.telefono">Telefono</span></th>
-            <th><span jhiTranslate="queenBeerApp.proveedor.fechaAlta">Fecha Alta</span></th>
-            <th><span jhiTranslate="queenBeerApp.proveedor.direccion">Direccion</span></th>
-            <th><span jhiTranslate="queenBeerApp.proveedor.localidad">Localidad</span></th>
-            <th><span jhiTranslate="queenBeerApp.proveedor.codigoPostal">Codigo Postal</span></th>
-            <th><span jhiTranslate="queenBeerApp.proveedor.contacto">Contacto</span></th>
-            <th><span jhiTranslate="queenBeerApp.proveedor.email">Email</span></th>
-            <th><span jhiTranslate="queenBeerApp.proveedor.provincia">Provincia</span></th>
-            <th><span jhiTranslate="queenBeerApp.proveedor.notas">Notas</span></th>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="nombreFantasia"><span jhiTranslate="queenBeerApp.proveedor.nombreFantasia">Nombre Fantasia</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="razonSocial"><span jhiTranslate="queenBeerApp.proveedor.razonSocial">Razon Social</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="cuit"><span jhiTranslate="queenBeerApp.proveedor.cuit">Cuit</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="condicionFiscal"><span jhiTranslate="queenBeerApp.proveedor.condicionFiscal">Condicion Fiscal</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="telefono"><span jhiTranslate="queenBeerApp.proveedor.telefono">Telefono</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="fechaAlta"><span jhiTranslate="queenBeerApp.proveedor.fechaAlta">Fecha Alta</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="direccion"><span jhiTranslate="queenBeerApp.proveedor.direccion">Direccion</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="localidad"><span jhiTranslate="queenBeerApp.proveedor.localidad">Localidad</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="codigoPostal"><span jhiTranslate="queenBeerApp.proveedor.codigoPostal">Codigo Postal</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="contacto"><span jhiTranslate="queenBeerApp.proveedor.contacto">Contacto</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="email"><span jhiTranslate="queenBeerApp.proveedor.email">Email</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="provincia"><span jhiTranslate="queenBeerApp.proveedor.provincia">Provincia</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="notas"><span jhiTranslate="queenBeerApp.proveedor.notas">Notas</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
             </thead>
@@ -89,5 +89,14 @@
             </tr>
             </tbody>
         </table>
+    </div>
+    <!-- Pager is not implemented yet, so this is normal pagination instead -->
+    <div *ngIf="proveedors && proveedors.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
     </div>
 </div>

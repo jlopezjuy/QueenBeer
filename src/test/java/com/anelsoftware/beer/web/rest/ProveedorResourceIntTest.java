@@ -16,6 +16,8 @@ import org.junit.runner.RunWith;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
@@ -382,8 +384,8 @@ public class ProveedorResourceIntTest {
     public void searchProveedor() throws Exception {
         // Initialize the database
         proveedorRepository.saveAndFlush(proveedor);
-        when(mockProveedorSearchRepository.search(queryStringQuery("id:" + proveedor.getId())))
-            .thenReturn(Collections.singletonList(proveedor));
+        when(mockProveedorSearchRepository.search(queryStringQuery("id:" + proveedor.getId()), PageRequest.of(0, 20)))
+            .thenReturn(new PageImpl<>(Collections.singletonList(proveedor), PageRequest.of(0, 1), 1));
         // Search the proveedor
         restProveedorMockMvc.perform(get("/api/_search/proveedors?query=id:" + proveedor.getId()))
             .andExpect(status().isOk())

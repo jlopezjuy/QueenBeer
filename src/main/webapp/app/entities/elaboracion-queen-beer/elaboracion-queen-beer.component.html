@@ -28,27 +28,27 @@
     <div class="table-responsive" *ngIf="elaboracions">
         <table class="table table-striped">
             <thead>
-            <tr>
-            <th><span jhiTranslate="global.field.id">ID</span></th>
-            <th><span jhiTranslate="queenBeerApp.elaboracion.lote">Lote</span></th>
-            <th><span jhiTranslate="queenBeerApp.elaboracion.nombre">Nombre</span></th>
-            <th><span jhiTranslate="queenBeerApp.elaboracion.estilo">Estilo</span></th>
-            <th><span jhiTranslate="queenBeerApp.elaboracion.fechaInicio">Fecha Inicio</span></th>
-            <th><span jhiTranslate="queenBeerApp.elaboracion.fechaFin">Fecha Fin</span></th>
-            <th><span jhiTranslate="queenBeerApp.elaboracion.chequeo">Chequeo</span></th>
-            <th><span jhiTranslate="queenBeerApp.elaboracion.limpieza">Limpieza</span></th>
-            <th><span jhiTranslate="queenBeerApp.elaboracion.limpiezaOlla">Limpieza Olla</span></th>
-            <th><span jhiTranslate="queenBeerApp.elaboracion.limpiezaManguera">Limpieza Manguera</span></th>
-            <th><span jhiTranslate="queenBeerApp.elaboracion.macerado">Macerado</span></th>
-            <th><span jhiTranslate="queenBeerApp.elaboracion.inicioMacerado">Inicio Macerado</span></th>
-            <th><span jhiTranslate="queenBeerApp.elaboracion.infucion">Infucion</span></th>
-            <th><span jhiTranslate="queenBeerApp.elaboracion.primerEscalon">Primer Escalon</span></th>
-            <th><span jhiTranslate="queenBeerApp.elaboracion.segundoEscalon">Segundo Escalon</span></th>
-            <th><span jhiTranslate="queenBeerApp.elaboracion.tercerEscalon">Tercer Escalon</span></th>
-            <th><span jhiTranslate="queenBeerApp.elaboracion.litroInicial">Litro Inicial</span></th>
-            <th><span jhiTranslate="queenBeerApp.elaboracion.relacionMaltaAgua">Relacion Malta Agua</span></th>
-            <th><span jhiTranslate="queenBeerApp.elaboracion.litroFalsoFondo">Litro Falso Fondo</span></th>
-            <th><span jhiTranslate="queenBeerApp.elaboracion.litroTotal">Litro Total</span></th>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="lote"><span jhiTranslate="queenBeerApp.elaboracion.lote">Lote</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="nombre"><span jhiTranslate="queenBeerApp.elaboracion.nombre">Nombre</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="estilo"><span jhiTranslate="queenBeerApp.elaboracion.estilo">Estilo</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="fechaInicio"><span jhiTranslate="queenBeerApp.elaboracion.fechaInicio">Fecha Inicio</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="fechaFin"><span jhiTranslate="queenBeerApp.elaboracion.fechaFin">Fecha Fin</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="chequeo"><span jhiTranslate="queenBeerApp.elaboracion.chequeo">Chequeo</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="limpieza"><span jhiTranslate="queenBeerApp.elaboracion.limpieza">Limpieza</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="limpiezaOlla"><span jhiTranslate="queenBeerApp.elaboracion.limpiezaOlla">Limpieza Olla</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="limpiezaManguera"><span jhiTranslate="queenBeerApp.elaboracion.limpiezaManguera">Limpieza Manguera</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="macerado"><span jhiTranslate="queenBeerApp.elaboracion.macerado">Macerado</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="inicioMacerado"><span jhiTranslate="queenBeerApp.elaboracion.inicioMacerado">Inicio Macerado</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="infucion"><span jhiTranslate="queenBeerApp.elaboracion.infucion">Infucion</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="primerEscalon"><span jhiTranslate="queenBeerApp.elaboracion.primerEscalon">Primer Escalon</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="segundoEscalon"><span jhiTranslate="queenBeerApp.elaboracion.segundoEscalon">Segundo Escalon</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="tercerEscalon"><span jhiTranslate="queenBeerApp.elaboracion.tercerEscalon">Tercer Escalon</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="litroInicial"><span jhiTranslate="queenBeerApp.elaboracion.litroInicial">Litro Inicial</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="relacionMaltaAgua"><span jhiTranslate="queenBeerApp.elaboracion.relacionMaltaAgua">Relacion Malta Agua</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="litroFalsoFondo"><span jhiTranslate="queenBeerApp.elaboracion.litroFalsoFondo">Litro Falso Fondo</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="litroTotal"><span jhiTranslate="queenBeerApp.elaboracion.litroTotal">Litro Total</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
             </thead>
@@ -101,5 +101,14 @@
             </tr>
             </tbody>
         </table>
+    </div>
+    <!-- Pager is not implemented yet, so this is normal pagination instead -->
+    <div *ngIf="elaboracions && elaboracions.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
     </div>
 </div>

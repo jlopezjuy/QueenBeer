@@ -90,7 +90,7 @@
     "changelogDate": "20181017191610",
     "entityTableName": "elaboracion",
     "dto": "mapstruct",
-    "pagination": "no",
+    "pagination": "pager",
     "service": "serviceImpl",
     "jpaMetamodelFiltering": false,
     "fluentMethods": true,

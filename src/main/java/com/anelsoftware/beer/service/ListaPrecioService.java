@@ -2,7 +2,9 @@ package com.anelsoftware.beer.service;
 
 import com.anelsoftware.beer.service.dto.ListaPrecioDTO;
 
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import java.util.Optional;
 
 /**
@@ -21,9 +23,10 @@ public interface ListaPrecioService {
     /**
      * Get all the listaPrecios.
      *
+     * @param pageable the pagination information
      * @return the list of entities
      */
-    List<ListaPrecioDTO> findAll();
+    Page<ListaPrecioDTO> findAll(Pageable pageable);
 
 
     /**
@@ -46,7 +49,8 @@ public interface ListaPrecioService {
      *
      * @param query the query of the search
      * 
+     * @param pageable the pagination information
      * @return the list of entities
      */
-    List<ListaPrecioDTO> search(String query);
+    Page<ListaPrecioDTO> search(String query, Pageable pageable);
 }

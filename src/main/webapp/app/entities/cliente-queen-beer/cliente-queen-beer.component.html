@@ -28,20 +28,20 @@
     <div class="table-responsive" *ngIf="clientes">
         <table class="table table-striped">
             <thead>
-            <tr>
-            <th><span jhiTranslate="global.field.id">ID</span></th>
-            <th><span jhiTranslate="queenBeerApp.cliente.nombreFantasia">Nombre Fantasia</span></th>
-            <th><span jhiTranslate="queenBeerApp.cliente.razonSocial">Razon Social</span></th>
-            <th><span jhiTranslate="queenBeerApp.cliente.categoria">Categoria</span></th>
-            <th><span jhiTranslate="queenBeerApp.cliente.cuit">Cuit</span></th>
-            <th><span jhiTranslate="queenBeerApp.cliente.condicionFiscal">Condicion Fiscal</span></th>
-            <th><span jhiTranslate="queenBeerApp.cliente.fechaAlta">Fecha Alta</span></th>
-            <th><span jhiTranslate="queenBeerApp.cliente.telefono">Telefono</span></th>
-            <th><span jhiTranslate="queenBeerApp.cliente.direccion">Direccion</span></th>
-            <th><span jhiTranslate="queenBeerApp.cliente.localidadCiudad">Localidad Ciudad</span></th>
-            <th><span jhiTranslate="queenBeerApp.cliente.privincia">Privincia</span></th>
-            <th><span jhiTranslate="queenBeerApp.cliente.codigoPostal">Codigo Postal</span></th>
-            <th><span jhiTranslate="queenBeerApp.cliente.email">Email</span></th>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="nombreFantasia"><span jhiTranslate="queenBeerApp.cliente.nombreFantasia">Nombre Fantasia</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="razonSocial"><span jhiTranslate="queenBeerApp.cliente.razonSocial">Razon Social</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="categoria"><span jhiTranslate="queenBeerApp.cliente.categoria">Categoria</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="cuit"><span jhiTranslate="queenBeerApp.cliente.cuit">Cuit</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="condicionFiscal"><span jhiTranslate="queenBeerApp.cliente.condicionFiscal">Condicion Fiscal</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="fechaAlta"><span jhiTranslate="queenBeerApp.cliente.fechaAlta">Fecha Alta</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="telefono"><span jhiTranslate="queenBeerApp.cliente.telefono">Telefono</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="direccion"><span jhiTranslate="queenBeerApp.cliente.direccion">Direccion</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="localidadCiudad"><span jhiTranslate="queenBeerApp.cliente.localidadCiudad">Localidad Ciudad</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="privincia"><span jhiTranslate="queenBeerApp.cliente.privincia">Privincia</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="codigoPostal"><span jhiTranslate="queenBeerApp.cliente.codigoPostal">Codigo Postal</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="email"><span jhiTranslate="queenBeerApp.cliente.email">Email</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
             </thead>
@@ -87,5 +87,14 @@
             </tr>
             </tbody>
         </table>
+    </div>
+    <!-- Pager is not implemented yet, so this is normal pagination instead -->
+    <div *ngIf="clientes && clientes.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
     </div>
 </div>

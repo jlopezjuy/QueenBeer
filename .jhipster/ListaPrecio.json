@@ -15,7 +15,7 @@
     "javadoc": "ListaPrecio entity.\nesta entidad se usaria para aumentar\no disminuir precios globalmente\n@author The JHipster team.",
     "entityTableName": "lista_precio",
     "dto": "mapstruct",
-    "pagination": "no",
+    "pagination": "pager",
     "service": "serviceImpl",
     "jpaMetamodelFiltering": false,
     "fluentMethods": true,
