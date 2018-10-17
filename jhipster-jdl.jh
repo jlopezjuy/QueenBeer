@@ -1,0 +1,158 @@
+entity Cliente{
+	nombreFantasia String,
+    razonSocial String,
+    categoria CategoriaCliente,
+    cuit String,
+    condicionFiscal CondicionFiscal,
+    fechaAlta Instant,
+    telefono String,
+    direccion String,
+    localidadCiudad String,
+    privincia Provincia,
+    codigoPostal Long,
+    email String,
+    
+}
+
+/**
+ * ListaPrecio entity.
+ * esta entidad se usaria para aumentar
+ * o disminuir precios globalmente
+ * @author The JHipster team.
+ */
+entity ListaPrecio {
+	nombre String,
+    porcentage BigDecimal
+}
+
+entity Producto {
+	codigo String,
+    complementario String,
+    estilo String,
+    nombreComercial String,
+    precioLitro BigDecimal,
+    tipoProducto TipoProducto,
+    imagen ImageBlob
+}
+
+entity Proveedor {
+	nombreFantasia String,
+    razonSocial String,
+    cuit String,
+    condicionFiscal CondicionFiscal,
+    telefono String,
+    fechaAlta Instant,
+    direccion String,
+    localidad String,
+    codigoPostal Long,
+    contacto String,
+    email String,
+    provincia Provincia,
+    notas String
+}
+
+entity Insumo {
+	nombre String,
+    marca String,
+    stockMinimo Long,
+    unidad Unidad,
+    tipo TipoInsumo,
+    imagen ImageBlob
+}
+
+entity Elaboracion {
+	lote String,
+    nombre String,
+    estilo String,
+    fechaInicio Instant,
+    fechaFin LocalDate,
+    chequeo Boolean,
+    limpieza Boolean,
+    limpiezaOlla Boolean,
+    limpiezaManguera Boolean,
+    macerado TipoMacerado,
+    inicioMacerado LocalDate,
+    infucion Boolean,
+    primerEscalon Boolean,
+    segundoEscalon Boolean,
+    tercerEscalon Boolean,
+    litroInicial BigDecimal,
+    relacionMaltaAgua BigDecimal,
+    litroFalsoFondo BigDecimal,
+    litroTotal BigDecimal,
+    
+}
+
+entity ElaboracionInsumo {
+	
+}
+
+relationship OneToMany {
+  ElaboracionInsumo{elaboracion} to Elaboracion{elaboracionInsumo},
+  ElaboracionInsumo{insumo} to Insumo{elaboracionInsumo}
+}
+
+relationship ManyToOne {
+  Elaboracion{elaboracionInsumo} to ElaboracionInsumo{elaboracion},
+  Insumo{elaboracionInsumo} to ElaboracionInsumo{insumo}
+}
+enum CondicionFiscal {
+    RESPONSABLE_INSCRIPTO, 
+    MONOTRIBUTISTA, 
+    CONSUMIDOR_FINAL,
+    OTRO
+}
+
+enum Unidad {
+	KILOGRAMO,
+    GRAMO,
+    VEINTICINCO_KILOS,
+    DIES_KILOS,
+    LITRO,
+    CM3,
+    ML,
+    UNIDAD
+}
+
+enum TipoInsumo {
+	MALTA,
+    LUPULO,
+    LEVADURA,
+    ACIDO,
+    SAL,
+    OTROS
+}
+
+enum TipoProducto {
+	FIJO,
+    ROTATIVO,
+    ESPECIAL
+}
+
+enum CategoriaCliente {
+	BAR,
+    DISTRIBUIDOR
+}
+
+enum Provincia {
+	BUENOS_AIRES,
+    CATAMARCA,
+    CORDOBA
+}
+
+enum TipoMacerado {
+	INFUCION,
+    ESCALONADO
+}
+
+
+
+
+// Use Data Transfert Objects (DTO)
+dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl except Employee, Job
+
+// Set an angular suffix
+angularSuffix * with queenBeer
