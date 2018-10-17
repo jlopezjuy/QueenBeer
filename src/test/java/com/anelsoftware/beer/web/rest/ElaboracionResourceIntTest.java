@@ -28,9 +28,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.Instant;
-import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
 import java.util.Collections;
 import java.util.List;
@@ -66,8 +64,8 @@ public class ElaboracionResourceIntTest {
     private static final Instant DEFAULT_FECHA_INICIO = Instant.ofEpochMilli(0L);
     private static final Instant UPDATED_FECHA_INICIO = Instant.now().truncatedTo(ChronoUnit.MILLIS);
 
-    private static final LocalDate DEFAULT_FECHA_FIN = LocalDate.ofEpochDay(0L);
-    private static final LocalDate UPDATED_FECHA_FIN = LocalDate.now(ZoneId.systemDefault());
+    private static final Instant DEFAULT_FECHA_FIN = Instant.ofEpochMilli(0L);
+    private static final Instant UPDATED_FECHA_FIN = Instant.now().truncatedTo(ChronoUnit.MILLIS);
 
     private static final Boolean DEFAULT_CHEQUEO = false;
     private static final Boolean UPDATED_CHEQUEO = true;
@@ -84,8 +82,8 @@ public class ElaboracionResourceIntTest {
     private static final TipoMacerado DEFAULT_MACERADO = TipoMacerado.INFUCION;
     private static final TipoMacerado UPDATED_MACERADO = TipoMacerado.ESCALONADO;
 
-    private static final LocalDate DEFAULT_INICIO_MACERADO = LocalDate.ofEpochDay(0L);
-    private static final LocalDate UPDATED_INICIO_MACERADO = LocalDate.now(ZoneId.systemDefault());
+    private static final Instant DEFAULT_INICIO_MACERADO = Instant.ofEpochMilli(0L);
+    private static final Instant UPDATED_INICIO_MACERADO = Instant.now().truncatedTo(ChronoUnit.MILLIS);
 
     private static final Boolean DEFAULT_INFUCION = false;
     private static final Boolean UPDATED_INFUCION = true;

@@ -10,7 +10,6 @@ import org.springframework.data.elasticsearch.annotations.Document;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.Instant;
-import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
@@ -45,7 +44,7 @@ public class Elaboracion implements Serializable {
     private Instant fechaInicio;
 
     @Column(name = "fecha_fin")
-    private LocalDate fechaFin;
+    private Instant fechaFin;
 
     @Column(name = "chequeo")
     private Boolean chequeo;
@@ -64,7 +63,7 @@ public class Elaboracion implements Serializable {
     private TipoMacerado macerado;
 
     @Column(name = "inicio_macerado")
-    private LocalDate inicioMacerado;
+    private Instant inicioMacerado;
 
     @Column(name = "infucion")
     private Boolean infucion;
@@ -154,16 +153,16 @@ public class Elaboracion implements Serializable {
         this.fechaInicio = fechaInicio;
     }
 
-    public LocalDate getFechaFin() {
+    public Instant getFechaFin() {
         return fechaFin;
     }
 
-    public Elaboracion fechaFin(LocalDate fechaFin) {
+    public Elaboracion fechaFin(Instant fechaFin) {
         this.fechaFin = fechaFin;
         return this;
     }
 
-    public void setFechaFin(LocalDate fechaFin) {
+    public void setFechaFin(Instant fechaFin) {
         this.fechaFin = fechaFin;
     }
 
@@ -232,16 +231,16 @@ public class Elaboracion implements Serializable {
         this.macerado = macerado;
     }
 
-    public LocalDate getInicioMacerado() {
+    public Instant getInicioMacerado() {
         return inicioMacerado;
     }
 
-    public Elaboracion inicioMacerado(LocalDate inicioMacerado) {
+    public Elaboracion inicioMacerado(Instant inicioMacerado) {
         this.inicioMacerado = inicioMacerado;
         return this;
     }
 
-    public void setInicioMacerado(LocalDate inicioMacerado) {
+    public void setInicioMacerado(Instant inicioMacerado) {
         this.inicioMacerado = inicioMacerado;
     }
 

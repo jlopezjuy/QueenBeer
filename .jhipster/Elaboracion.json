@@ -19,7 +19,7 @@
         },
         {
             "fieldName": "fechaFin",
-            "fieldType": "LocalDate"
+            "fieldType": "Instant"
         },
         {
             "fieldName": "chequeo",
@@ -44,7 +44,7 @@
         },
         {
             "fieldName": "inicioMacerado",
-            "fieldType": "LocalDate"
+            "fieldType": "Instant"
         },
         {
             "fieldName": "infucion",

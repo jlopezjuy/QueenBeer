@@ -1,7 +1,6 @@
 package com.anelsoftware.beer.service.dto;
 
 import java.time.Instant;
-import java.time.LocalDate;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Objects;
@@ -22,7 +21,7 @@ public class ElaboracionDTO implements Serializable {
 
     private Instant fechaInicio;
 
-    private LocalDate fechaFin;
+    private Instant fechaFin;
 
     private Boolean chequeo;
 
@@ -34,7 +33,7 @@ public class ElaboracionDTO implements Serializable {
 
     private TipoMacerado macerado;
 
-    private LocalDate inicioMacerado;
+    private Instant inicioMacerado;
 
     private Boolean infucion;
 
@@ -92,11 +91,11 @@ public class ElaboracionDTO implements Serializable {
         this.fechaInicio = fechaInicio;
     }
 
-    public LocalDate getFechaFin() {
+    public Instant getFechaFin() {
         return fechaFin;
     }
 
-    public void setFechaFin(LocalDate fechaFin) {
+    public void setFechaFin(Instant fechaFin) {
         this.fechaFin = fechaFin;
     }
 
@@ -140,11 +139,11 @@ public class ElaboracionDTO implements Serializable {
         this.macerado = macerado;
     }
 
-    public LocalDate getInicioMacerado() {
+    public Instant getInicioMacerado() {
         return inicioMacerado;
     }
 
-    public void setInicioMacerado(LocalDate inicioMacerado) {
+    public void setInicioMacerado(Instant inicioMacerado) {
         this.inicioMacerado = inicioMacerado;
     }
 

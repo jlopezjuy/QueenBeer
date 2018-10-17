@@ -5,7 +5,7 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { of } from 'rxjs';
 import { take, map } from 'rxjs/operators';
 import * as moment from 'moment';
-import { DATE_FORMAT, DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
+import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
 import { ElaboracionQueenBeerService } from 'app/entities/elaboracion-queen-beer/elaboracion-queen-beer.service';
 import { IElaboracionQueenBeer, ElaboracionQueenBeer, TipoMacerado } from 'app/shared/model/elaboracion-queen-beer.model';
 
@@ -54,8 +54,8 @@ describe('Service Tests', () => {
                 const returnedFromService = Object.assign(
                     {
                         fechaInicio: currentDate.format(DATE_TIME_FORMAT),
-                        fechaFin: currentDate.format(DATE_FORMAT),
-                        inicioMacerado: currentDate.format(DATE_FORMAT)
+                        fechaFin: currentDate.format(DATE_TIME_FORMAT),
+                        inicioMacerado: currentDate.format(DATE_TIME_FORMAT)
                     },
                     elemDefault
                 );
@@ -73,8 +73,8 @@ describe('Service Tests', () => {
                     {
                         id: 0,
                         fechaInicio: currentDate.format(DATE_TIME_FORMAT),
-                        fechaFin: currentDate.format(DATE_FORMAT),
-                        inicioMacerado: currentDate.format(DATE_FORMAT)
+                        fechaFin: currentDate.format(DATE_TIME_FORMAT),
+                        inicioMacerado: currentDate.format(DATE_TIME_FORMAT)
                     },
                     elemDefault
                 );
@@ -101,13 +101,13 @@ describe('Service Tests', () => {
                         nombre: 'BBBBBB',
                         estilo: 'BBBBBB',
                         fechaInicio: currentDate.format(DATE_TIME_FORMAT),
-                        fechaFin: currentDate.format(DATE_FORMAT),
+                        fechaFin: currentDate.format(DATE_TIME_FORMAT),
                         chequeo: true,
                         limpieza: true,
                         limpiezaOlla: true,
                         limpiezaManguera: true,
                         macerado: 'BBBBBB',
-                        inicioMacerado: currentDate.format(DATE_FORMAT),
+                        inicioMacerado: currentDate.format(DATE_TIME_FORMAT),
                         infucion: true,
                         primerEscalon: true,
                         segundoEscalon: true,
@@ -143,13 +143,13 @@ describe('Service Tests', () => {
                         nombre: 'BBBBBB',
                         estilo: 'BBBBBB',
                         fechaInicio: currentDate.format(DATE_TIME_FORMAT),
-                        fechaFin: currentDate.format(DATE_FORMAT),
+                        fechaFin: currentDate.format(DATE_TIME_FORMAT),
                         chequeo: true,
                         limpieza: true,
                         limpiezaOlla: true,
                         limpiezaManguera: true,
                         macerado: 'BBBBBB',
-                        inicioMacerado: currentDate.format(DATE_FORMAT),
+                        inicioMacerado: currentDate.format(DATE_TIME_FORMAT),
                         infucion: true,
                         primerEscalon: true,
                         segundoEscalon: true,

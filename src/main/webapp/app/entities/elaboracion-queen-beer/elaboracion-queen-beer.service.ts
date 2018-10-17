@@ -60,11 +60,9 @@ export class ElaboracionQueenBeerService {
     private convertDateFromClient(elaboracion: IElaboracionQueenBeer): IElaboracionQueenBeer {
         const copy: IElaboracionQueenBeer = Object.assign({}, elaboracion, {
             fechaInicio: elaboracion.fechaInicio != null && elaboracion.fechaInicio.isValid() ? elaboracion.fechaInicio.toJSON() : null,
-            fechaFin: elaboracion.fechaFin != null && elaboracion.fechaFin.isValid() ? elaboracion.fechaFin.format(DATE_FORMAT) : null,
+            fechaFin: elaboracion.fechaFin != null && elaboracion.fechaFin.isValid() ? elaboracion.fechaFin.toJSON() : null,
             inicioMacerado:
-                elaboracion.inicioMacerado != null && elaboracion.inicioMacerado.isValid()
-                    ? elaboracion.inicioMacerado.format(DATE_FORMAT)
-                    : null
+                elaboracion.inicioMacerado != null && elaboracion.inicioMacerado.isValid() ? elaboracion.inicioMacerado.toJSON() : null
         });
         return copy;
     }
