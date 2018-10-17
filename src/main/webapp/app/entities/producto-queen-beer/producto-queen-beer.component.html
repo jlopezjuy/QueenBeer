@@ -1,0 +1,86 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="queenBeerApp.producto.home.title">Productos</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-producto-queen-beer" [routerLink]="['/producto-queen-beer/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span class="hidden-sm-down"  jhiTranslate="queenBeerApp.producto.home.createLabel">
+            Create new Producto
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'queenBeerApp.producto.home.search' | translate }}">
+                    <button class="input-group-append btn btn-info" (click)="search(currentSearch)">
+                        <fa-icon [icon]="'search'"></fa-icon>
+                    </button>
+                    <button class="input-group-append btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <fa-icon [icon]="'trash-alt'"></fa-icon>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="productos">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="queenBeerApp.producto.codigo">Codigo</span></th>
+            <th><span jhiTranslate="queenBeerApp.producto.complementario">Complementario</span></th>
+            <th><span jhiTranslate="queenBeerApp.producto.estilo">Estilo</span></th>
+            <th><span jhiTranslate="queenBeerApp.producto.nombreComercial">Nombre Comercial</span></th>
+            <th><span jhiTranslate="queenBeerApp.producto.precioLitro">Precio Litro</span></th>
+            <th><span jhiTranslate="queenBeerApp.producto.tipoProducto">Tipo Producto</span></th>
+            <th><span jhiTranslate="queenBeerApp.producto.imagen">Imagen</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let producto of productos ;trackBy: trackId">
+                <td><a [routerLink]="['/producto-queen-beer', producto.id, 'view' ]">{{producto.id}}</a></td>
+                <td>{{producto.codigo}}</td>
+                <td>{{producto.complementario}}</td>
+                <td>{{producto.estilo}}</td>
+                <td>{{producto.nombreComercial}}</td>
+                <td>{{producto.precioLitro}}</td>
+                <td jhiTranslate="{{'queenBeerApp.TipoProducto.' + producto.tipoProducto}}">{{producto.tipoProducto}}</td>
+                <td>
+                    <a *ngIf="producto.imagen" (click)="openFile(producto.imagenContentType, producto.imagen)">
+                        <img [src]="'data:' + producto.imagenContentType + ';base64,' + producto.imagen" style="max-height: 30px;" alt="producto image"/>
+                    </a>
+                    <span *ngIf="producto.imagen">{{producto.imagenContentType}}, {{byteSize(producto.imagen)}}</span>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/producto-queen-beer', producto.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/producto-queen-beer', producto.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'producto-queen-beer/'+ producto.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

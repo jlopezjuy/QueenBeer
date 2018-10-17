@@ -1,0 +1,99 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="elaboracion">
+            <h2><span jhiTranslate="queenBeerApp.elaboracion.detail.title">Elaboracion</span> {{elaboracion.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="queenBeerApp.elaboracion.lote">Lote</span></dt>
+                <dd>
+                    <span>{{elaboracion.lote}}</span>
+                </dd>
+                <dt><span jhiTranslate="queenBeerApp.elaboracion.nombre">Nombre</span></dt>
+                <dd>
+                    <span>{{elaboracion.nombre}}</span>
+                </dd>
+                <dt><span jhiTranslate="queenBeerApp.elaboracion.estilo">Estilo</span></dt>
+                <dd>
+                    <span>{{elaboracion.estilo}}</span>
+                </dd>
+                <dt><span jhiTranslate="queenBeerApp.elaboracion.fechaInicio">Fecha Inicio</span></dt>
+                <dd>
+                    <span>{{elaboracion.fechaInicio}}</span>
+                </dd>
+                <dt><span jhiTranslate="queenBeerApp.elaboracion.fechaFin">Fecha Fin</span></dt>
+                <dd>
+                    <span>{{elaboracion.fechaFin}}</span>
+                </dd>
+                <dt><span jhiTranslate="queenBeerApp.elaboracion.chequeo">Chequeo</span></dt>
+                <dd>
+                    <span>{{elaboracion.chequeo}}</span>
+                </dd>
+                <dt><span jhiTranslate="queenBeerApp.elaboracion.limpieza">Limpieza</span></dt>
+                <dd>
+                    <span>{{elaboracion.limpieza}}</span>
+                </dd>
+                <dt><span jhiTranslate="queenBeerApp.elaboracion.limpiezaOlla">Limpieza Olla</span></dt>
+                <dd>
+                    <span>{{elaboracion.limpiezaOlla}}</span>
+                </dd>
+                <dt><span jhiTranslate="queenBeerApp.elaboracion.limpiezaManguera">Limpieza Manguera</span></dt>
+                <dd>
+                    <span>{{elaboracion.limpiezaManguera}}</span>
+                </dd>
+                <dt><span jhiTranslate="queenBeerApp.elaboracion.macerado">Macerado</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'queenBeerApp.TipoMacerado.' + elaboracion.macerado}}">{{elaboracion.macerado}}</span>
+                </dd>
+                <dt><span jhiTranslate="queenBeerApp.elaboracion.inicioMacerado">Inicio Macerado</span></dt>
+                <dd>
+                    <span>{{elaboracion.inicioMacerado}}</span>
+                </dd>
+                <dt><span jhiTranslate="queenBeerApp.elaboracion.infucion">Infucion</span></dt>
+                <dd>
+                    <span>{{elaboracion.infucion}}</span>
+                </dd>
+                <dt><span jhiTranslate="queenBeerApp.elaboracion.primerEscalon">Primer Escalon</span></dt>
+                <dd>
+                    <span>{{elaboracion.primerEscalon}}</span>
+                </dd>
+                <dt><span jhiTranslate="queenBeerApp.elaboracion.segundoEscalon">Segundo Escalon</span></dt>
+                <dd>
+                    <span>{{elaboracion.segundoEscalon}}</span>
+                </dd>
+                <dt><span jhiTranslate="queenBeerApp.elaboracion.tercerEscalon">Tercer Escalon</span></dt>
+                <dd>
+                    <span>{{elaboracion.tercerEscalon}}</span>
+                </dd>
+                <dt><span jhiTranslate="queenBeerApp.elaboracion.litroInicial">Litro Inicial</span></dt>
+                <dd>
+                    <span>{{elaboracion.litroInicial}}</span>
+                </dd>
+                <dt><span jhiTranslate="queenBeerApp.elaboracion.relacionMaltaAgua">Relacion Malta Agua</span></dt>
+                <dd>
+                    <span>{{elaboracion.relacionMaltaAgua}}</span>
+                </dd>
+                <dt><span jhiTranslate="queenBeerApp.elaboracion.litroFalsoFondo">Litro Falso Fondo</span></dt>
+                <dd>
+                    <span>{{elaboracion.litroFalsoFondo}}</span>
+                </dd>
+                <dt><span jhiTranslate="queenBeerApp.elaboracion.litroTotal">Litro Total</span></dt>
+                <dd>
+                    <span>{{elaboracion.litroTotal}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/elaboracion-queen-beer', elaboracion.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

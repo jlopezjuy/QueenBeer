@@ -1,0 +1,133 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-elaboracion-queen-beer-heading" jhiTranslate="queenBeerApp.elaboracion.home.createOrEditLabel">Create or edit a Elaboracion</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!elaboracion.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="elaboracion.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="queenBeerApp.elaboracion.lote" for="field_lote">Lote</label>
+                    <input type="text" class="form-control" name="lote" id="field_lote"
+                        [(ngModel)]="elaboracion.lote" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="queenBeerApp.elaboracion.nombre" for="field_nombre">Nombre</label>
+                    <input type="text" class="form-control" name="nombre" id="field_nombre"
+                        [(ngModel)]="elaboracion.nombre" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="queenBeerApp.elaboracion.estilo" for="field_estilo">Estilo</label>
+                    <input type="text" class="form-control" name="estilo" id="field_estilo"
+                        [(ngModel)]="elaboracion.estilo" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="queenBeerApp.elaboracion.fechaInicio" for="field_fechaInicio">Fecha Inicio</label>
+                    <div class="d-flex">
+                        <input id="field_fechaInicio" type="datetime-local" class="form-control" name="fechaInicio" [(ngModel)]="fechaInicio"
+                        />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="queenBeerApp.elaboracion.fechaFin" for="field_fechaFin">Fecha Fin</label>
+                    <div class="input-group">
+                        <input id="field_fechaFin" type="text" class="form-control" name="fechaFin" ngbDatepicker  #fechaFinDp="ngbDatepicker" [(ngModel)]="elaboracion.fechaFin"
+                        />
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="fechaFinDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="queenBeerApp.elaboracion.chequeo" for="field_chequeo">Chequeo</label>
+                    <input type="checkbox" class="form-control" name="chequeo" id="field_chequeo"
+                        [(ngModel)]="elaboracion.chequeo" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="queenBeerApp.elaboracion.limpieza" for="field_limpieza">Limpieza</label>
+                    <input type="checkbox" class="form-control" name="limpieza" id="field_limpieza"
+                        [(ngModel)]="elaboracion.limpieza" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="queenBeerApp.elaboracion.limpiezaOlla" for="field_limpiezaOlla">Limpieza Olla</label>
+                    <input type="checkbox" class="form-control" name="limpiezaOlla" id="field_limpiezaOlla"
+                        [(ngModel)]="elaboracion.limpiezaOlla" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="queenBeerApp.elaboracion.limpiezaManguera" for="field_limpiezaManguera">Limpieza Manguera</label>
+                    <input type="checkbox" class="form-control" name="limpiezaManguera" id="field_limpiezaManguera"
+                        [(ngModel)]="elaboracion.limpiezaManguera" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="queenBeerApp.elaboracion.macerado" for="field_macerado">Macerado</label>
+                    <select class="form-control" name="macerado" [(ngModel)]="elaboracion.macerado" id="field_macerado" >
+                        <option value="INFUCION">{{'queenBeerApp.TipoMacerado.INFUCION' | translate}}</option>
+                        <option value="ESCALONADO">{{'queenBeerApp.TipoMacerado.ESCALONADO' | translate}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="queenBeerApp.elaboracion.inicioMacerado" for="field_inicioMacerado">Inicio Macerado</label>
+                    <div class="input-group">
+                        <input id="field_inicioMacerado" type="text" class="form-control" name="inicioMacerado" ngbDatepicker  #inicioMaceradoDp="ngbDatepicker" [(ngModel)]="elaboracion.inicioMacerado"
+                        />
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="inicioMaceradoDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="queenBeerApp.elaboracion.infucion" for="field_infucion">Infucion</label>
+                    <input type="checkbox" class="form-control" name="infucion" id="field_infucion"
+                        [(ngModel)]="elaboracion.infucion" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="queenBeerApp.elaboracion.primerEscalon" for="field_primerEscalon">Primer Escalon</label>
+                    <input type="checkbox" class="form-control" name="primerEscalon" id="field_primerEscalon"
+                        [(ngModel)]="elaboracion.primerEscalon" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="queenBeerApp.elaboracion.segundoEscalon" for="field_segundoEscalon">Segundo Escalon</label>
+                    <input type="checkbox" class="form-control" name="segundoEscalon" id="field_segundoEscalon"
+                        [(ngModel)]="elaboracion.segundoEscalon" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="queenBeerApp.elaboracion.tercerEscalon" for="field_tercerEscalon">Tercer Escalon</label>
+                    <input type="checkbox" class="form-control" name="tercerEscalon" id="field_tercerEscalon"
+                        [(ngModel)]="elaboracion.tercerEscalon" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="queenBeerApp.elaboracion.litroInicial" for="field_litroInicial">Litro Inicial</label>
+                    <input type="number" class="form-control" name="litroInicial" id="field_litroInicial"
+                        [(ngModel)]="elaboracion.litroInicial" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="queenBeerApp.elaboracion.relacionMaltaAgua" for="field_relacionMaltaAgua">Relacion Malta Agua</label>
+                    <input type="number" class="form-control" name="relacionMaltaAgua" id="field_relacionMaltaAgua"
+                        [(ngModel)]="elaboracion.relacionMaltaAgua" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="queenBeerApp.elaboracion.litroFalsoFondo" for="field_litroFalsoFondo">Litro Falso Fondo</label>
+                    <input type="number" class="form-control" name="litroFalsoFondo" id="field_litroFalsoFondo"
+                        [(ngModel)]="elaboracion.litroFalsoFondo" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="queenBeerApp.elaboracion.litroTotal" for="field_litroTotal">Litro Total</label>
+                    <input type="number" class="form-control" name="litroTotal" id="field_litroTotal"
+                        [(ngModel)]="elaboracion.litroTotal" />
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

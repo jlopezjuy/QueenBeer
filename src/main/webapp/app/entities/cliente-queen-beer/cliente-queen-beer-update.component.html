@@ -1,0 +1,95 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-cliente-queen-beer-heading" jhiTranslate="queenBeerApp.cliente.home.createOrEditLabel">Create or edit a Cliente</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!cliente.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="cliente.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="queenBeerApp.cliente.nombreFantasia" for="field_nombreFantasia">Nombre Fantasia</label>
+                    <input type="text" class="form-control" name="nombreFantasia" id="field_nombreFantasia"
+                        [(ngModel)]="cliente.nombreFantasia" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="queenBeerApp.cliente.razonSocial" for="field_razonSocial">Razon Social</label>
+                    <input type="text" class="form-control" name="razonSocial" id="field_razonSocial"
+                        [(ngModel)]="cliente.razonSocial" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="queenBeerApp.cliente.categoria" for="field_categoria">Categoria</label>
+                    <select class="form-control" name="categoria" [(ngModel)]="cliente.categoria" id="field_categoria" >
+                        <option value="BAR">{{'queenBeerApp.CategoriaCliente.BAR' | translate}}</option>
+                        <option value="DISTRIBUIDOR">{{'queenBeerApp.CategoriaCliente.DISTRIBUIDOR' | translate}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="queenBeerApp.cliente.cuit" for="field_cuit">Cuit</label>
+                    <input type="text" class="form-control" name="cuit" id="field_cuit"
+                        [(ngModel)]="cliente.cuit" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="queenBeerApp.cliente.condicionFiscal" for="field_condicionFiscal">Condicion Fiscal</label>
+                    <select class="form-control" name="condicionFiscal" [(ngModel)]="cliente.condicionFiscal" id="field_condicionFiscal" >
+                        <option value="RESPONSABLE_INSCRIPTO">{{'queenBeerApp.CondicionFiscal.RESPONSABLE_INSCRIPTO' | translate}}</option>
+                        <option value="MONOTRIBUTISTA">{{'queenBeerApp.CondicionFiscal.MONOTRIBUTISTA' | translate}}</option>
+                        <option value="CONSUMIDOR_FINAL">{{'queenBeerApp.CondicionFiscal.CONSUMIDOR_FINAL' | translate}}</option>
+                        <option value="OTRO">{{'queenBeerApp.CondicionFiscal.OTRO' | translate}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="queenBeerApp.cliente.fechaAlta" for="field_fechaAlta">Fecha Alta</label>
+                    <div class="d-flex">
+                        <input id="field_fechaAlta" type="datetime-local" class="form-control" name="fechaAlta" [(ngModel)]="fechaAlta"
+                        />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="queenBeerApp.cliente.telefono" for="field_telefono">Telefono</label>
+                    <input type="text" class="form-control" name="telefono" id="field_telefono"
+                        [(ngModel)]="cliente.telefono" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="queenBeerApp.cliente.direccion" for="field_direccion">Direccion</label>
+                    <input type="text" class="form-control" name="direccion" id="field_direccion"
+                        [(ngModel)]="cliente.direccion" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="queenBeerApp.cliente.localidadCiudad" for="field_localidadCiudad">Localidad Ciudad</label>
+                    <input type="text" class="form-control" name="localidadCiudad" id="field_localidadCiudad"
+                        [(ngModel)]="cliente.localidadCiudad" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="queenBeerApp.cliente.privincia" for="field_privincia">Privincia</label>
+                    <select class="form-control" name="privincia" [(ngModel)]="cliente.privincia" id="field_privincia" >
+                        <option value="BUENOS_AIRES">{{'queenBeerApp.Provincia.BUENOS_AIRES' | translate}}</option>
+                        <option value="CATAMARCA">{{'queenBeerApp.Provincia.CATAMARCA' | translate}}</option>
+                        <option value="CORDOBA">{{'queenBeerApp.Provincia.CORDOBA' | translate}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="queenBeerApp.cliente.codigoPostal" for="field_codigoPostal">Codigo Postal</label>
+                    <input type="number" class="form-control" name="codigoPostal" id="field_codigoPostal"
+                        [(ngModel)]="cliente.codigoPostal" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="queenBeerApp.cliente.email" for="field_email">Email</label>
+                    <input type="text" class="form-control" name="email" id="field_email"
+                        [(ngModel)]="cliente.email" />
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

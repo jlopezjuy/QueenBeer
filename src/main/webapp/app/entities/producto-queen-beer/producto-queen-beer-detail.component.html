@@ -1,0 +1,56 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="producto">
+            <h2><span jhiTranslate="queenBeerApp.producto.detail.title">Producto</span> {{producto.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="queenBeerApp.producto.codigo">Codigo</span></dt>
+                <dd>
+                    <span>{{producto.codigo}}</span>
+                </dd>
+                <dt><span jhiTranslate="queenBeerApp.producto.complementario">Complementario</span></dt>
+                <dd>
+                    <span>{{producto.complementario}}</span>
+                </dd>
+                <dt><span jhiTranslate="queenBeerApp.producto.estilo">Estilo</span></dt>
+                <dd>
+                    <span>{{producto.estilo}}</span>
+                </dd>
+                <dt><span jhiTranslate="queenBeerApp.producto.nombreComercial">Nombre Comercial</span></dt>
+                <dd>
+                    <span>{{producto.nombreComercial}}</span>
+                </dd>
+                <dt><span jhiTranslate="queenBeerApp.producto.precioLitro">Precio Litro</span></dt>
+                <dd>
+                    <span>{{producto.precioLitro}}</span>
+                </dd>
+                <dt><span jhiTranslate="queenBeerApp.producto.tipoProducto">Tipo Producto</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'queenBeerApp.TipoProducto.' + producto.tipoProducto}}">{{producto.tipoProducto}}</span>
+                </dd>
+                <dt><span jhiTranslate="queenBeerApp.producto.imagen">Imagen</span></dt>
+                <dd>
+                    <div *ngIf="producto.imagen">
+                        <a (click)="openFile(producto.imagenContentType, producto.imagen)">
+                            <img [src]="'data:' + producto.imagenContentType + ';base64,' + producto.imagen" style="max-width: 100%;" alt="producto image"/>
+                        </a>
+                        {{producto.imagenContentType}}, {{byteSize(producto.imagen)}}
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/producto-queen-beer', producto.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

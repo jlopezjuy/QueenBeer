@@ -5,6 +5,14 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
 
     <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181017191605_added_entity_Cliente.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181017191606_added_entity_ListaPrecio.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181017191607_added_entity_Producto.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181017191608_added_entity_Proveedor.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181017191609_added_entity_Insumo.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181017191610_added_entity_Elaboracion.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20181017191611_added_entity_ElaboracionInsumo.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+    <include file="config/liquibase/changelog/20181017191611_added_entity_constraints_ElaboracionInsumo.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

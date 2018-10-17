@@ -1,0 +1,100 @@
+{
+    "name": "Elaboracion",
+    "fields": [
+        {
+            "fieldName": "lote",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "nombre",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "estilo",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "fechaInicio",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "fechaFin",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "chequeo",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "limpieza",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "limpiezaOlla",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "limpiezaManguera",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "macerado",
+            "fieldType": "TipoMacerado",
+            "fieldValues": "INFUCION,ESCALONADO"
+        },
+        {
+            "fieldName": "inicioMacerado",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "infucion",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "primerEscalon",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "segundoEscalon",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "tercerEscalon",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "litroInicial",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "relacionMaltaAgua",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "litroFalsoFondo",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "litroTotal",
+            "fieldType": "BigDecimal"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "elaboracionInsumo",
+            "otherEntityName": "elaboracionInsumo",
+            "otherEntityRelationshipName": "elaboracion"
+        }
+    ],
+    "changelogDate": "20181017191610",
+    "entityTableName": "elaboracion",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "angularJSSuffix": "queenBeer"
+}

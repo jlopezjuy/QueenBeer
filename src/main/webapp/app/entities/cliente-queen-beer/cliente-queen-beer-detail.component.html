@@ -1,0 +1,71 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="cliente">
+            <h2><span jhiTranslate="queenBeerApp.cliente.detail.title">Cliente</span> {{cliente.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="queenBeerApp.cliente.nombreFantasia">Nombre Fantasia</span></dt>
+                <dd>
+                    <span>{{cliente.nombreFantasia}}</span>
+                </dd>
+                <dt><span jhiTranslate="queenBeerApp.cliente.razonSocial">Razon Social</span></dt>
+                <dd>
+                    <span>{{cliente.razonSocial}}</span>
+                </dd>
+                <dt><span jhiTranslate="queenBeerApp.cliente.categoria">Categoria</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'queenBeerApp.CategoriaCliente.' + cliente.categoria}}">{{cliente.categoria}}</span>
+                </dd>
+                <dt><span jhiTranslate="queenBeerApp.cliente.cuit">Cuit</span></dt>
+                <dd>
+                    <span>{{cliente.cuit}}</span>
+                </dd>
+                <dt><span jhiTranslate="queenBeerApp.cliente.condicionFiscal">Condicion Fiscal</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'queenBeerApp.CondicionFiscal.' + cliente.condicionFiscal}}">{{cliente.condicionFiscal}}</span>
+                </dd>
+                <dt><span jhiTranslate="queenBeerApp.cliente.fechaAlta">Fecha Alta</span></dt>
+                <dd>
+                    <span>{{cliente.fechaAlta}}</span>
+                </dd>
+                <dt><span jhiTranslate="queenBeerApp.cliente.telefono">Telefono</span></dt>
+                <dd>
+                    <span>{{cliente.telefono}}</span>
+                </dd>
+                <dt><span jhiTranslate="queenBeerApp.cliente.direccion">Direccion</span></dt>
+                <dd>
+                    <span>{{cliente.direccion}}</span>
+                </dd>
+                <dt><span jhiTranslate="queenBeerApp.cliente.localidadCiudad">Localidad Ciudad</span></dt>
+                <dd>
+                    <span>{{cliente.localidadCiudad}}</span>
+                </dd>
+                <dt><span jhiTranslate="queenBeerApp.cliente.privincia">Privincia</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'queenBeerApp.Provincia.' + cliente.privincia}}">{{cliente.privincia}}</span>
+                </dd>
+                <dt><span jhiTranslate="queenBeerApp.cliente.codigoPostal">Codigo Postal</span></dt>
+                <dd>
+                    <span>{{cliente.codigoPostal}}</span>
+                </dd>
+                <dt><span jhiTranslate="queenBeerApp.cliente.email">Email</span></dt>
+                <dd>
+                    <span>{{cliente.email}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/cliente-queen-beer', cliente.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

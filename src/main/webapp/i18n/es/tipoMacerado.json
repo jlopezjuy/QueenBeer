@@ -1,0 +1,9 @@
+{
+    "queenBeerApp": {
+        "TipoMacerado" : {
+            "null": "",
+            "INFUCION": "INFUCION",
+            "ESCALONADO": "ESCALONADO"
+        }
+    }
+}

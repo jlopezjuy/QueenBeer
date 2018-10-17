@@ -84,18 +84,13 @@ entity Elaboracion {
 }
 
 entity ElaboracionInsumo {
-	
 }
 
 relationship OneToMany {
-  ElaboracionInsumo{elaboracion} to Elaboracion{elaboracionInsumo},
-  ElaboracionInsumo{insumo} to Insumo{elaboracionInsumo}
+  Elaboracion to ElaboracionInsumo{elaboracion},
+  Insumo to ElaboracionInsumo{insumo}
 }
 
-relationship ManyToOne {
-  Elaboracion{elaboracionInsumo} to ElaboracionInsumo{elaboracion},
-  Insumo{elaboracionInsumo} to ElaboracionInsumo{insumo}
-}
 enum CondicionFiscal {
     RESPONSABLE_INSCRIPTO, 
     MONOTRIBUTISTA, 

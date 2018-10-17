@@ -1,0 +1,93 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="queenBeerApp.proveedor.home.title">Proveedors</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-proveedor-queen-beer" [routerLink]="['/proveedor-queen-beer/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span class="hidden-sm-down"  jhiTranslate="queenBeerApp.proveedor.home.createLabel">
+            Create new Proveedor
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'queenBeerApp.proveedor.home.search' | translate }}">
+                    <button class="input-group-append btn btn-info" (click)="search(currentSearch)">
+                        <fa-icon [icon]="'search'"></fa-icon>
+                    </button>
+                    <button class="input-group-append btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <fa-icon [icon]="'trash-alt'"></fa-icon>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="proveedors">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="queenBeerApp.proveedor.nombreFantasia">Nombre Fantasia</span></th>
+            <th><span jhiTranslate="queenBeerApp.proveedor.razonSocial">Razon Social</span></th>
+            <th><span jhiTranslate="queenBeerApp.proveedor.cuit">Cuit</span></th>
+            <th><span jhiTranslate="queenBeerApp.proveedor.condicionFiscal">Condicion Fiscal</span></th>
+            <th><span jhiTranslate="queenBeerApp.proveedor.telefono">Telefono</span></th>
+            <th><span jhiTranslate="queenBeerApp.proveedor.fechaAlta">Fecha Alta</span></th>
+            <th><span jhiTranslate="queenBeerApp.proveedor.direccion">Direccion</span></th>
+            <th><span jhiTranslate="queenBeerApp.proveedor.localidad">Localidad</span></th>
+            <th><span jhiTranslate="queenBeerApp.proveedor.codigoPostal">Codigo Postal</span></th>
+            <th><span jhiTranslate="queenBeerApp.proveedor.contacto">Contacto</span></th>
+            <th><span jhiTranslate="queenBeerApp.proveedor.email">Email</span></th>
+            <th><span jhiTranslate="queenBeerApp.proveedor.provincia">Provincia</span></th>
+            <th><span jhiTranslate="queenBeerApp.proveedor.notas">Notas</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let proveedor of proveedors ;trackBy: trackId">
+                <td><a [routerLink]="['/proveedor-queen-beer', proveedor.id, 'view' ]">{{proveedor.id}}</a></td>
+                <td>{{proveedor.nombreFantasia}}</td>
+                <td>{{proveedor.razonSocial}}</td>
+                <td>{{proveedor.cuit}}</td>
+                <td jhiTranslate="{{'queenBeerApp.CondicionFiscal.' + proveedor.condicionFiscal}}">{{proveedor.condicionFiscal}}</td>
+                <td>{{proveedor.telefono}}</td>
+                <td>{{proveedor.fechaAlta | date:'medium'}}</td>
+                <td>{{proveedor.direccion}}</td>
+                <td>{{proveedor.localidad}}</td>
+                <td>{{proveedor.codigoPostal}}</td>
+                <td>{{proveedor.contacto}}</td>
+                <td>{{proveedor.email}}</td>
+                <td jhiTranslate="{{'queenBeerApp.Provincia.' + proveedor.provincia}}">{{proveedor.provincia}}</td>
+                <td>{{proveedor.notas}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/proveedor-queen-beer', proveedor.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/proveedor-queen-beer', proveedor.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'proveedor-queen-beer/'+ proveedor.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

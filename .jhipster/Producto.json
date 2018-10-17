@@ -1,0 +1,46 @@
+{
+    "name": "Producto",
+    "fields": [
+        {
+            "fieldName": "codigo",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "complementario",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "estilo",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "nombreComercial",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "precioLitro",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "tipoProducto",
+            "fieldType": "TipoProducto",
+            "fieldValues": "FIJO,ROTATIVO,ESPECIAL"
+        },
+        {
+            "fieldName": "imagen",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20181017191607",
+    "entityTableName": "producto",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "angularJSSuffix": "queenBeer"
+}

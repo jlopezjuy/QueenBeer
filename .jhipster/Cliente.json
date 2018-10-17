@@ -1,0 +1,67 @@
+{
+    "name": "Cliente",
+    "fields": [
+        {
+            "fieldName": "nombreFantasia",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "razonSocial",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "categoria",
+            "fieldType": "CategoriaCliente",
+            "fieldValues": "BAR,DISTRIBUIDOR"
+        },
+        {
+            "fieldName": "cuit",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "condicionFiscal",
+            "fieldType": "CondicionFiscal",
+            "fieldValues": "RESPONSABLE_INSCRIPTO,MONOTRIBUTISTA,CONSUMIDOR_FINAL,OTRO"
+        },
+        {
+            "fieldName": "fechaAlta",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "telefono",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "direccion",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "localidadCiudad",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "privincia",
+            "fieldType": "Provincia",
+            "fieldValues": "BUENOS_AIRES,CATAMARCA,CORDOBA"
+        },
+        {
+            "fieldName": "codigoPostal",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "email",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20181017191605",
+    "entityTableName": "cliente",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "angularJSSuffix": "queenBeer"
+}

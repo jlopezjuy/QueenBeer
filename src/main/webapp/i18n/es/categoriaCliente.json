@@ -1,0 +1,9 @@
+{
+    "queenBeerApp": {
+        "CategoriaCliente" : {
+            "null": "",
+            "BAR": "BAR",
+            "DISTRIBUIDOR": "DISTRIBUIDOR"
+        }
+    }
+}

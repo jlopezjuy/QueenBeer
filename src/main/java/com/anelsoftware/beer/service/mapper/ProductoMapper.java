@@ -1,0 +1,24 @@
+package com.anelsoftware.beer.service.mapper;
+
+import com.anelsoftware.beer.domain.*;
+import com.anelsoftware.beer.service.dto.ProductoDTO;
+
+import org.mapstruct.*;
+
+/**
+ * Mapper for the entity Producto and its DTO ProductoDTO.
+ */
+@Mapper(componentModel = "spring", uses = {})
+public interface ProductoMapper extends EntityMapper<ProductoDTO, Producto> {
+
+
+
+    default Producto fromId(Long id) {
+        if (id == null) {
+            return null;
+        }
+        Producto producto = new Producto();
+        producto.setId(id);
+        return producto;
+    }
+}

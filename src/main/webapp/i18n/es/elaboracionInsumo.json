@@ -1,0 +1,24 @@
+
+{
+    "queenBeerApp": {
+        "elaboracionInsumo" : {
+            "home": {
+                "title": "Elaboracion Insumos",
+                "createLabel": "Crear nuevo Elaboracion Insumo",
+                "createOrEditLabel": "Crear o editar Elaboracion Insumo",
+                "search": "Search for Elaboracion Insumo"
+            },
+            "created": "Un nuevo Elaboracion Insumo ha sido creado con el identificador {{ param }}",
+            "updated": "Un Elaboracion Insumo ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Elaboracion Insumo ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Elaboracion Insumo {{ id }}?"
+            },
+            "detail": {
+                "title": "Elaboracion Insumo"
+            },
+            "elaboracion": "Elaboracion",
+            "insumo": "Insumo"
+        }
+    }
+}

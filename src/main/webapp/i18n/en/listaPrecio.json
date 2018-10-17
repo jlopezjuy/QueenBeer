@@ -1,0 +1,24 @@
+
+{
+    "queenBeerApp": {
+        "listaPrecio" : {
+            "home": {
+                "title": "Lista Precios",
+                "createLabel": "Create a new Lista Precio",
+                "createOrEditLabel": "Create or edit a Lista Precio",
+                "search": "Search for Lista Precio"
+            },
+            "created": "A new Lista Precio is created with identifier {{ param }}",
+            "updated": "A Lista Precio is updated with identifier {{ param }}",
+            "deleted": "A Lista Precio is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Lista Precio {{ id }}?"
+            },
+            "detail": {
+                "title": "Lista Precio"
+            },
+            "nombre": "Nombre",
+            "porcentage": "Porcentage"
+        }
+    }
+}

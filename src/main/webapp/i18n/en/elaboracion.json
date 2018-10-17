@@ -1,0 +1,42 @@
+
+{
+    "queenBeerApp": {
+        "elaboracion" : {
+            "home": {
+                "title": "Elaboracions",
+                "createLabel": "Create a new Elaboracion",
+                "createOrEditLabel": "Create or edit a Elaboracion",
+                "search": "Search for Elaboracion"
+            },
+            "created": "A new Elaboracion is created with identifier {{ param }}",
+            "updated": "A Elaboracion is updated with identifier {{ param }}",
+            "deleted": "A Elaboracion is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Elaboracion {{ id }}?"
+            },
+            "detail": {
+                "title": "Elaboracion"
+            },
+            "lote": "Lote",
+            "nombre": "Nombre",
+            "estilo": "Estilo",
+            "fechaInicio": "Fecha Inicio",
+            "fechaFin": "Fecha Fin",
+            "chequeo": "Chequeo",
+            "limpieza": "Limpieza",
+            "limpiezaOlla": "Limpieza Olla",
+            "limpiezaManguera": "Limpieza Manguera",
+            "macerado": "Macerado",
+            "inicioMacerado": "Inicio Macerado",
+            "infucion": "Infucion",
+            "primerEscalon": "Primer Escalon",
+            "segundoEscalon": "Segundo Escalon",
+            "tercerEscalon": "Tercer Escalon",
+            "litroInicial": "Litro Inicial",
+            "relacionMaltaAgua": "Relacion Malta Agua",
+            "litroFalsoFondo": "Litro Falso Fondo",
+            "litroTotal": "Litro Total",
+            "elaboracionInsumo": "Elaboracion Insumo"
+        }
+    }
+}

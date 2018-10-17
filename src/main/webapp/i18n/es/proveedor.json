@@ -1,0 +1,35 @@
+
+{
+    "queenBeerApp": {
+        "proveedor" : {
+            "home": {
+                "title": "Proveedors",
+                "createLabel": "Crear nuevo Proveedor",
+                "createOrEditLabel": "Crear o editar Proveedor",
+                "search": "Search for Proveedor"
+            },
+            "created": "Un nuevo Proveedor ha sido creado con el identificador {{ param }}",
+            "updated": "Un Proveedor ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Proveedor ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Proveedor {{ id }}?"
+            },
+            "detail": {
+                "title": "Proveedor"
+            },
+            "nombreFantasia": "Nombre Fantasia",
+            "razonSocial": "Razon Social",
+            "cuit": "Cuit",
+            "condicionFiscal": "Condicion Fiscal",
+            "telefono": "Telefono",
+            "fechaAlta": "Fecha Alta",
+            "direccion": "Direccion",
+            "localidad": "Localidad",
+            "codigoPostal": "Codigo Postal",
+            "contacto": "Contacto",
+            "email": "Email",
+            "provincia": "Provincia",
+            "notas": "Notas"
+        }
+    }
+}

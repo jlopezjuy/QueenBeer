@@ -1,0 +1,50 @@
+{
+    "name": "Insumo",
+    "fields": [
+        {
+            "fieldName": "nombre",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "marca",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "stockMinimo",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "unidad",
+            "fieldType": "Unidad",
+            "fieldValues": "KILOGRAMO,GRAMO,VEINTICINCO_KILOS,DIES_KILOS,LITRO,CM3,ML,UNIDAD"
+        },
+        {
+            "fieldName": "tipo",
+            "fieldType": "TipoInsumo",
+            "fieldValues": "MALTA,LUPULO,LEVADURA,ACIDO,SAL,OTROS"
+        },
+        {
+            "fieldName": "imagen",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "elaboracionInsumo",
+            "otherEntityName": "elaboracionInsumo",
+            "otherEntityRelationshipName": "insumo"
+        }
+    ],
+    "changelogDate": "20181017191609",
+    "entityTableName": "insumo",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "angularJSSuffix": "queenBeer"
+}

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity ElaboracionInsumo.
+    -->
+    <changeSet id="20181017191611-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="elaboracion_id"
+                                 baseTableName="elaboracion_insumo"
+                                 constraintName="fk_elaboracion_insumo_elaboracion_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="elaboracion"/>
+
+        <addForeignKeyConstraint baseColumnNames="insumo_id"
+                                 baseTableName="elaboracion_insumo"
+                                 constraintName="fk_elaboracion_insumo_insumo_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="insumo"/>
+
+    </changeSet>
+</databaseChangeLog>

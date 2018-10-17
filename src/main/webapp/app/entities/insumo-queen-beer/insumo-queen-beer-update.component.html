@@ -1,0 +1,80 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-insumo-queen-beer-heading" jhiTranslate="queenBeerApp.insumo.home.createOrEditLabel">Create or edit a Insumo</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!insumo.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="insumo.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="queenBeerApp.insumo.nombre" for="field_nombre">Nombre</label>
+                    <input type="text" class="form-control" name="nombre" id="field_nombre"
+                        [(ngModel)]="insumo.nombre" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="queenBeerApp.insumo.marca" for="field_marca">Marca</label>
+                    <input type="text" class="form-control" name="marca" id="field_marca"
+                        [(ngModel)]="insumo.marca" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="queenBeerApp.insumo.stockMinimo" for="field_stockMinimo">Stock Minimo</label>
+                    <input type="number" class="form-control" name="stockMinimo" id="field_stockMinimo"
+                        [(ngModel)]="insumo.stockMinimo" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="queenBeerApp.insumo.unidad" for="field_unidad">Unidad</label>
+                    <select class="form-control" name="unidad" [(ngModel)]="insumo.unidad" id="field_unidad" >
+                        <option value="KILOGRAMO">{{'queenBeerApp.Unidad.KILOGRAMO' | translate}}</option>
+                        <option value="GRAMO">{{'queenBeerApp.Unidad.GRAMO' | translate}}</option>
+                        <option value="VEINTICINCO_KILOS">{{'queenBeerApp.Unidad.VEINTICINCO_KILOS' | translate}}</option>
+                        <option value="DIES_KILOS">{{'queenBeerApp.Unidad.DIES_KILOS' | translate}}</option>
+                        <option value="LITRO">{{'queenBeerApp.Unidad.LITRO' | translate}}</option>
+                        <option value="CM3">{{'queenBeerApp.Unidad.CM3' | translate}}</option>
+                        <option value="ML">{{'queenBeerApp.Unidad.ML' | translate}}</option>
+                        <option value="UNIDAD">{{'queenBeerApp.Unidad.UNIDAD' | translate}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="queenBeerApp.insumo.tipo" for="field_tipo">Tipo</label>
+                    <select class="form-control" name="tipo" [(ngModel)]="insumo.tipo" id="field_tipo" >
+                        <option value="MALTA">{{'queenBeerApp.TipoInsumo.MALTA' | translate}}</option>
+                        <option value="LUPULO">{{'queenBeerApp.TipoInsumo.LUPULO' | translate}}</option>
+                        <option value="LEVADURA">{{'queenBeerApp.TipoInsumo.LEVADURA' | translate}}</option>
+                        <option value="ACIDO">{{'queenBeerApp.TipoInsumo.ACIDO' | translate}}</option>
+                        <option value="SAL">{{'queenBeerApp.TipoInsumo.SAL' | translate}}</option>
+                        <option value="OTROS">{{'queenBeerApp.TipoInsumo.OTROS' | translate}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="queenBeerApp.insumo.imagen" for="field_imagen">Imagen</label>
+                    <div>
+                        <img [src]="'data:' + insumo.imagenContentType + ';base64,' + insumo.imagen" style="max-height: 100px;" *ngIf="insumo.imagen" alt="insumo image"/>
+                        <div *ngIf="insumo.imagen" class="form-text text-danger clearfix">
+                            <span class="pull-left">{{insumo.imagenContentType}}, {{byteSize(insumo.imagen)}}</span>
+                            <button type="button" (click)="clearInputImage('imagen', 'imagenContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_imagen" (change)="setFileData($event, insumo, 'imagen', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="imagen" id="field_imagen"
+                        [(ngModel)]="insumo.imagen" />
+                    <input type="hidden" class="form-control" name="imagenContentType" id="field_imagenContentType"
+                        [(ngModel)]="insumo.imagenContentType" />
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

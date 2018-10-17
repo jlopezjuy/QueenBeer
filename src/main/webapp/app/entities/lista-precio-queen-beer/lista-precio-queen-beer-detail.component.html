@@ -1,0 +1,31 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="listaPrecio">
+            <h2><span jhiTranslate="queenBeerApp.listaPrecio.detail.title">Lista Precio</span> {{listaPrecio.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="queenBeerApp.listaPrecio.nombre">Nombre</span></dt>
+                <dd>
+                    <span>{{listaPrecio.nombre}}</span>
+                </dd>
+                <dt><span jhiTranslate="queenBeerApp.listaPrecio.porcentage">Porcentage</span></dt>
+                <dd>
+                    <span>{{listaPrecio.porcentage}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/lista-precio-queen-beer', listaPrecio.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

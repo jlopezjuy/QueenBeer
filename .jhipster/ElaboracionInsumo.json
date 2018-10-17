@@ -1,0 +1,28 @@
+{
+    "name": "ElaboracionInsumo",
+    "fields": [],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "elaboracion",
+            "otherEntityName": "elaboracion",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "insumo",
+            "otherEntityName": "insumo",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20181017191611",
+    "entityTableName": "elaboracion_insumo",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "angularJSSuffix": "queenBeer"
+}
