@@ -27,6 +27,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.List;
 
@@ -39,6 +40,8 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import com.anelsoftware.beer.domain.enumeration.UsoLupulo;
+import com.anelsoftware.beer.domain.enumeration.ModoLupulo;
 /**
  * Test class for the ElaboracionInsumoResource REST controller.
  *
@@ -47,6 +50,39 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = QueenBeerApp.class)
 public class ElaboracionInsumoResourceIntTest {
+
+    private static final BigDecimal DEFAULT_EXTRACTO = new BigDecimal(1);
+    private static final BigDecimal UPDATED_EXTRACTO = new BigDecimal(2);
+
+    private static final Long DEFAULT_COLOR = 1L;
+    private static final Long UPDATED_COLOR = 2L;
+
+    private static final BigDecimal DEFAULT_PORCENTAGE = new BigDecimal(1);
+    private static final BigDecimal UPDATED_PORCENTAGE = new BigDecimal(2);
+
+    private static final BigDecimal DEFAULT_KILOGRAMOS = new BigDecimal(1);
+    private static final BigDecimal UPDATED_KILOGRAMOS = new BigDecimal(2);
+
+    private static final UsoLupulo DEFAULT_USO = UsoLupulo.BOIL;
+    private static final UsoLupulo UPDATED_USO = UsoLupulo.FIRST_WORT;
+
+    private static final BigDecimal DEFAULT_ALPHA = new BigDecimal(1);
+    private static final BigDecimal UPDATED_ALPHA = new BigDecimal(2);
+
+    private static final ModoLupulo DEFAULT_MODO = ModoLupulo.PELET;
+    private static final ModoLupulo UPDATED_MODO = ModoLupulo.FLOR;
+
+    private static final BigDecimal DEFAULT_GRAMOS = new BigDecimal(1);
+    private static final BigDecimal UPDATED_GRAMOS = new BigDecimal(2);
+
+    private static final BigDecimal DEFAULT_GL = new BigDecimal(1);
+    private static final BigDecimal UPDATED_GL = new BigDecimal(2);
+
+    private static final Long DEFAULT_TIEMPO = 1L;
+    private static final Long UPDATED_TIEMPO = 2L;
+
+    private static final BigDecimal DEFAULT_IBU = new BigDecimal(1);
+    private static final BigDecimal UPDATED_IBU = new BigDecimal(2);
 
     @Autowired
     private ElaboracionInsumoRepository elaboracionInsumoRepository;
@@ -99,7 +135,18 @@ public class ElaboracionInsumoResourceIntTest {
      * if they test an entity which requires the current entity.
      */
     public static ElaboracionInsumo createEntity(EntityManager em) {
-        ElaboracionInsumo elaboracionInsumo = new ElaboracionInsumo();
+        ElaboracionInsumo elaboracionInsumo = new ElaboracionInsumo()
+            .extracto(DEFAULT_EXTRACTO)
+            .color(DEFAULT_COLOR)
+            .porcentage(DEFAULT_PORCENTAGE)
+            .kilogramos(DEFAULT_KILOGRAMOS)
+            .uso(DEFAULT_USO)
+            .alpha(DEFAULT_ALPHA)
+            .modo(DEFAULT_MODO)
+            .gramos(DEFAULT_GRAMOS)
+            .gl(DEFAULT_GL)
+            .tiempo(DEFAULT_TIEMPO)
+            .ibu(DEFAULT_IBU);
         return elaboracionInsumo;
     }
 
@@ -124,6 +171,17 @@ public class ElaboracionInsumoResourceIntTest {
         List<ElaboracionInsumo> elaboracionInsumoList = elaboracionInsumoRepository.findAll();
         assertThat(elaboracionInsumoList).hasSize(databaseSizeBeforeCreate + 1);
         ElaboracionInsumo testElaboracionInsumo = elaboracionInsumoList.get(elaboracionInsumoList.size() - 1);
+        assertThat(testElaboracionInsumo.getExtracto()).isEqualTo(DEFAULT_EXTRACTO);
+        assertThat(testElaboracionInsumo.getColor()).isEqualTo(DEFAULT_COLOR);
+        assertThat(testElaboracionInsumo.getPorcentage()).isEqualTo(DEFAULT_PORCENTAGE);
+        assertThat(testElaboracionInsumo.getKilogramos()).isEqualTo(DEFAULT_KILOGRAMOS);
+        assertThat(testElaboracionInsumo.getUso()).isEqualTo(DEFAULT_USO);
+        assertThat(testElaboracionInsumo.getAlpha()).isEqualTo(DEFAULT_ALPHA);
+        assertThat(testElaboracionInsumo.getModo()).isEqualTo(DEFAULT_MODO);
+        assertThat(testElaboracionInsumo.getGramos()).isEqualTo(DEFAULT_GRAMOS);
+        assertThat(testElaboracionInsumo.getGl()).isEqualTo(DEFAULT_GL);
+        assertThat(testElaboracionInsumo.getTiempo()).isEqualTo(DEFAULT_TIEMPO);
+        assertThat(testElaboracionInsumo.getIbu()).isEqualTo(DEFAULT_IBU);
 
         // Validate the ElaboracionInsumo in Elasticsearch
         verify(mockElaboracionInsumoSearchRepository, times(1)).save(testElaboracionInsumo);
@@ -162,7 +220,18 @@ public class ElaboracionInsumoResourceIntTest {
         restElaboracionInsumoMockMvc.perform(get("/api/elaboracion-insumos?sort=id,desc"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(elaboracionInsumo.getId().intValue())));
+            .andExpect(jsonPath("$.[*].id").value(hasItem(elaboracionInsumo.getId().intValue())))
+            .andExpect(jsonPath("$.[*].extracto").value(hasItem(DEFAULT_EXTRACTO.intValue())))
+            .andExpect(jsonPath("$.[*].color").value(hasItem(DEFAULT_COLOR.intValue())))
+            .andExpect(jsonPath("$.[*].porcentage").value(hasItem(DEFAULT_PORCENTAGE.intValue())))
+            .andExpect(jsonPath("$.[*].kilogramos").value(hasItem(DEFAULT_KILOGRAMOS.intValue())))
+            .andExpect(jsonPath("$.[*].uso").value(hasItem(DEFAULT_USO.toString())))
+            .andExpect(jsonPath("$.[*].alpha").value(hasItem(DEFAULT_ALPHA.intValue())))
+            .andExpect(jsonPath("$.[*].modo").value(hasItem(DEFAULT_MODO.toString())))
+            .andExpect(jsonPath("$.[*].gramos").value(hasItem(DEFAULT_GRAMOS.intValue())))
+            .andExpect(jsonPath("$.[*].gl").value(hasItem(DEFAULT_GL.intValue())))
+            .andExpect(jsonPath("$.[*].tiempo").value(hasItem(DEFAULT_TIEMPO.intValue())))
+            .andExpect(jsonPath("$.[*].ibu").value(hasItem(DEFAULT_IBU.intValue())));
     }
     
     @Test
@@ -175,7 +244,18 @@ public class ElaboracionInsumoResourceIntTest {
         restElaboracionInsumoMockMvc.perform(get("/api/elaboracion-insumos/{id}", elaboracionInsumo.getId()))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.id").value(elaboracionInsumo.getId().intValue()));
+            .andExpect(jsonPath("$.id").value(elaboracionInsumo.getId().intValue()))
+            .andExpect(jsonPath("$.extracto").value(DEFAULT_EXTRACTO.intValue()))
+            .andExpect(jsonPath("$.color").value(DEFAULT_COLOR.intValue()))
+            .andExpect(jsonPath("$.porcentage").value(DEFAULT_PORCENTAGE.intValue()))
+            .andExpect(jsonPath("$.kilogramos").value(DEFAULT_KILOGRAMOS.intValue()))
+            .andExpect(jsonPath("$.uso").value(DEFAULT_USO.toString()))
+            .andExpect(jsonPath("$.alpha").value(DEFAULT_ALPHA.intValue()))
+            .andExpect(jsonPath("$.modo").value(DEFAULT_MODO.toString()))
+            .andExpect(jsonPath("$.gramos").value(DEFAULT_GRAMOS.intValue()))
+            .andExpect(jsonPath("$.gl").value(DEFAULT_GL.intValue()))
+            .andExpect(jsonPath("$.tiempo").value(DEFAULT_TIEMPO.intValue()))
+            .andExpect(jsonPath("$.ibu").value(DEFAULT_IBU.intValue()));
     }
 
     @Test
@@ -198,6 +278,18 @@ public class ElaboracionInsumoResourceIntTest {
         ElaboracionInsumo updatedElaboracionInsumo = elaboracionInsumoRepository.findById(elaboracionInsumo.getId()).get();
         // Disconnect from session so that the updates on updatedElaboracionInsumo are not directly saved in db
         em.detach(updatedElaboracionInsumo);
+        updatedElaboracionInsumo
+            .extracto(UPDATED_EXTRACTO)
+            .color(UPDATED_COLOR)
+            .porcentage(UPDATED_PORCENTAGE)
+            .kilogramos(UPDATED_KILOGRAMOS)
+            .uso(UPDATED_USO)
+            .alpha(UPDATED_ALPHA)
+            .modo(UPDATED_MODO)
+            .gramos(UPDATED_GRAMOS)
+            .gl(UPDATED_GL)
+            .tiempo(UPDATED_TIEMPO)
+            .ibu(UPDATED_IBU);
         ElaboracionInsumoDTO elaboracionInsumoDTO = elaboracionInsumoMapper.toDto(updatedElaboracionInsumo);
 
         restElaboracionInsumoMockMvc.perform(put("/api/elaboracion-insumos")
@@ -209,6 +301,17 @@ public class ElaboracionInsumoResourceIntTest {
         List<ElaboracionInsumo> elaboracionInsumoList = elaboracionInsumoRepository.findAll();
         assertThat(elaboracionInsumoList).hasSize(databaseSizeBeforeUpdate);
         ElaboracionInsumo testElaboracionInsumo = elaboracionInsumoList.get(elaboracionInsumoList.size() - 1);
+        assertThat(testElaboracionInsumo.getExtracto()).isEqualTo(UPDATED_EXTRACTO);
+        assertThat(testElaboracionInsumo.getColor()).isEqualTo(UPDATED_COLOR);
+        assertThat(testElaboracionInsumo.getPorcentage()).isEqualTo(UPDATED_PORCENTAGE);
+        assertThat(testElaboracionInsumo.getKilogramos()).isEqualTo(UPDATED_KILOGRAMOS);
+        assertThat(testElaboracionInsumo.getUso()).isEqualTo(UPDATED_USO);
+        assertThat(testElaboracionInsumo.getAlpha()).isEqualTo(UPDATED_ALPHA);
+        assertThat(testElaboracionInsumo.getModo()).isEqualTo(UPDATED_MODO);
+        assertThat(testElaboracionInsumo.getGramos()).isEqualTo(UPDATED_GRAMOS);
+        assertThat(testElaboracionInsumo.getGl()).isEqualTo(UPDATED_GL);
+        assertThat(testElaboracionInsumo.getTiempo()).isEqualTo(UPDATED_TIEMPO);
+        assertThat(testElaboracionInsumo.getIbu()).isEqualTo(UPDATED_IBU);
 
         // Validate the ElaboracionInsumo in Elasticsearch
         verify(mockElaboracionInsumoSearchRepository, times(1)).save(testElaboracionInsumo);
@@ -268,7 +371,18 @@ public class ElaboracionInsumoResourceIntTest {
         restElaboracionInsumoMockMvc.perform(get("/api/_search/elaboracion-insumos?query=id:" + elaboracionInsumo.getId()))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(elaboracionInsumo.getId().intValue())));
+            .andExpect(jsonPath("$.[*].id").value(hasItem(elaboracionInsumo.getId().intValue())))
+            .andExpect(jsonPath("$.[*].extracto").value(hasItem(DEFAULT_EXTRACTO.intValue())))
+            .andExpect(jsonPath("$.[*].color").value(hasItem(DEFAULT_COLOR.intValue())))
+            .andExpect(jsonPath("$.[*].porcentage").value(hasItem(DEFAULT_PORCENTAGE.intValue())))
+            .andExpect(jsonPath("$.[*].kilogramos").value(hasItem(DEFAULT_KILOGRAMOS.intValue())))
+            .andExpect(jsonPath("$.[*].uso").value(hasItem(DEFAULT_USO.toString())))
+            .andExpect(jsonPath("$.[*].alpha").value(hasItem(DEFAULT_ALPHA.intValue())))
+            .andExpect(jsonPath("$.[*].modo").value(hasItem(DEFAULT_MODO.toString())))
+            .andExpect(jsonPath("$.[*].gramos").value(hasItem(DEFAULT_GRAMOS.intValue())))
+            .andExpect(jsonPath("$.[*].gl").value(hasItem(DEFAULT_GL.intValue())))
+            .andExpect(jsonPath("$.[*].tiempo").value(hasItem(DEFAULT_TIEMPO.intValue())))
+            .andExpect(jsonPath("$.[*].ibu").value(hasItem(DEFAULT_IBU.intValue())));
     }
 
     @Test

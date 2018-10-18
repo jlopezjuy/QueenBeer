@@ -30,6 +30,17 @@
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="extracto"><span jhiTranslate="queenBeerApp.elaboracionInsumo.extracto">Extracto</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="color"><span jhiTranslate="queenBeerApp.elaboracionInsumo.color">Color</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="porcentage"><span jhiTranslate="queenBeerApp.elaboracionInsumo.porcentage">Porcentage</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="kilogramos"><span jhiTranslate="queenBeerApp.elaboracionInsumo.kilogramos">Kilogramos</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="uso"><span jhiTranslate="queenBeerApp.elaboracionInsumo.uso">Uso</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="alpha"><span jhiTranslate="queenBeerApp.elaboracionInsumo.alpha">Alpha</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="modo"><span jhiTranslate="queenBeerApp.elaboracionInsumo.modo">Modo</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="gramos"><span jhiTranslate="queenBeerApp.elaboracionInsumo.gramos">Gramos</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="gl"><span jhiTranslate="queenBeerApp.elaboracionInsumo.gl">Gl</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="tiempo"><span jhiTranslate="queenBeerApp.elaboracionInsumo.tiempo">Tiempo</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="ibu"><span jhiTranslate="queenBeerApp.elaboracionInsumo.ibu">Ibu</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="elaboracionId"><span jhiTranslate="queenBeerApp.elaboracionInsumo.elaboracion">Elaboracion</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="insumoId"><span jhiTranslate="queenBeerApp.elaboracionInsumo.insumo">Insumo</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
@@ -38,6 +49,17 @@
             <tbody>
             <tr *ngFor="let elaboracionInsumo of elaboracionInsumos ;trackBy: trackId">
                 <td><a [routerLink]="['/elaboracion-insumo-queen-beer', elaboracionInsumo.id, 'view' ]">{{elaboracionInsumo.id}}</a></td>
+                <td>{{elaboracionInsumo.extracto}}</td>
+                <td>{{elaboracionInsumo.color}}</td>
+                <td>{{elaboracionInsumo.porcentage}}</td>
+                <td>{{elaboracionInsumo.kilogramos}}</td>
+                <td jhiTranslate="{{'queenBeerApp.UsoLupulo.' + elaboracionInsumo.uso}}">{{elaboracionInsumo.uso}}</td>
+                <td>{{elaboracionInsumo.alpha}}</td>
+                <td jhiTranslate="{{'queenBeerApp.ModoLupulo.' + elaboracionInsumo.modo}}">{{elaboracionInsumo.modo}}</td>
+                <td>{{elaboracionInsumo.gramos}}</td>
+                <td>{{elaboracionInsumo.gl}}</td>
+                <td>{{elaboracionInsumo.tiempo}}</td>
+                <td>{{elaboracionInsumo.ibu}}</td>
                 <td>
                     <div *ngIf="elaboracionInsumo.elaboracionId">
                         <a [routerLink]="['../elaboracion-queen-beer', elaboracionInsumo.elaboracionId , 'view' ]" >{{elaboracionInsumo.elaboracionId}}</a>

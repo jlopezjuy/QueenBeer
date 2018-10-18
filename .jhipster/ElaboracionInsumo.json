@@ -1,6 +1,53 @@
 {
     "name": "ElaboracionInsumo",
-    "fields": [],
+    "fields": [
+        {
+            "fieldName": "extracto",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "color",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "porcentage",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "kilogramos",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "uso",
+            "fieldType": "UsoLupulo",
+            "fieldValues": "BOIL,FIRST_WORT,DRY_HOP,AROMA,MASH"
+        },
+        {
+            "fieldName": "alpha",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "modo",
+            "fieldType": "ModoLupulo",
+            "fieldValues": "PELET,FLOR"
+        },
+        {
+            "fieldName": "gramos",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "gl",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "tiempo",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "ibu",
+            "fieldType": "BigDecimal"
+        }
+    ],
     "relationships": [
         {
             "relationshipType": "many-to-one",

@@ -17,6 +17,17 @@
             "detail": {
                 "title": "Elaboracion Insumo"
             },
+            "extracto": "Extracto",
+            "color": "Color",
+            "porcentage": "Porcentage",
+            "kilogramos": "Kilogramos",
+            "uso": "Uso",
+            "alpha": "Alpha",
+            "modo": "Modo",
+            "gramos": "Gramos",
+            "gl": "Gl",
+            "tiempo": "Tiempo",
+            "ibu": "Ibu",
             "elaboracion": "Elaboracion",
             "insumo": "Insumo"
         }

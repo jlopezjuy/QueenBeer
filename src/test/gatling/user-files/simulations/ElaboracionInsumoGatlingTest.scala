@@ -72,6 +72,17 @@ class ElaboracionInsumoGatlingTest extends Simulation {
             .headers(headers_http_authenticated)
             .body(StringBody("""{
                 "id":null
+                , "extracto":"0"
+                , "color":null
+                , "porcentage":"0"
+                , "kilogramos":"0"
+                , "uso":"BOIL"
+                , "alpha":"0"
+                , "modo":"PELET"
+                , "gramos":"0"
+                , "gl":"0"
+                , "tiempo":null
+                , "ibu":"0"
                 }""")).asJSON
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_elaboracionInsumo_url"))).exitHereIfFailed

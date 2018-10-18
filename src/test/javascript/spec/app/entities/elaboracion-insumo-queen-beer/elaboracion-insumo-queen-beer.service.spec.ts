@@ -5,7 +5,12 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { of } from 'rxjs';
 import { take, map } from 'rxjs/operators';
 import { ElaboracionInsumoQueenBeerService } from 'app/entities/elaboracion-insumo-queen-beer/elaboracion-insumo-queen-beer.service';
-import { IElaboracionInsumoQueenBeer, ElaboracionInsumoQueenBeer } from 'app/shared/model/elaboracion-insumo-queen-beer.model';
+import {
+    IElaboracionInsumoQueenBeer,
+    ElaboracionInsumoQueenBeer,
+    UsoLupulo,
+    ModoLupulo
+} from 'app/shared/model/elaboracion-insumo-queen-beer.model';
 
 describe('Service Tests', () => {
     describe('ElaboracionInsumoQueenBeer Service', () => {
@@ -21,7 +26,7 @@ describe('Service Tests', () => {
             service = injector.get(ElaboracionInsumoQueenBeerService);
             httpMock = injector.get(HttpTestingController);
 
-            elemDefault = new ElaboracionInsumoQueenBeer(0);
+            elemDefault = new ElaboracionInsumoQueenBeer(0, 0, 0, 0, 0, UsoLupulo.BOIL, 0, ModoLupulo.PELET, 0, 0, 0, 0);
         });
 
         describe('Service methods', async () => {
@@ -53,7 +58,22 @@ describe('Service Tests', () => {
             });
 
             it('should update a ElaboracionInsumoQueenBeer', async () => {
-                const returnedFromService = Object.assign({}, elemDefault);
+                const returnedFromService = Object.assign(
+                    {
+                        extracto: 1,
+                        color: 1,
+                        porcentage: 1,
+                        kilogramos: 1,
+                        uso: 'BBBBBB',
+                        alpha: 1,
+                        modo: 'BBBBBB',
+                        gramos: 1,
+                        gl: 1,
+                        tiempo: 1,
+                        ibu: 1
+                    },
+                    elemDefault
+                );
 
                 const expected = Object.assign({}, returnedFromService);
                 service
@@ -65,7 +85,22 @@ describe('Service Tests', () => {
             });
 
             it('should return a list of ElaboracionInsumoQueenBeer', async () => {
-                const returnedFromService = Object.assign({}, elemDefault);
+                const returnedFromService = Object.assign(
+                    {
+                        extracto: 1,
+                        color: 1,
+                        porcentage: 1,
+                        kilogramos: 1,
+                        uso: 'BBBBBB',
+                        alpha: 1,
+                        modo: 'BBBBBB',
+                        gramos: 1,
+                        gl: 1,
+                        tiempo: 1,
+                        ibu: 1
+                    },
+                    elemDefault
+                );
                 const expected = Object.assign({}, returnedFromService);
                 service
                     .query(expected)

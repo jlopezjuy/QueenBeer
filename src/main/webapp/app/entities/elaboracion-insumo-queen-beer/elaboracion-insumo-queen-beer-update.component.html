@@ -9,6 +9,68 @@
                     <input type="text" class="form-control" id="id" name="id"
                         [(ngModel)]="elaboracionInsumo.id" readonly />
                 </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="queenBeerApp.elaboracionInsumo.extracto" for="field_extracto">Extracto</label>
+                    <input type="number" class="form-control" name="extracto" id="field_extracto"
+                        [(ngModel)]="elaboracionInsumo.extracto" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="queenBeerApp.elaboracionInsumo.color" for="field_color">Color</label>
+                    <input type="number" class="form-control" name="color" id="field_color"
+                        [(ngModel)]="elaboracionInsumo.color" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="queenBeerApp.elaboracionInsumo.porcentage" for="field_porcentage">Porcentage</label>
+                    <input type="number" class="form-control" name="porcentage" id="field_porcentage"
+                        [(ngModel)]="elaboracionInsumo.porcentage" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="queenBeerApp.elaboracionInsumo.kilogramos" for="field_kilogramos">Kilogramos</label>
+                    <input type="number" class="form-control" name="kilogramos" id="field_kilogramos"
+                        [(ngModel)]="elaboracionInsumo.kilogramos" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="queenBeerApp.elaboracionInsumo.uso" for="field_uso">Uso</label>
+                    <select class="form-control" name="uso" [(ngModel)]="elaboracionInsumo.uso" id="field_uso" >
+                        <option value="BOIL">{{'queenBeerApp.UsoLupulo.BOIL' | translate}}</option>
+                        <option value="FIRST_WORT">{{'queenBeerApp.UsoLupulo.FIRST_WORT' | translate}}</option>
+                        <option value="DRY_HOP">{{'queenBeerApp.UsoLupulo.DRY_HOP' | translate}}</option>
+                        <option value="AROMA">{{'queenBeerApp.UsoLupulo.AROMA' | translate}}</option>
+                        <option value="MASH">{{'queenBeerApp.UsoLupulo.MASH' | translate}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="queenBeerApp.elaboracionInsumo.alpha" for="field_alpha">Alpha</label>
+                    <input type="number" class="form-control" name="alpha" id="field_alpha"
+                        [(ngModel)]="elaboracionInsumo.alpha" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="queenBeerApp.elaboracionInsumo.modo" for="field_modo">Modo</label>
+                    <select class="form-control" name="modo" [(ngModel)]="elaboracionInsumo.modo" id="field_modo" >
+                        <option value="PELET">{{'queenBeerApp.ModoLupulo.PELET' | translate}}</option>
+                        <option value="FLOR">{{'queenBeerApp.ModoLupulo.FLOR' | translate}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="queenBeerApp.elaboracionInsumo.gramos" for="field_gramos">Gramos</label>
+                    <input type="number" class="form-control" name="gramos" id="field_gramos"
+                        [(ngModel)]="elaboracionInsumo.gramos" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="queenBeerApp.elaboracionInsumo.gl" for="field_gl">Gl</label>
+                    <input type="number" class="form-control" name="gl" id="field_gl"
+                        [(ngModel)]="elaboracionInsumo.gl" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="queenBeerApp.elaboracionInsumo.tiempo" for="field_tiempo">Tiempo</label>
+                    <input type="number" class="form-control" name="tiempo" id="field_tiempo"
+                        [(ngModel)]="elaboracionInsumo.tiempo" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="queenBeerApp.elaboracionInsumo.ibu" for="field_ibu">Ibu</label>
+                    <input type="number" class="form-control" name="ibu" id="field_ibu"
+                        [(ngModel)]="elaboracionInsumo.ibu" />
+                </div>
 
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="queenBeerApp.elaboracionInsumo.elaboracion" for="field_elaboracion">Elaboracion</label>
