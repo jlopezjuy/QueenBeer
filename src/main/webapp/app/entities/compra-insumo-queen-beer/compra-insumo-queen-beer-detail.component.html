@@ -1,0 +1,51 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="compraInsumo">
+            <h2><span jhiTranslate="queenBeerApp.compraInsumo.detail.title">Compra Insumo</span> {{compraInsumo.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="queenBeerApp.compraInsumo.cantidad">Cantidad</span></dt>
+                <dd>
+                    <span>{{compraInsumo.cantidad}}</span>
+                </dd>
+                <dt><span jhiTranslate="queenBeerApp.compraInsumo.unidad">Unidad</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'queenBeerApp.Unidad.' + compraInsumo.unidad}}">{{compraInsumo.unidad}}</span>
+                </dd>
+                <dt><span jhiTranslate="queenBeerApp.compraInsumo.descripcion">Descripcion</span></dt>
+                <dd>
+                    <span>{{compraInsumo.descripcion}}</span>
+                </dd>
+                <dt><span jhiTranslate="queenBeerApp.compraInsumo.costoTotal">Costo Total</span></dt>
+                <dd>
+                    <span>{{compraInsumo.costoTotal}}</span>
+                </dd>
+                <dt><span jhiTranslate="queenBeerApp.compraInsumo.compra">Compra</span></dt>
+                <dd>
+                    <div *ngIf="compraInsumo.compraId">
+                        <a [routerLink]="['/compra-queen-beer', compraInsumo.compraId, 'view']">{{compraInsumo.compraId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="queenBeerApp.compraInsumo.insumo">Insumo</span></dt>
+                <dd>
+                    <div *ngIf="compraInsumo.insumoId">
+                        <a [routerLink]="['/insumo-queen-beer', compraInsumo.insumoId, 'view']">{{compraInsumo.insumoId}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/compra-insumo-queen-beer', compraInsumo.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

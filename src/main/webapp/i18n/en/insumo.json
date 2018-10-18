@@ -23,7 +23,8 @@
             "unidad": "Unidad",
             "tipo": "Tipo",
             "imagen": "Imagen",
-            "elaboracionInsumo": "Elaboracion Insumo"
+            "elaboracionInsumo": "Elaboracion Insumo",
+            "compraInsumo": "Compra Insumo"
         }
     }
 }

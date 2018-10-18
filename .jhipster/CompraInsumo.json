@@ -1,0 +1,46 @@
+{
+    "name": "CompraInsumo",
+    "fields": [
+        {
+            "fieldName": "cantidad",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "unidad",
+            "fieldType": "Unidad",
+            "fieldValues": "KILOGRAMO,GRAMO,VEINTICINCO_KILOS,DIES_KILOS,LITRO,CM3,ML,UNIDAD"
+        },
+        {
+            "fieldName": "descripcion",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "costoTotal",
+            "fieldType": "BigDecimal"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "compra",
+            "otherEntityName": "compra",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "insumo",
+            "otherEntityName": "insumo",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20181018183944",
+    "entityTableName": "compra_insumo",
+    "dto": "mapstruct",
+    "pagination": "pager",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "angularJSSuffix": "queenBeer"
+}

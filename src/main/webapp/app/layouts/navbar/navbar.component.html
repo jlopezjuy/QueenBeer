@@ -71,6 +71,18 @@
                             <span jhiTranslate="global.menu.entities.elaboracionInsumoQueenBeer">Elaboracion Insumo Queen Beer</span>
                         </a>
                     </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="compra-queen-beer" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon [icon]="'asterisk'" [fixedWidth]="true"></fa-icon>
+                            <span jhiTranslate="global.menu.entities.compraQueenBeer">Compra Queen Beer</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="compra-insumo-queen-beer" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon [icon]="'asterisk'" [fixedWidth]="true"></fa-icon>
+                            <span jhiTranslate="global.menu.entities.compraInsumoQueenBeer">Compra Insumo Queen Beer</span>
+                        </a>
+                    </li>
                     <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
                 </ul>
             </li>

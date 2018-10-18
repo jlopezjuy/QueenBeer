@@ -1,0 +1,47 @@
+{
+    "name": "Compra",
+    "fields": [
+        {
+            "fieldName": "fechaCompra",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "fechaEntrega",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "nroFactura",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "subtotal",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "impuestos",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "total",
+            "fieldType": "BigDecimal"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "compraInsumo",
+            "otherEntityName": "compraInsumo",
+            "otherEntityRelationshipName": "compra"
+        }
+    ],
+    "changelogDate": "20181018183943",
+    "entityTableName": "compra",
+    "dto": "mapstruct",
+    "pagination": "pager",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "angularJSSuffix": "queenBeer"
+}

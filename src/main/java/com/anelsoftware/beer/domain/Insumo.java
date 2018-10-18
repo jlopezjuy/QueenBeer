@@ -58,6 +58,9 @@ public class Insumo implements Serializable {
     @OneToMany(mappedBy = "insumo")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<ElaboracionInsumo> elaboracionInsumos = new HashSet<>();
+    @OneToMany(mappedBy = "insumo")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<CompraInsumo> compraInsumos = new HashSet<>();
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -181,6 +184,31 @@ public class Insumo implements Serializable {
 
     public void setElaboracionInsumos(Set<ElaboracionInsumo> elaboracionInsumos) {
         this.elaboracionInsumos = elaboracionInsumos;
+    }
+
+    public Set<CompraInsumo> getCompraInsumos() {
+        return compraInsumos;
+    }
+
+    public Insumo compraInsumos(Set<CompraInsumo> compraInsumos) {
+        this.compraInsumos = compraInsumos;
+        return this;
+    }
+
+    public Insumo addCompraInsumo(CompraInsumo compraInsumo) {
+        this.compraInsumos.add(compraInsumo);
+        compraInsumo.setInsumo(this);
+        return this;
+    }
+
+    public Insumo removeCompraInsumo(CompraInsumo compraInsumo) {
+        this.compraInsumos.remove(compraInsumo);
+        compraInsumo.setInsumo(null);
+        return this;
+    }
+
+    public void setCompraInsumos(Set<CompraInsumo> compraInsumos) {
+        this.compraInsumos = compraInsumos;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

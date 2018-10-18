@@ -1,0 +1,64 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-compra-queen-beer-heading" jhiTranslate="queenBeerApp.compra.home.createOrEditLabel">Create or edit a Compra</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!compra.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="compra.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="queenBeerApp.compra.fechaCompra" for="field_fechaCompra">Fecha Compra</label>
+                    <div class="input-group">
+                        <input id="field_fechaCompra" type="text" class="form-control" name="fechaCompra" ngbDatepicker  #fechaCompraDp="ngbDatepicker" [(ngModel)]="compra.fechaCompra"
+                        />
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="fechaCompraDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="queenBeerApp.compra.fechaEntrega" for="field_fechaEntrega">Fecha Entrega</label>
+                    <div class="input-group">
+                        <input id="field_fechaEntrega" type="text" class="form-control" name="fechaEntrega" ngbDatepicker  #fechaEntregaDp="ngbDatepicker" [(ngModel)]="compra.fechaEntrega"
+                        />
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="fechaEntregaDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="queenBeerApp.compra.nroFactura" for="field_nroFactura">Nro Factura</label>
+                    <input type="text" class="form-control" name="nroFactura" id="field_nroFactura"
+                        [(ngModel)]="compra.nroFactura" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="queenBeerApp.compra.subtotal" for="field_subtotal">Subtotal</label>
+                    <input type="number" class="form-control" name="subtotal" id="field_subtotal"
+                        [(ngModel)]="compra.subtotal" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="queenBeerApp.compra.impuestos" for="field_impuestos">Impuestos</label>
+                    <input type="number" class="form-control" name="impuestos" id="field_impuestos"
+                        [(ngModel)]="compra.impuestos" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="queenBeerApp.compra.total" for="field_total">Total</label>
+                    <input type="number" class="form-control" name="total" id="field_total"
+                        [(ngModel)]="compra.total" />
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

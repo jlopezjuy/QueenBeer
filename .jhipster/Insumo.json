@@ -35,6 +35,12 @@
             "relationshipName": "elaboracionInsumo",
             "otherEntityName": "elaboracionInsumo",
             "otherEntityRelationshipName": "insumo"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "compraInsumo",
+            "otherEntityName": "compraInsumo",
+            "otherEntityRelationshipName": "insumo"
         }
     ],
     "changelogDate": "20181017191609",

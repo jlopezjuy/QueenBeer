@@ -13,6 +13,7 @@ public interface InsumoMapper extends EntityMapper<InsumoDTO, Insumo> {
 
 
     @Mapping(target = "elaboracionInsumos", ignore = true)
+    @Mapping(target = "compraInsumos", ignore = true)
     Insumo toEntity(InsumoDTO insumoDTO);
 
     default Insumo fromId(Long id) {

@@ -65,13 +65,13 @@ entity Elaboracion {
     nombre String,
     estilo String,
     fechaInicio Instant,
-    fechaFin LocalDate,
+    fechaFin Instant,
     chequeo Boolean,
     limpieza Boolean,
     limpiezaOlla Boolean,
     limpiezaManguera Boolean,
     macerado TipoMacerado,
-    inicioMacerado LocalDate,
+    inicioMacerado Instant,
     infucion Boolean,
     primerEscalon Boolean,
     segundoEscalon Boolean,
@@ -84,11 +84,61 @@ entity Elaboracion {
 }
 
 entity ElaboracionInsumo {
+    extracto BigDecimal,
+    color Long,
+    porcentage BigDecimal,
+    kilogramos BigDecimal,
+    uso UsoMalta,
+    alpha BigDecimal,
+    modo ModoLupulo,
+    gramos BigDecimal,
+    gl BigDecimal,
+    uso UsoLupulo,
+    tiempo Long,
+    ibu BigDecimal
+}
+
+entity Compra {
+	fechaCompra LocalDate,
+    fechaEntrega LocalDate,
+    nroFactura String,
+    subtotal BigDecimal,
+    impuestos BigDecimal,
+    total BigDecimal,
+}
+
+entity CompraInsumo {
+	cantidad BigDecimal,
+    unidad Unidad,
+    descripcion String,
+    costoTotal BigDecimal
 }
 
 relationship OneToMany {
   Elaboracion to ElaboracionInsumo{elaboracion},
-  Insumo to ElaboracionInsumo{insumo}
+  Insumo to ElaboracionInsumo{insumo},
+  Compra to CompraInsumo{compra},
+  Insumo to CompraInsumo{insumo}
+}
+
+enum ModoLupulo {
+    PELET,
+    FLOR
+}
+
+enum UsoMalta {
+    MASH,
+    RECIRCULACION,
+    BOIL,
+    FERMENTATION
+}
+
+enum UsoLupulo {
+    BOIL,
+    FIRST_WORT,
+    DRY_HOP,
+    AROMA,
+    MASH
 }
 
 enum CondicionFiscal {

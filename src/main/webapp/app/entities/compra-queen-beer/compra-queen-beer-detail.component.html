@@ -1,0 +1,47 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="compra">
+            <h2><span jhiTranslate="queenBeerApp.compra.detail.title">Compra</span> {{compra.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="queenBeerApp.compra.fechaCompra">Fecha Compra</span></dt>
+                <dd>
+                    <span>{{compra.fechaCompra}}</span>
+                </dd>
+                <dt><span jhiTranslate="queenBeerApp.compra.fechaEntrega">Fecha Entrega</span></dt>
+                <dd>
+                    <span>{{compra.fechaEntrega}}</span>
+                </dd>
+                <dt><span jhiTranslate="queenBeerApp.compra.nroFactura">Nro Factura</span></dt>
+                <dd>
+                    <span>{{compra.nroFactura}}</span>
+                </dd>
+                <dt><span jhiTranslate="queenBeerApp.compra.subtotal">Subtotal</span></dt>
+                <dd>
+                    <span>{{compra.subtotal}}</span>
+                </dd>
+                <dt><span jhiTranslate="queenBeerApp.compra.impuestos">Impuestos</span></dt>
+                <dd>
+                    <span>{{compra.impuestos}}</span>
+                </dd>
+                <dt><span jhiTranslate="queenBeerApp.compra.total">Total</span></dt>
+                <dd>
+                    <span>{{compra.total}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/compra-queen-beer', compra.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

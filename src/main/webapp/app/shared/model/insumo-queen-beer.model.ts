@@ -1,4 +1,5 @@
 import { IElaboracionInsumoQueenBeer } from 'app/shared/model//elaboracion-insumo-queen-beer.model';
+import { ICompraInsumoQueenBeer } from 'app/shared/model//compra-insumo-queen-beer.model';
 
 export const enum Unidad {
     KILOGRAMO = 'KILOGRAMO',
@@ -30,6 +31,7 @@ export interface IInsumoQueenBeer {
     imagenContentType?: string;
     imagen?: any;
     elaboracionInsumos?: IElaboracionInsumoQueenBeer[];
+    compraInsumos?: ICompraInsumoQueenBeer[];
 }
 
 export class InsumoQueenBeer implements IInsumoQueenBeer {
@@ -42,6 +44,7 @@ export class InsumoQueenBeer implements IInsumoQueenBeer {
         public tipo?: TipoInsumo,
         public imagenContentType?: string,
         public imagen?: any,
-        public elaboracionInsumos?: IElaboracionInsumoQueenBeer[]
+        public elaboracionInsumos?: IElaboracionInsumoQueenBeer[],
+        public compraInsumos?: ICompraInsumoQueenBeer[]
     ) {}
 }
