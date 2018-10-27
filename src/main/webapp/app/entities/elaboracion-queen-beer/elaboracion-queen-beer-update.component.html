@@ -132,22 +132,59 @@
                         </div>
                     </div>
                     <div class="row">
+                        <div class="col-6">
+                            <label class="form-control-label" jhiTranslate="queenBeerApp.elaboracionInsumo.insumo" for="field_insumo">Insumo</label>
+                            <select class="form-control" id="field_insumo" name="insumo" [(ngModel)]="elaboracionInsumo" >
+                                <option [ngValue]="null"></option>
+                                <option [ngValue]="insumoOption.id" *ngFor="let insumoOption of insumos; trackBy: trackInsumoById">{{insumoOption.nombre}}</option>
+                            </select>
+                        </div>
+                        <div class="col-6">
+                            <button type="button"  class="btn btn-primary"  (click)="addInsumo()">
+                                <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.add">Agregar</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+
+                        </div>
+                        <div class="col-6">
+
+                        </div>
+                    </div>
+                    <div class="row">
                         <div class="col-12">
                             <div class="table-responsive">
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                            <th><span jhiTranslate="queenBeerApp.insumo.nombre">Nombre</span> </th>
-                                            <th><span jhiTranslate="queenBeerApp.insumo.marca">Marca</span> </th>
-                                            <th><span jhiTranslate="queenBeerApp.insumo.stockMinimo">Stock Minimo</span> </th>
-                                            <th><span jhiTranslate="queenBeerApp.insumo.unidad">Unidad</span> </th>
-                                            <th><span jhiTranslate="queenBeerApp.insumo.tipo">Tipo</span> </th>
-                                            <th><span jhiTranslate="queenBeerApp.insumo.imagen">Imagen</span> </th>
+                                            <th><span jhiTranslate="queenBeerApp.elaboracion.grano">Granos</span> </th>
+                                            <th><span jhiTranslate="queenBeerApp.elaboracion.extracto">Extracto</span> </th>
+                                            <th><span jhiTranslate="queenBeerApp.elaboracion.color">Color</span> </th>
+                                            <th><span jhiTranslate="queenBeerApp.elaboracion.porcentage">%</span> </th>
+                                            <th><span jhiTranslate="queenBeerApp.elaboracion.kilogramo">Kilogramo</span> </th>
+                                            <th><span jhiTranslate="queenBeerApp.elaboracion.uso">Uso</span> </th>
                                             <th></th>
                                      </tr>
                                     </thead>
                                     <tbody>
-                                        <tr *ngFor="let insumo of insumos ;trackBy: trackId">
+                                        <tr *ngFor="let insumo of insumosAgregado ;trackBy: trackId">
+                                            <td>
+                                                <select class="form-control" name="insumo" [(ngModel)]="insumo.insumoId" >
+                                                    <option [ngValue]="null"></option>
+                                                    <option [ngValue]="insumoOption.id" *ngFor="let insumoOption of insumos; trackBy: trackInsumoById">{{insumoOption.nombre}}</option>
+                                                </select>
+                                            </td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>
+                                                <button type="button" (click)="insumo.isEditable=!insumo.isEditable" *ngIf="!insumo.isEditable">Edit</button>
+                                                <button type="button" *ngIf="insumo.isEditable" (click)="insumo.isEditable=!insumo.isEditable">Save</button>
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>

@@ -43,6 +43,7 @@ export class ElaboracionInsumoQueenBeer implements IElaboracionInsumoQueenBeer {
         public tiempo?: number,
         public ibu?: number,
         public elaboracionId?: number,
-        public insumoId?: number
+        public insumoId?: number,
+        public isEditable?: boolean
     ) {}
 }

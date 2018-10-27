@@ -7,7 +7,10 @@ import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
 
 import { IElaboracionQueenBeer } from 'app/shared/model/elaboracion-queen-beer.model';
 import { ElaboracionQueenBeerService } from './elaboracion-queen-beer.service';
-import { IElaboracionInsumoQueenBeer } from 'app/shared/model/elaboracion-insumo-queen-beer.model';
+import { ElaboracionInsumoQueenBeer, IElaboracionInsumoQueenBeer } from 'app/shared/model/elaboracion-insumo-queen-beer.model';
+import { IInsumoQueenBeer } from 'app/shared/model/insumo-queen-beer.model';
+import { InsumoQueenBeerService } from 'app/entities/insumo-queen-beer';
+import { JhiAlertService } from 'ng-jhipster';
 
 @Component({
     selector: 'jhi-elaboracion-queen-beer-update',
@@ -15,13 +18,21 @@ import { IElaboracionInsumoQueenBeer } from 'app/shared/model/elaboracion-insumo
 })
 export class ElaboracionQueenBeerUpdateComponent implements OnInit {
     elaboracion: IElaboracionQueenBeer;
+    elaboracionInsumo: string;
     isSaving: boolean;
     fechaInicio: string;
     fechaFin: string;
     inicioMacerado: string;
-    insumos: IElaboracionInsumoQueenBeer[];
+    insumosAgregado: ElaboracionInsumoQueenBeer[] = [];
 
-    constructor(private elaboracionService: ElaboracionQueenBeerService, private activatedRoute: ActivatedRoute) {}
+    insumos: IInsumoQueenBeer[];
+
+    constructor(
+        private elaboracionService: ElaboracionQueenBeerService,
+        private activatedRoute: ActivatedRoute,
+        private insumoService: InsumoQueenBeerService,
+        private jhiAlertService: JhiAlertService
+    ) {}
 
     ngOnInit() {
         this.isSaving = false;
@@ -31,10 +42,28 @@ export class ElaboracionQueenBeerUpdateComponent implements OnInit {
             this.fechaFin = this.elaboracion.fechaFin != null ? this.elaboracion.fechaFin.format(DATE_TIME_FORMAT) : null;
             this.inicioMacerado = this.elaboracion.inicioMacerado != null ? this.elaboracion.inicioMacerado.format(DATE_TIME_FORMAT) : null;
         });
+        this.insumoService.query().subscribe(
+            (res: HttpResponse<IInsumoQueenBeer[]>) => {
+                this.insumos = res.body;
+            },
+            (res: HttpErrorResponse) => this.onError(res.message)
+        );
+        const insumoAdd = new ElaboracionInsumoQueenBeer();
+        insumoAdd.insumoId = +this.elaboracionInsumo;
+        insumoAdd.isEditable = false;
+        this.insumosAgregado.push(insumoAdd);
     }
 
     previousState() {
         window.history.back();
+    }
+
+    addInsumo() {
+        console.log(this.elaboracionInsumo);
+        // const insumoAdd = new ElaboracionInsumoQueenBeer();
+        // insumoAdd.insumoId = +this.elaboracionInsumo;
+        // insumoAdd.isEditable = false;
+        // this.insumosAgregado.push(insumoAdd);
     }
 
     save() {
@@ -63,5 +92,9 @@ export class ElaboracionQueenBeerUpdateComponent implements OnInit {
 
     private onSaveError() {
         this.isSaving = false;
+    }
+
+    private onError(errorMessage: string) {
+        this.jhiAlertService.error(errorMessage, null, null);
     }
 }

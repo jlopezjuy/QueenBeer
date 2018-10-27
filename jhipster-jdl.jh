@@ -10,8 +10,7 @@ entity Cliente{
     localidadCiudad String,
     privincia Provincia,
     codigoPostal Long,
-    email String,
-    
+    email String
 }
 
 /**
@@ -79,8 +78,7 @@ entity Elaboracion {
     litroInicial BigDecimal,
     relacionMaltaAgua BigDecimal,
     litroFalsoFondo BigDecimal,
-    litroTotal BigDecimal,
-    
+    litroTotal BigDecimal
 }
 
 entity ElaboracionInsumo {
@@ -142,8 +140,8 @@ enum UsoLupulo {
 }
 
 enum CondicionFiscal {
-    RESPONSABLE_INSCRIPTO, 
-    MONOTRIBUTISTA, 
+    RESPONSABLE_INSCRIPTO,
+    MONOTRIBUTISTA,
     CONSUMIDOR_FINAL,
     OTRO
 }
@@ -190,14 +188,11 @@ enum TipoMacerado {
     ESCALONADO
 }
 
-
-
-
 // Use Data Transfert Objects (DTO)
 dto * with mapstruct
 
-// Set service options to all except few
-service all with serviceImpl except Employee, Job
+// Set service options to all
+service all with serviceImpl
 
 // Set an angular suffix
 angularSuffix * with queenBeer

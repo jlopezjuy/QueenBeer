@@ -36,7 +36,13 @@
             "relacionMaltaAgua": "Relacion Malta Agua",
             "litroFalsoFondo": "Litro Falso Fondo",
             "litroTotal": "Litro Total",
-            "elaboracionInsumo": "Elaboracion Insumo"
+            "elaboracionInsumo": "Elaboracion Insumo",
+            "grano": "Grano",
+            "extracto":"Extracto",
+            "color":"Color",
+            "porcentage":"%",
+            "kilogramo":"Kilogramo",
+            "uso":"Uso"
         }
     }
 }
