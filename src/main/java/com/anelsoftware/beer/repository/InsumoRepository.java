@@ -1,6 +1,7 @@
 package com.anelsoftware.beer.repository;
 
 import com.anelsoftware.beer.domain.Insumo;
+import java.util.List;
 import org.springframework.data.jpa.repository.*;
 import org.springframework.stereotype.Repository;
 
@@ -12,4 +13,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface InsumoRepository extends JpaRepository<Insumo, Long> {
 
+    /**
+     *
+     * @return
+     */
+    List<Insumo> findAllByOrderByNombre();
 }

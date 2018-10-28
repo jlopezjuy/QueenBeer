@@ -99,6 +99,14 @@ public class InsumoResource {
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
+    @GetMapping("/insumos/all")
+    @Timed
+    public ResponseEntity<List<InsumoDTO>> getAllInsumosWithOuthPage() {
+        log.debug("REST request to get a page of Insumos");
+        List<InsumoDTO> page = insumoService.findAll();
+        return new ResponseEntity<>(page, HttpStatus.OK);
+    }
+
     /**
      * GET  /insumos/:id : get the "id" insumo.
      *

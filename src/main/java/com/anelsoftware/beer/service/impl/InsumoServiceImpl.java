@@ -6,6 +6,7 @@ import com.anelsoftware.beer.repository.InsumoRepository;
 import com.anelsoftware.beer.repository.search.InsumoSearchRepository;
 import com.anelsoftware.beer.service.dto.InsumoDTO;
 import com.anelsoftware.beer.service.mapper.InsumoMapper;
+import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -68,6 +69,15 @@ public class InsumoServiceImpl implements InsumoService {
         log.debug("Request to get all Insumos");
         return insumoRepository.findAll(pageable)
             .map(insumoMapper::toDto);
+    }
+
+    /**
+     *
+     * @return
+     */
+    @Override
+    public List<InsumoDTO> findAll() {
+        return insumoMapper.toDto(insumoRepository.findAllByOrderByNombre());
     }
 
 

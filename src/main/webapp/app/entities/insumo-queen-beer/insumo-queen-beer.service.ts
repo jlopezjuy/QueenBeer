@@ -33,6 +33,10 @@ export class InsumoQueenBeerService {
         return this.http.get<IInsumoQueenBeer[]>(this.resourceUrl, { params: options, observe: 'response' });
     }
 
+    queryAll(req?: any): Observable<EntityArrayResponseType> {
+        return this.http.get<IInsumoQueenBeer[]>(this.resourceUrl + '/all', { observe: 'response' });
+    }
+
     delete(id: number): Observable<HttpResponse<any>> {
         return this.http.delete<any>(`${this.resourceUrl}/${id}`, { observe: 'response' });
     }

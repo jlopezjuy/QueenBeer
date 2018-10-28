@@ -1,6 +1,7 @@
 package com.anelsoftware.beer.repository.search;
 
 import com.anelsoftware.beer.domain.Insumo;
+import java.util.List;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
 
 /**

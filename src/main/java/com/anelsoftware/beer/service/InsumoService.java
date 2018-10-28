@@ -2,6 +2,7 @@ package com.anelsoftware.beer.service;
 
 import com.anelsoftware.beer.service.dto.InsumoDTO;
 
+import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -28,6 +29,11 @@ public interface InsumoService {
      */
     Page<InsumoDTO> findAll(Pageable pageable);
 
+    /**
+     * Get all the insumos whitouth pageable
+     * @return
+     */
+    List<InsumoDTO> findAll();
 
     /**
      * Get the "id" insumo.
