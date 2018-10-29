@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -16,17 +16,19 @@ import { JhiAlertService } from 'ng-jhipster';
 })
 export class CompraQueenBeerUpdateComponent implements OnInit {
     compra: ICompraQueenBeer;
+    compraInsumo: CompraInsumoQueenBeer;
     isSaving: boolean;
     fechaCompraDp: any;
     fechaEntregaDp: any;
     insumos: IInsumoQueenBeer[];
-    compraInsumos: ICompraInsumoQueenBeer[] = [];
+    compraInsumos: CompraInsumoQueenBeer[] = [];
 
     constructor(
         private compraService: CompraQueenBeerService,
         private activatedRoute: ActivatedRoute,
         private insumoService: InsumoQueenBeerService,
-        private jhiAlertService: JhiAlertService
+        private jhiAlertService: JhiAlertService,
+        private insumoQueenBeerService: InsumoQueenBeerService
     ) {}
 
     ngOnInit() {
@@ -34,9 +36,8 @@ export class CompraQueenBeerUpdateComponent implements OnInit {
         this.activatedRoute.data.subscribe(({ compra }) => {
             this.compra = compra;
         });
-        const compraInsumo = new CompraInsumoQueenBeer();
-        this.compraInsumos.push(compraInsumo);
         this.loadAll();
+        this.compraInsumo = new CompraInsumoQueenBeer();
     }
 
     loadAll() {
@@ -61,6 +62,22 @@ export class CompraQueenBeerUpdateComponent implements OnInit {
         }
     }
 
+    saveInsumo() {
+        let compInsumo = new CompraInsumoQueenBeer();
+        compInsumo = this.compraInsumo;
+        this.insumoQueenBeerService.find(this.compraInsumo.insumoId).subscribe(resp => {
+            compInsumo.insumoNombre = resp.body.nombre;
+            this.compraInsumos.push(compInsumo);
+            this.compraInsumo = new CompraInsumoQueenBeer();
+            let suma = 0;
+            this.compraInsumos.forEach(insumo => {
+                console.log(insumo);
+                suma = suma + insumo.costoTotal;
+            });
+            this.compra.subtotal = suma;
+        });
+    }
+
     private subscribeToSaveResponse(result: Observable<HttpResponse<ICompraQueenBeer>>) {
         result.subscribe((res: HttpResponse<ICompraQueenBeer>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
     }
@@ -76,27 +93,5 @@ export class CompraQueenBeerUpdateComponent implements OnInit {
 
     private onError(errorMessage: string) {
         this.jhiAlertService.error(errorMessage, null, null);
-    }
-
-    public addNewInsumo(compraInsumoQueenBeer: CompraInsumoQueenBeer) {
-        console.log('Entro a cambiar datos');
-        // console.log(compraInsumoQueenBeer);
-        if (compraInsumoQueenBeer.costoTotal !== null) {
-            // let suma = 0;
-            // this.compraInsumos.forEach(insumo => {
-            //     console.log(insumo);
-            //     suma = suma + insumo.costoTotal;
-            // });
-            // this.compra.subtotal = suma;
-            // const compraInsumo = new CompraInsumoQueenBeer();
-            // this.compraInsumos.push(compraInsumo);
-            console.log(this.compra);
-            console.log(this.compraInsumos);
-        }
-    }
-
-    addFieldValue() {
-        const compraInsumo = new CompraInsumoQueenBeer();
-        this.compraInsumos.push(compraInsumo);
     }
 }

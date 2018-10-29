@@ -27,6 +27,8 @@ export class CompraInsumoQueenBeer implements ICompraInsumoQueenBeer {
         public descripcion?: string,
         public costoTotal?: number,
         public compraId?: number,
-        public insumoId?: number
+        public insumoId?: number,
+        //trancient
+        public insumoNombre?: string
     ) {}
 }

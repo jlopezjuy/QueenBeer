@@ -6,6 +6,7 @@
                 "title": "Compra Insumos",
                 "createLabel": "Crear nuevo Compra Insumo",
                 "createOrEditLabel": "Crear o editar Compra Insumo",
+                "createInsumo": "Agregar Insumo",
                 "search": "Search for Compra Insumo"
             },
             "created": "Un nuevo Compra Insumo ha sido creado con el identificador {{ param }}",
@@ -22,7 +23,8 @@
             "descripcion": "Descripcion",
             "costoTotal": "Costo Total",
             "compra": "Compra",
-            "insumo": "Insumo"
+            "insumo": "Insumo",
+            "compraInsumo" : "Agregar insumo"
         }
     }
 }

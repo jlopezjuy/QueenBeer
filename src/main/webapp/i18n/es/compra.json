@@ -6,6 +6,7 @@
                 "title": "Compras",
                 "createLabel": "Crear nuevo Compra",
                 "createOrEditLabel": "Crear o editar Compra",
+                "createInsumo": "Agregar Insumo",
                 "search": "Search for Compra"
             },
             "created": "Un nuevo Compra ha sido creado con el identificador {{ param }}",
