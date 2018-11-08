@@ -24,7 +24,13 @@
             "subtotal": "Subtotal",
             "impuestos": "Impuestos",
             "total": "Total",
-            "compraInsumo": "Compra Insumo"
+            "compraInsumo": "Compra Insumo",
+            "validate" : {
+                "form" : "Faltan datos",
+                "fechaCompra" : {
+                    "required" : "Fecha de compra es requerido"
+                }
+            }
         }
     }
 }

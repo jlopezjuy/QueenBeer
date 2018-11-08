@@ -28,7 +28,6 @@ export class CompraInsumoQueenBeer implements ICompraInsumoQueenBeer {
         public costoTotal?: number,
         public compraId?: number,
         public insumoId?: number,
-        //trancient
         public insumoNombre?: string
     ) {}
 }

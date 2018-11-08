@@ -18,13 +18,19 @@
             "detail": {
                 "title": "Compra"
             },
-            "fechaCompra": "Fecha Compra",
-            "fechaEntrega": "Fecha Entrega",
+            "fechaCompra": "Purchase Date",
+            "fechaEntrega": "Delivery Date",
             "nroFactura": "Nro Factura",
             "subtotal": "Subtotal",
             "impuestos": "Impuestos",
             "total": "Total",
-            "compraInsumo": "Compra Insumo"
+            "compraInsumo": "Compra Insumo",
+            "validate" : {
+                "form" : "Missing data",
+                "fechaCompra" : {
+                    "required" : "Purchase Date is required"
+                }
+            }
         }
     }
 }

@@ -38,6 +38,7 @@ export class CompraQueenBeerUpdateComponent implements OnInit {
         });
         this.loadAll();
         this.compraInsumo = new CompraInsumoQueenBeer();
+        this.compra.impuestos = 0;
     }
 
     loadAll() {
@@ -55,10 +56,15 @@ export class CompraQueenBeerUpdateComponent implements OnInit {
 
     save() {
         this.isSaving = true;
-        if (this.compra.id !== undefined) {
-            this.subscribeToSaveResponse(this.compraService.update(this.compra));
+        if (this.validateForm()) {
+            if (this.compra.id !== undefined) {
+                this.subscribeToSaveResponse(this.compraService.update(this.compra));
+            } else {
+                this.subscribeToSaveResponse(this.compraService.create(this.compra));
+            }
         } else {
-            this.subscribeToSaveResponse(this.compraService.create(this.compra));
+            this.jhiAlertService.error('queenBeerApp.compra.validate.form');
+            this.isSaving = false;
         }
     }
 
@@ -74,7 +80,7 @@ export class CompraQueenBeerUpdateComponent implements OnInit {
                 console.log(insumo);
                 suma = suma + insumo.costoTotal;
             });
-            this.compra.subtotal = suma;
+            this.reloadImpuesto();
         });
     }
 
@@ -93,5 +99,27 @@ export class CompraQueenBeerUpdateComponent implements OnInit {
 
     private onError(errorMessage: string) {
         this.jhiAlertService.error(errorMessage, null, null);
+    }
+
+    validateForm() {
+        console.log('entro a validar');
+        return false;
+    }
+
+    reloadImpuesto() {
+        let suma = 0;
+        this.compraInsumos.forEach(insumo => {
+            console.log(insumo);
+            suma = suma + insumo.costoTotal;
+        });
+        this.compra.subtotal = suma;
+        if (this.compra.impuestos > 0) {
+            const aux = this.compra.subtotal * this.compra.impuestos / 100;
+            console.log(aux);
+            console.log(this.compra.subtotal);
+            this.compra.total = this.compra.subtotal + aux;
+        } else {
+            this.compra.total = this.compra.subtotal;
+        }
     }
 }
