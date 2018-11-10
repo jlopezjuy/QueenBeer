@@ -14,7 +14,8 @@
                         <div class="col-6">
                             <label class="form-control-label" jhiTranslate="queenBeerApp.compra.fechaCompra" for="field_fechaCompra">Fecha Compra</label>
                             <div class="input-group">
-                                <input id="field_fechaCompra" type="text" class="form-control" name="fechaCompra" ngbDatepicker  #fechaCompraDp="ngbDatepicker" [(ngModel)]="compra.fechaCompra" required/>
+                                <input id="field_fechaCompra" type="text" class="form-control" name="fechaCompra" ngbDatepicker
+                                       #fechaCompraDp="ngbDatepicker" [(ngModel)]="compra.fechaCompra" required/>
                                 <span class="input-group-append">
                                     <button type="button" class="btn btn-secondary" (click)="fechaCompraDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
                                 </span>
@@ -80,7 +81,7 @@
                                 <div class="row">
                                     <div class="col-6">
                                         <label class="form-control-label" jhiTranslate="queenBeerApp.compraInsumo.insumo" for="field_insumo">Insumo</label>
-                                        <select class="form-control" id="field_insumo" name="insumo" [(ngModel)]="compraInsumo.insumoId" >
+                                        <select class="form-control" id="field_insumo" name="insumo" [(ngModel)]="compraInsumo.insumoId">
                                             <option [ngValue]="null"></option>
                                             <option [ngValue]="insumoOption.id" *ngFor="let insumoOption of insumos; trackBy: trackInsumoById">{{insumoOption.nombre}} - {{insumoOption.marca}}</option>
                                         </select>

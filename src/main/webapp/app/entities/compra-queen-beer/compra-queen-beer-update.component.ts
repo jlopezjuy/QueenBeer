@@ -9,6 +9,7 @@ import { IInsumoQueenBeer } from 'app/shared/model/insumo-queen-beer.model';
 import { CompraInsumoQueenBeer, ICompraInsumoQueenBeer } from 'app/shared/model/compra-insumo-queen-beer.model';
 import { InsumoQueenBeerService } from 'app/entities/insumo-queen-beer';
 import { JhiAlertService } from 'ng-jhipster';
+import { CompraInsumoQueenBeerService } from 'app/entities/compra-insumo-queen-beer';
 
 @Component({
     selector: 'jhi-compra-queen-beer-update',
@@ -28,7 +29,8 @@ export class CompraQueenBeerUpdateComponent implements OnInit {
         private activatedRoute: ActivatedRoute,
         private insumoService: InsumoQueenBeerService,
         private jhiAlertService: JhiAlertService,
-        private insumoQueenBeerService: InsumoQueenBeerService
+        private insumoQueenBeerService: InsumoQueenBeerService,
+        private compraInsumoQueenBeerService: CompraInsumoQueenBeerService
     ) {}
 
     ngOnInit() {
@@ -39,6 +41,7 @@ export class CompraQueenBeerUpdateComponent implements OnInit {
         this.loadAll();
         this.compraInsumo = new CompraInsumoQueenBeer();
         this.compra.impuestos = 0;
+        this.compra.fechaCompra = moment(moment(new Date()).format('YYYY/MM/DD'));
     }
 
     loadAll() {
@@ -69,27 +72,34 @@ export class CompraQueenBeerUpdateComponent implements OnInit {
     }
 
     saveInsumo() {
+        console.log('validate');
         let compInsumo = new CompraInsumoQueenBeer();
         compInsumo = this.compraInsumo;
-        this.insumoQueenBeerService.find(this.compraInsumo.insumoId).subscribe(resp => {
-            compInsumo.insumoNombre = resp.body.nombre;
-            this.compraInsumos.push(compInsumo);
-            this.compraInsumo = new CompraInsumoQueenBeer();
-            let suma = 0;
-            this.compraInsumos.forEach(insumo => {
-                console.log(insumo);
-                suma = suma + insumo.costoTotal;
+        if (this.validateInsumo(compInsumo)) {
+            this.insumoQueenBeerService.find(this.compraInsumo.insumoId).subscribe(resp => {
+                compInsumo.insumoNombre = resp.body.nombre;
+                this.compraInsumos.push(compInsumo);
+                this.compraInsumo = new CompraInsumoQueenBeer();
+                let suma = 0;
+                this.compraInsumos.forEach(insumo => {
+                    console.log(insumo);
+                    suma = suma + insumo.costoTotal;
+                });
+                this.reloadImpuesto();
             });
-            this.reloadImpuesto();
-        });
+        }
     }
 
-    private subscribeToSaveResponse(result: Observable<HttpResponse<ICompraQueenBeer>>) {
-        result.subscribe((res: HttpResponse<ICompraQueenBeer>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
+    private subscribeToSaveInsumoResponse(result: Observable<HttpResponse<ICompraInsumoQueenBeer>>) {
+        result.subscribe(
+            (res: HttpResponse<ICompraQueenBeer>) => this.onSaveInsumoSuccess(res),
+            (res: HttpErrorResponse) => this.onSaveError()
+        );
     }
 
-    private onSaveSuccess() {
+    private onSaveSuccess(res: HttpResponse<ICompraQueenBeer>) {
         this.isSaving = false;
+        this.saveInsumosCompra(res);
         this.previousState();
     }
 
@@ -97,13 +107,61 @@ export class CompraQueenBeerUpdateComponent implements OnInit {
         this.isSaving = false;
     }
 
+    private onSaveInsumoSuccess(res: HttpResponse<ICompraInsumoQueenBeer>) {
+        this.jhiAlertService.info('queenBeerApp.insumocreated', res.body.insumoId);
+    }
+
     private onError(errorMessage: string) {
         this.jhiAlertService.error(errorMessage, null, null);
     }
 
+    private saveInsumosCompra(res: HttpResponse<ICompraQueenBeer>) {
+        const compra = res.body;
+        this.compraInsumos.forEach(insumo => {
+            insumo.compraId = compra.id;
+            if (insumo.id !== undefined) {
+                this.subscribeToSaveInsumoResponse(this.compraInsumoQueenBeerService.update(insumo));
+            } else {
+                this.subscribeToSaveInsumoResponse(this.compraInsumoQueenBeerService.create(insumo));
+            }
+        });
+    }
+
+    private subscribeToSaveResponse(result: Observable<HttpResponse<ICompraQueenBeer>>) {
+        result.subscribe((res: HttpResponse<ICompraQueenBeer>) => this.onSaveSuccess(res), (res: HttpErrorResponse) => this.onSaveError());
+    }
+
+    /**
+     * Method to validate supplies before insert on data table
+     * @param insumo
+     */
+    validateInsumo(insumo: CompraInsumoQueenBeer) {
+        console.log(insumo);
+        if (insumo.cantidad === undefined) {
+            this.jhiAlertService.error('queenBeerApp.compra.validate.insumos.undefined', null, null);
+            return false;
+        }
+        if (insumo.cantidad < 0 || insumo.cantidad === undefined) {
+            this.jhiAlertService.error('queenBeerApp.compra.validate.insumos.cantidad', null, null);
+            return false;
+        }
+        if (insumo.costoTotal < 0 || insumo.costoTotal === undefined) {
+            this.jhiAlertService.error('queenBeerApp.compra.validate.insumos.costo', null, null);
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Validate final form before send data to backend
+     */
     validateForm() {
         console.log('entro a validar');
-        return false;
+        if (this.compraInsumos.length < 1) {
+            this.jhiAlertService.error('queenBeerApp.compra.validate.insumos.required', null, null);
+            return false;
+        }
+        return true;
     }
 
     reloadImpuesto() {
@@ -115,8 +173,6 @@ export class CompraQueenBeerUpdateComponent implements OnInit {
         this.compra.subtotal = suma;
         if (this.compra.impuestos > 0) {
             const aux = this.compra.subtotal * this.compra.impuestos / 100;
-            console.log(aux);
-            console.log(this.compra.subtotal);
             this.compra.total = this.compra.subtotal + aux;
         } else {
             this.compra.total = this.compra.subtotal;

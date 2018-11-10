@@ -29,6 +29,12 @@
                 "form" : "Missing data",
                 "fechaCompra" : {
                     "required" : "Purchase Date is required"
+                },
+                "insumos" : {
+                    "undefined" : "Debe elegir insumo antes de guardar, por favor carge los datos correspondientes y recien puede guardar.",
+                    "required" : "Necesita agregar un insumo como minimo para generar la compra.",
+                    "cantidad" : "La cantidad ingresada es incorrecta.",
+                    "costo" : "El importe seleccionado es invalido"
                 }
             }
         }
