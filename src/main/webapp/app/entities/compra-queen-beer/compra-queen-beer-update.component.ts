@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -37,6 +37,20 @@ export class CompraQueenBeerUpdateComponent implements OnInit {
         this.isSaving = false;
         this.activatedRoute.data.subscribe(({ compra }) => {
             this.compra = compra;
+            if (compra !== undefined) {
+                if (compra.id !== undefined) {
+                    console.log(compra);
+                    console.log(compra.id);
+                    this.compraInsumoQueenBeerService.queryByCompraId(compra.id).subscribe(resp => {
+                        this.compraInsumos = resp.body;
+                        this.compraInsumos.forEach(compraInsumo => {
+                            this.insumoQueenBeerService.find(compraInsumo.insumoId).subscribe(respIns => {
+                                compraInsumo.insumoNombre = respIns.body.nombre;
+                            });
+                        });
+                    });
+                }
+            }
         });
         this.loadAll();
         this.compraInsumo = new CompraInsumoQueenBeer();

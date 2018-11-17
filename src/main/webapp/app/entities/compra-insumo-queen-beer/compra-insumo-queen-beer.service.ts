@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 import { SERVER_API_URL } from 'app/app.constants';
 import { createRequestOption } from 'app/shared';
-import { ICompraInsumoQueenBeer } from 'app/shared/model/compra-insumo-queen-beer.model';
+import { CompraInsumoQueenBeer, ICompraInsumoQueenBeer } from 'app/shared/model/compra-insumo-queen-beer.model';
 
 type EntityResponseType = HttpResponse<ICompraInsumoQueenBeer>;
 type EntityArrayResponseType = HttpResponse<ICompraInsumoQueenBeer[]>;
@@ -12,6 +12,7 @@ type EntityArrayResponseType = HttpResponse<ICompraInsumoQueenBeer[]>;
 @Injectable({ providedIn: 'root' })
 export class CompraInsumoQueenBeerService {
     public resourceUrl = SERVER_API_URL + 'api/compra-insumos';
+    public resourceUrlCompra = SERVER_API_URL + 'api/compra-insumos/compra';
     public resourceSearchUrl = SERVER_API_URL + 'api/_search/compra-insumos';
 
     constructor(private http: HttpClient) {}
@@ -26,6 +27,11 @@ export class CompraInsumoQueenBeerService {
 
     find(id: number): Observable<EntityResponseType> {
         return this.http.get<ICompraInsumoQueenBeer>(`${this.resourceUrl}/${id}`, { observe: 'response' });
+    }
+
+    queryByCompraId(compraId: number): Observable<EntityArrayResponseType> {
+        console.log(compraId);
+        return this.http.get<CompraInsumoQueenBeer[]>(`${this.resourceUrlCompra}/${compraId}`, { observe: 'response' });
     }
 
     query(req?: any): Observable<EntityArrayResponseType> {

@@ -1,11 +1,14 @@
 package com.anelsoftware.beer.service.impl;
 
+import com.anelsoftware.beer.domain.Compra;
+import com.anelsoftware.beer.repository.CompraRepository;
 import com.anelsoftware.beer.service.CompraInsumoService;
 import com.anelsoftware.beer.domain.CompraInsumo;
 import com.anelsoftware.beer.repository.CompraInsumoRepository;
 import com.anelsoftware.beer.repository.search.CompraInsumoSearchRepository;
 import com.anelsoftware.beer.service.dto.CompraInsumoDTO;
 import com.anelsoftware.beer.service.mapper.CompraInsumoMapper;
+import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -28,6 +31,8 @@ public class CompraInsumoServiceImpl implements CompraInsumoService {
     private final Logger log = LoggerFactory.getLogger(CompraInsumoServiceImpl.class);
 
     private CompraInsumoRepository compraInsumoRepository;
+
+    private CompraRepository compraRepository;
 
     private CompraInsumoMapper compraInsumoMapper;
 
@@ -110,5 +115,10 @@ public class CompraInsumoServiceImpl implements CompraInsumoService {
         log.debug("Request to search for a page of CompraInsumos for query {}", query);
         return compraInsumoSearchRepository.search(queryStringQuery(query), pageable)
             .map(compraInsumoMapper::toDto);
+    }
+
+    @Override
+    public List<CompraInsumoDTO> getAllByCompraId(Long compraId) {
+        return this.compraInsumoMapper.toDto(this.compraInsumoRepository.getAllComprasInsumosByCompraId(compraId));
     }
 }

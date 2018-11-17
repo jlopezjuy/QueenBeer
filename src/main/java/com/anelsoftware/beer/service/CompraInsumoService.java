@@ -2,6 +2,7 @@ package com.anelsoftware.beer.service;
 
 import com.anelsoftware.beer.service.dto.CompraInsumoDTO;
 
+import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -53,4 +54,11 @@ public interface CompraInsumoService {
      * @return the list of entities
      */
     Page<CompraInsumoDTO> search(String query, Pageable pageable);
+
+    /**
+     * Get insumos by compraId
+     * @param compraId id de compra usado para buscar compras
+     * @return the list of all buys
+     */
+    List<CompraInsumoDTO> getAllByCompraId(Long compraId);
 }

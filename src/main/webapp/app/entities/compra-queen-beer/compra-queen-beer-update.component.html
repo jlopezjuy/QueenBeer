@@ -15,7 +15,7 @@
                             <label class="form-control-label" jhiTranslate="queenBeerApp.compra.fechaCompra" for="field_fechaCompra">Fecha Compra</label>
                             <div class="input-group">
                                 <input id="field_fechaCompra" type="text" class="form-control" name="fechaCompra" ngbDatepicker
-                                       #fechaCompraDp="ngbDatepicker" [(ngModel)]="compra.fechaCompra" required/>
+                                       #fechaCompraDp="ngbDatepicker" [(ngModel)]="compra.fechaCompra" required [disabled]="compra.id"/>
                                 <span class="input-group-append">
                                     <button type="button" class="btn btn-secondary" (click)="fechaCompraDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
                                 </span>
@@ -30,7 +30,7 @@
                         <div class="col-6">
                             <label class="form-control-label" jhiTranslate="queenBeerApp.compra.fechaEntrega" for="field_fechaEntrega">Fecha Entrega</label>
                             <div class="input-group">
-                                <input id="field_fechaEntrega" type="text" class="form-control" name="fechaEntrega" ngbDatepicker  #fechaEntregaDp="ngbDatepicker" [(ngModel)]="compra.fechaEntrega"/>
+                                <input id="field_fechaEntrega" type="text" class="form-control" name="fechaEntrega" ngbDatepicker  #fechaEntregaDp="ngbDatepicker" [(ngModel)]="compra.fechaEntrega" [disabled]="compra.id"/>
                                 <span class="input-group-append">
                                     <button type="button" class="btn btn-secondary" (click)="fechaEntregaDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
                                 </span>
@@ -40,7 +40,7 @@
                     <div class="row">
                         <div class="col-6">
                             <label class="form-control-label" jhiTranslate="queenBeerApp.compra.nroFactura" for="field_nroFactura">Nro Factura</label>
-                            <input type="text" class="form-control" name="nroFactura" id="field_nroFactura" #nroFacturaInput="ngModel" [(ngModel)]="compra.nroFactura" required/>
+                            <input type="text" class="form-control" name="nroFactura" id="field_nroFactura" #nroFacturaInput="ngModel" [(ngModel)]="compra.nroFactura" required [disabled]="compra.id"/>
                             <div *ngIf="nroFacturaInput.dirty && nroFacturaInput.invalid">
                                 <small class="form-text text-danger" *ngIf="nroFacturaInput.errors.required"
                                        jhiTranslate="queenBeerApp.compra.validate.fechaCompra.required">
@@ -56,7 +56,7 @@
                     <div class="row">
                         <div class="col-6">
                             <label class="form-control-label" jhiTranslate="queenBeerApp.compra.impuestos" for="field_impuestos">Impuestos</label>
-                            <input type="number" class="form-control" name="impuestos" id="field_impuestos" #impuestosInput="ngModel" [(ngModel)]="compra.impuestos" required (change)="reloadImpuesto()"/>
+                            <input type="number" class="form-control" name="impuestos" id="field_impuestos" #impuestosInput="ngModel" [(ngModel)]="compra.impuestos" required (change)="reloadImpuesto()" [disabled]="compra.id"/>
                             <div *ngIf="impuestosInput.dirty && impuestosInput.invalid">
                                 <small class="form-text text-danger" *ngIf="impuestosInput.errors.required"
                                        jhiTranslate="queenBeerApp.compra.validate.fechaCompra.required">
@@ -71,7 +71,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="container" style="background-color: lightgray; padding-bottom: 1%;">
+                <div class="container" style="background-color: lightgray; padding-bottom: 1%;" [hidden]="compra.id">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <h2 jhiTranslate="queenBeerApp.compra.home.createInsumo">Agregar insumo</h2>
