@@ -10,38 +10,56 @@
                         [(ngModel)]="producto.id" readonly />
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="queenBeerApp.producto.codigo" for="field_codigo">Codigo</label>
-                    <input type="text" class="form-control" name="codigo" id="field_codigo"
-                        [(ngModel)]="producto.codigo" />
+                    <div class="row">
+                        <div class="col-6">
+                            <label class="form-control-label" jhiTranslate="queenBeerApp.producto.codigo" for="field_codigo">Codigo</label>
+                            <input type="text" class="form-control" name="codigo" id="field_codigo"
+                                   [(ngModel)]="producto.codigo" />
+                        </div>
+                        <div class="col-6">
+                            <label class="form-control-label" jhiTranslate="queenBeerApp.producto.complementario" for="field_complementario">Complementario</label>
+                            <input type="text" class="form-control" name="complementario" id="field_complementario"
+                                   [(ngModel)]="producto.complementario" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <label class="form-control-label" jhiTranslate="queenBeerApp.producto.estilo" for="field_estilo">Estilo</label>
+                            <input type="text" class="form-control" name="estilo" id="field_estilo"
+                                   [(ngModel)]="producto.estilo" />
+                        </div>
+                        <div class="col-6">
+                            <label class="form-control-label" jhiTranslate="queenBeerApp.producto.nombreComercial" for="field_nombreComercial">Nombre Comercial</label>
+                            <input type="text" class="form-control" name="nombreComercial" id="field_nombreComercial"
+                                   [(ngModel)]="producto.nombreComercial" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <label class="form-control-label" jhiTranslate="queenBeerApp.producto.precioLitro" for="field_precioLitro">Precio Litro</label>
+                            <input type="number" class="form-control" name="precioLitro" id="field_precioLitro"
+                                   [(ngModel)]="producto.precioLitro" />
+                        </div>
+                        <div class="col-6">
+                            <label class="form-control-label" jhiTranslate="queenBeerApp.producto.tipoProducto" for="field_tipoProducto">Tipo Producto</label>
+                            <select class="form-control" name="tipoProducto" [(ngModel)]="producto.tipoProducto" id="field_tipoProducto" >
+                                <option value="FIJO">{{'queenBeerApp.TipoProducto.FIJO' | translate}}</option>
+                                <option value="ROTATIVO">{{'queenBeerApp.TipoProducto.ROTATIVO' | translate}}</option>
+                                <option value="ESPECIAL">{{'queenBeerApp.TipoProducto.ESPECIAL' | translate}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+
+                        </div>
+                        <div class="col-6">
+
+                        </div>
+                    </div>
+
                 </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="queenBeerApp.producto.complementario" for="field_complementario">Complementario</label>
-                    <input type="text" class="form-control" name="complementario" id="field_complementario"
-                        [(ngModel)]="producto.complementario" />
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="queenBeerApp.producto.estilo" for="field_estilo">Estilo</label>
-                    <input type="text" class="form-control" name="estilo" id="field_estilo"
-                        [(ngModel)]="producto.estilo" />
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="queenBeerApp.producto.nombreComercial" for="field_nombreComercial">Nombre Comercial</label>
-                    <input type="text" class="form-control" name="nombreComercial" id="field_nombreComercial"
-                        [(ngModel)]="producto.nombreComercial" />
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="queenBeerApp.producto.precioLitro" for="field_precioLitro">Precio Litro</label>
-                    <input type="number" class="form-control" name="precioLitro" id="field_precioLitro"
-                        [(ngModel)]="producto.precioLitro" />
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="queenBeerApp.producto.tipoProducto" for="field_tipoProducto">Tipo Producto</label>
-                    <select class="form-control" name="tipoProducto" [(ngModel)]="producto.tipoProducto" id="field_tipoProducto" >
-                        <option value="FIJO">{{'queenBeerApp.TipoProducto.FIJO' | translate}}</option>
-                        <option value="ROTATIVO">{{'queenBeerApp.TipoProducto.ROTATIVO' | translate}}</option>
-                        <option value="ESPECIAL">{{'queenBeerApp.TipoProducto.ESPECIAL' | translate}}</option>
-                    </select>
-                </div>
+
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="queenBeerApp.producto.imagen" for="field_imagen">Imagen</label>
                     <div>
