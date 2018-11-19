@@ -12,4 +12,10 @@ import { QueenBeerSharedLibsModule, QueenBeerSharedCommonModule, JhiLoginModalCo
     exports: [QueenBeerSharedCommonModule, JhiLoginModalComponent, HasAnyAuthorityDirective],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class QueenBeerSharedModule {}
+export class QueenBeerSharedModule {
+    static forRoot() {
+        return {
+            ngModule: QueenBeerSharedModule
+        };
+    }
+}
