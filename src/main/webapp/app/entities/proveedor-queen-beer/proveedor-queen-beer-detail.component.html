@@ -1,75 +1,103 @@
-<div class="row justify-content-center">
-    <div class="col-8">
-        <div *ngIf="proveedor">
-            <h2><span jhiTranslate="queenBeerApp.proveedor.detail.title">Proveedor</span> {{proveedor.id}}</h2>
-            <hr>
-            <jhi-alert-error></jhi-alert-error>
-            <dl class="row-md jh-entity-details">
-                <dt><span jhiTranslate="queenBeerApp.proveedor.nombreFantasia">Nombre Fantasia</span></dt>
-                <dd>
-                    <span>{{proveedor.nombreFantasia}}</span>
-                </dd>
-                <dt><span jhiTranslate="queenBeerApp.proveedor.razonSocial">Razon Social</span></dt>
-                <dd>
-                    <span>{{proveedor.razonSocial}}</span>
-                </dd>
-                <dt><span jhiTranslate="queenBeerApp.proveedor.cuit">Cuit</span></dt>
-                <dd>
-                    <span>{{proveedor.cuit}}</span>
-                </dd>
-                <dt><span jhiTranslate="queenBeerApp.proveedor.condicionFiscal">Condicion Fiscal</span></dt>
-                <dd>
-                    <span jhiTranslate="{{'queenBeerApp.CondicionFiscal.' + proveedor.condicionFiscal}}">{{proveedor.condicionFiscal}}</span>
-                </dd>
-                <dt><span jhiTranslate="queenBeerApp.proveedor.telefono">Telefono</span></dt>
-                <dd>
-                    <span>{{proveedor.telefono}}</span>
-                </dd>
-                <dt><span jhiTranslate="queenBeerApp.proveedor.fechaAlta">Fecha Alta</span></dt>
-                <dd>
-                    <span>{{proveedor.fechaAlta}}</span>
-                </dd>
-                <dt><span jhiTranslate="queenBeerApp.proveedor.direccion">Direccion</span></dt>
-                <dd>
-                    <span>{{proveedor.direccion}}</span>
-                </dd>
-                <dt><span jhiTranslate="queenBeerApp.proveedor.localidad">Localidad</span></dt>
-                <dd>
-                    <span>{{proveedor.localidad}}</span>
-                </dd>
-                <dt><span jhiTranslate="queenBeerApp.proveedor.codigoPostal">Codigo Postal</span></dt>
-                <dd>
-                    <span>{{proveedor.codigoPostal}}</span>
-                </dd>
-                <dt><span jhiTranslate="queenBeerApp.proveedor.contacto">Contacto</span></dt>
-                <dd>
-                    <span>{{proveedor.contacto}}</span>
-                </dd>
-                <dt><span jhiTranslate="queenBeerApp.proveedor.email">Email</span></dt>
-                <dd>
-                    <span>{{proveedor.email}}</span>
-                </dd>
-                <dt><span jhiTranslate="queenBeerApp.proveedor.provincia">Provincia</span></dt>
-                <dd>
-                    <span jhiTranslate="{{'queenBeerApp.Provincia.' + proveedor.provincia}}">{{proveedor.provincia}}</span>
-                </dd>
-                <dt><span jhiTranslate="queenBeerApp.proveedor.notas">Notas</span></dt>
-                <dd>
-                    <span>{{proveedor.notas}}</span>
-                </dd>
-            </dl>
-
-            <button type="submit"
-                    (click)="previousState()"
-                    class="btn btn-info">
-                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
-            </button>
-
-            <button type="button"
-                    [routerLink]="['/proveedor-queen-beer', proveedor.id, 'edit']"
-                    class="btn btn-primary">
-                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
-            </button>
+<section class="content blog-page">
+    <div class="block-header">
+        <div class="row">
+            <div class="col-lg-5 col-md-5 col-sm-12">
+                <h2>
+                    <h2><span jhiTranslate="queenBeerApp.proveedor.detail.title">Proveedor</span> {{proveedor.id}}</h2>
+                </h2>
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 text-right">
+                <ul class="breadcrumb float-md-right">
+                    <li class="breadcrumb-item"><a routerLink="/"><i class="zmdi zmdi-home"></i> <span jhiTranslate="global.menu.home">Home</span></a></li>
+                </ul>
+            </div>
         </div>
     </div>
-</div>
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="body">
+                        <div class="row justify-content-center">
+                            <div class="col-8">
+                                <div *ngIf="proveedor">
+
+                                    <hr>
+                                    <jhi-alert-error></jhi-alert-error>
+                                    <dl class="row-md jh-entity-details">
+                                        <dt><span jhiTranslate="queenBeerApp.proveedor.nombreFantasia">Nombre Fantasia</span></dt>
+                                        <dd>
+                                            <span>{{proveedor.nombreFantasia}}</span>
+                                        </dd>
+                                        <dt><span jhiTranslate="queenBeerApp.proveedor.razonSocial">Razon Social</span></dt>
+                                        <dd>
+                                            <span>{{proveedor.razonSocial}}</span>
+                                        </dd>
+                                        <dt><span jhiTranslate="queenBeerApp.proveedor.cuit">Cuit</span></dt>
+                                        <dd>
+                                            <span>{{proveedor.cuit}}</span>
+                                        </dd>
+                                        <dt><span jhiTranslate="queenBeerApp.proveedor.condicionFiscal">Condicion Fiscal</span></dt>
+                                        <dd>
+                                            <span jhiTranslate="{{'queenBeerApp.CondicionFiscal.' + proveedor.condicionFiscal}}">{{proveedor.condicionFiscal}}</span>
+                                        </dd>
+                                        <dt><span jhiTranslate="queenBeerApp.proveedor.telefono">Telefono</span></dt>
+                                        <dd>
+                                            <span>{{proveedor.telefono}}</span>
+                                        </dd>
+                                        <dt><span jhiTranslate="queenBeerApp.proveedor.fechaAlta">Fecha Alta</span></dt>
+                                        <dd>
+                                            <span>{{proveedor.fechaAlta}}</span>
+                                        </dd>
+                                        <dt><span jhiTranslate="queenBeerApp.proveedor.direccion">Direccion</span></dt>
+                                        <dd>
+                                            <span>{{proveedor.direccion}}</span>
+                                        </dd>
+                                        <dt><span jhiTranslate="queenBeerApp.proveedor.localidad">Localidad</span></dt>
+                                        <dd>
+                                            <span>{{proveedor.localidad}}</span>
+                                        </dd>
+                                        <dt><span jhiTranslate="queenBeerApp.proveedor.codigoPostal">Codigo Postal</span></dt>
+                                        <dd>
+                                            <span>{{proveedor.codigoPostal}}</span>
+                                        </dd>
+                                        <dt><span jhiTranslate="queenBeerApp.proveedor.contacto">Contacto</span></dt>
+                                        <dd>
+                                            <span>{{proveedor.contacto}}</span>
+                                        </dd>
+                                        <dt><span jhiTranslate="queenBeerApp.proveedor.email">Email</span></dt>
+                                        <dd>
+                                            <span>{{proveedor.email}}</span>
+                                        </dd>
+                                        <dt><span jhiTranslate="queenBeerApp.proveedor.provincia">Provincia</span></dt>
+                                        <dd>
+                                            <span jhiTranslate="{{'queenBeerApp.Provincia.' + proveedor.provincia}}">{{proveedor.provincia}}</span>
+                                        </dd>
+                                        <dt><span jhiTranslate="queenBeerApp.proveedor.notas">Notas</span></dt>
+                                        <dd>
+                                            <span>{{proveedor.notas}}</span>
+                                        </dd>
+                                    </dl>
+
+                                    <button type="submit"
+                                            (click)="previousState()"
+                                            class="btn btn-info">
+                                        <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+                                    </button>
+
+                                    <button type="button"
+                                            [routerLink]="['/proveedor-queen-beer', proveedor.id, 'edit']"
+                                            class="btn btn-primary">
+                                        <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+

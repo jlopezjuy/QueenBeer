@@ -1,124 +1,152 @@
-<div class="row justify-content-center">
-    <div class="col-8">
-        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
-            <h2 id="jhi-proveedor-queen-beer-heading" jhiTranslate="queenBeerApp.proveedor.home.createOrEditLabel">Create or edit a Proveedor</h2>
-            <div>
-                <jhi-alert-error></jhi-alert-error>
-                <div class="form-group" [hidden]="!proveedor.id">
-                    <label for="id" jhiTranslate="global.field.id">ID</label>
-                    <input type="text" class="form-control" id="id" name="id"
-                        [(ngModel)]="proveedor.id" readonly />
-                </div>
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-6">
-                            <label class="form-control-label" jhiTranslate="queenBeerApp.proveedor.nombreFantasia" for="field_nombreFantasia">Nombre Fantasia</label>
-                            <input type="text" class="form-control" name="nombreFantasia" id="field_nombreFantasia"
-                                   [(ngModel)]="proveedor.nombreFantasia" />
-                        </div>
-                        <div class="col-6">
-                            <label class="form-control-label" jhiTranslate="queenBeerApp.proveedor.razonSocial" for="field_razonSocial">Razon Social</label>
-                            <input type="text" class="form-control" name="razonSocial" id="field_razonSocial"
-                                   [(ngModel)]="proveedor.razonSocial" />
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6">
-                            <label class="form-control-label" jhiTranslate="queenBeerApp.proveedor.cuit" for="field_cuit">Cuit</label>
-                            <input type="text" class="form-control" name="cuit" id="field_cuit"
-                                   [(ngModel)]="proveedor.cuit" />
-                        </div>
-                        <div class="col-6">
-                            <label class="form-control-label" jhiTranslate="queenBeerApp.proveedor.condicionFiscal" for="field_condicionFiscal">Condicion Fiscal</label>
-                            <select class="form-control" name="condicionFiscal" [(ngModel)]="proveedor.condicionFiscal" id="field_condicionFiscal" >
-                                <option value="RESPONSABLE_INSCRIPTO">{{'queenBeerApp.CondicionFiscal.RESPONSABLE_INSCRIPTO' | translate}}</option>
-                                <option value="MONOTRIBUTISTA">{{'queenBeerApp.CondicionFiscal.MONOTRIBUTISTA' | translate}}</option>
-                                <option value="CONSUMIDOR_FINAL">{{'queenBeerApp.CondicionFiscal.CONSUMIDOR_FINAL' | translate}}</option>
-                                <option value="OTRO">{{'queenBeerApp.CondicionFiscal.OTRO' | translate}}</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6">
-                            <label class="form-control-label" jhiTranslate="queenBeerApp.proveedor.telefono" for="field_telefono">Telefono</label>
-                            <input type="text" class="form-control" name="telefono" id="field_telefono"
-                                   [(ngModel)]="proveedor.telefono" />
-                        </div>
-                        <div class="col-6">
-                            <label class="form-control-label" jhiTranslate="queenBeerApp.proveedor.fechaAlta" for="field_fechaAlta">Fecha Alta</label>
-                            <div class="d-flex">
-                                <input id="field_fechaAlta" type="datetime-local" class="form-control" name="fechaAlta" [(ngModel)]="fechaAlta"
-                                />
+<section class="content blog-page">
+    <div class="block-header">
+        <div class="row">
+            <div class="col-lg-5 col-md-5 col-sm-12">
+                <h2>
+                    <h2 id="jhi-proveedor-queen-beer-heading" jhiTranslate="queenBeerApp.proveedor.home.createOrEditLabel">Create or edit a Proveedor</h2>
+                </h2>
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 text-right">
+                <ul class="breadcrumb float-md-right">
+                    <li class="breadcrumb-item"><a routerLink="/"><i class="zmdi zmdi-home"></i> <span jhiTranslate="global.menu.home">Home</span></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="body">
+                        <div class="row justify-content-center">
+                            <div class="col-8">
+                                <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+                                    <div>
+                                        <jhi-alert-error></jhi-alert-error>
+                                        <div class="form-group" [hidden]="!proveedor.id">
+                                            <label for="id" jhiTranslate="global.field.id">ID</label>
+                                            <input type="text" class="form-control" id="id" name="id"
+                                                   [(ngModel)]="proveedor.id" readonly />
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <label class="form-control-label" jhiTranslate="queenBeerApp.proveedor.nombreFantasia" for="field_nombreFantasia">Nombre Fantasia</label>
+                                                    <input type="text" class="form-control" name="nombreFantasia" id="field_nombreFantasia"
+                                                           [(ngModel)]="proveedor.nombreFantasia" />
+                                                </div>
+                                                <div class="col-6">
+                                                    <label class="form-control-label" jhiTranslate="queenBeerApp.proveedor.razonSocial" for="field_razonSocial">Razon Social</label>
+                                                    <input type="text" class="form-control" name="razonSocial" id="field_razonSocial"
+                                                           [(ngModel)]="proveedor.razonSocial" />
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <label class="form-control-label" jhiTranslate="queenBeerApp.proveedor.cuit" for="field_cuit">Cuit</label>
+                                                    <input type="text" class="form-control" name="cuit" id="field_cuit"
+                                                           [(ngModel)]="proveedor.cuit" />
+                                                </div>
+                                                <div class="col-6">
+                                                    <label class="form-control-label" jhiTranslate="queenBeerApp.proveedor.condicionFiscal" for="field_condicionFiscal">Condicion Fiscal</label>
+                                                    <select class="form-control" name="condicionFiscal" [(ngModel)]="proveedor.condicionFiscal" id="field_condicionFiscal" >
+                                                        <option value="RESPONSABLE_INSCRIPTO">{{'queenBeerApp.CondicionFiscal.RESPONSABLE_INSCRIPTO' | translate}}</option>
+                                                        <option value="MONOTRIBUTISTA">{{'queenBeerApp.CondicionFiscal.MONOTRIBUTISTA' | translate}}</option>
+                                                        <option value="CONSUMIDOR_FINAL">{{'queenBeerApp.CondicionFiscal.CONSUMIDOR_FINAL' | translate}}</option>
+                                                        <option value="OTRO">{{'queenBeerApp.CondicionFiscal.OTRO' | translate}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <label class="form-control-label" jhiTranslate="queenBeerApp.proveedor.telefono" for="field_telefono">Telefono</label>
+                                                    <input type="text" class="form-control" name="telefono" id="field_telefono"
+                                                           [(ngModel)]="proveedor.telefono" />
+                                                </div>
+                                                <div class="col-6">
+                                                    <label class="form-control-label" jhiTranslate="queenBeerApp.proveedor.fechaAlta" for="field_fechaAlta">Fecha Alta</label>
+                                                    <div class="d-flex">
+                                                        <input id="field_fechaAlta" type="datetime-local" class="form-control" name="fechaAlta" [(ngModel)]="fechaAlta"
+                                                        />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <label class="form-control-label" jhiTranslate="queenBeerApp.proveedor.direccion" for="field_direccion">Direccion</label>
+                                                    <input type="text" class="form-control" name="direccion" id="field_direccion"
+                                                           [(ngModel)]="proveedor.direccion" />
+                                                </div>
+                                                <div class="col-6">
+                                                    <label class="form-control-label" jhiTranslate="queenBeerApp.proveedor.localidad" for="field_localidad">Localidad</label>
+                                                    <input type="text" class="form-control" name="localidad" id="field_localidad"
+                                                           [(ngModel)]="proveedor.localidad" />
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <label class="form-control-label" jhiTranslate="queenBeerApp.proveedor.codigoPostal" for="field_codigoPostal">Codigo Postal</label>
+                                                    <input type="number" class="form-control" name="codigoPostal" id="field_codigoPostal"
+                                                           [(ngModel)]="proveedor.codigoPostal" />
+                                                </div>
+                                                <div class="col-6">
+                                                    <label class="form-control-label" jhiTranslate="queenBeerApp.proveedor.contacto" for="field_contacto">Contacto</label>
+                                                    <input type="text" class="form-control" name="contacto" id="field_contacto"
+                                                           [(ngModel)]="proveedor.contacto" />
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <label class="form-control-label" jhiTranslate="queenBeerApp.proveedor.email" for="field_email">Email</label>
+                                                    <input type="text" class="form-control" name="email" id="field_email"
+                                                           [(ngModel)]="proveedor.email" />
+                                                </div>
+                                                <div class="col-6">
+                                                    <label class="form-control-label" jhiTranslate="queenBeerApp.proveedor.provincia" for="field_provincia">Provincia</label>
+                                                    <select class="form-control" name="provincia" [(ngModel)]="proveedor.provincia" id="field_provincia" >
+                                                        <option value="BUENOS_AIRES">{{'queenBeerApp.Provincia.BUENOS_AIRES' | translate}}</option>
+                                                        <option value="CATAMARCA">{{'queenBeerApp.Provincia.CATAMARCA' | translate}}</option>
+                                                        <option value="CORDOBA">{{'queenBeerApp.Provincia.CORDOBA' | translate}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <label class="form-control-label" jhiTranslate="queenBeerApp.proveedor.notas" for="field_notas">Notas</label>
+                                                    <input type="text" class="form-control" name="notas" id="field_notas"
+                                                           [(ngModel)]="proveedor.notas" />
+                                                </div>
+                                                <div class="col-6">
+
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-6">
+
+                                                </div>
+                                                <div class="col-6">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                                            <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                                        </button>
+                                        <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                                            <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                                        </button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-6">
-                            <label class="form-control-label" jhiTranslate="queenBeerApp.proveedor.direccion" for="field_direccion">Direccion</label>
-                            <input type="text" class="form-control" name="direccion" id="field_direccion"
-                                   [(ngModel)]="proveedor.direccion" />
-                        </div>
-                        <div class="col-6">
-                            <label class="form-control-label" jhiTranslate="queenBeerApp.proveedor.localidad" for="field_localidad">Localidad</label>
-                            <input type="text" class="form-control" name="localidad" id="field_localidad"
-                                   [(ngModel)]="proveedor.localidad" />
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6">
-                            <label class="form-control-label" jhiTranslate="queenBeerApp.proveedor.codigoPostal" for="field_codigoPostal">Codigo Postal</label>
-                            <input type="number" class="form-control" name="codigoPostal" id="field_codigoPostal"
-                                   [(ngModel)]="proveedor.codigoPostal" />
-                        </div>
-                        <div class="col-6">
-                            <label class="form-control-label" jhiTranslate="queenBeerApp.proveedor.contacto" for="field_contacto">Contacto</label>
-                            <input type="text" class="form-control" name="contacto" id="field_contacto"
-                                   [(ngModel)]="proveedor.contacto" />
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6">
-                            <label class="form-control-label" jhiTranslate="queenBeerApp.proveedor.email" for="field_email">Email</label>
-                            <input type="text" class="form-control" name="email" id="field_email"
-                                   [(ngModel)]="proveedor.email" />
-                        </div>
-                        <div class="col-6">
-                            <label class="form-control-label" jhiTranslate="queenBeerApp.proveedor.provincia" for="field_provincia">Provincia</label>
-                            <select class="form-control" name="provincia" [(ngModel)]="proveedor.provincia" id="field_provincia" >
-                                <option value="BUENOS_AIRES">{{'queenBeerApp.Provincia.BUENOS_AIRES' | translate}}</option>
-                                <option value="CATAMARCA">{{'queenBeerApp.Provincia.CATAMARCA' | translate}}</option>
-                                <option value="CORDOBA">{{'queenBeerApp.Provincia.CORDOBA' | translate}}</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6">
-                            <label class="form-control-label" jhiTranslate="queenBeerApp.proveedor.notas" for="field_notas">Notas</label>
-                            <input type="text" class="form-control" name="notas" id="field_notas"
-                                   [(ngModel)]="proveedor.notas" />
-                        </div>
-                        <div class="col-6">
-
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6">
-
-                        </div>
-                        <div class="col-6">
-
-                        </div>
-                    </div>
                 </div>
             </div>
-            <div>
-                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
-                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
-                </button>
-                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
-                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
-                </button>
-            </div>
-        </form>
+        </div>
     </div>
-</div>
+</section>
+
+
