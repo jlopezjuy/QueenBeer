@@ -3,7 +3,6 @@ import { ActivatedRoute } from '@angular/router';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import * as moment from 'moment';
-import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
 
 import { IClienteQueenBeer } from 'app/shared/model/cliente-queen-beer.model';
 import { ClienteQueenBeerService } from './cliente-queen-beer.service';
@@ -15,7 +14,7 @@ import { ClienteQueenBeerService } from './cliente-queen-beer.service';
 export class ClienteQueenBeerUpdateComponent implements OnInit {
     cliente: IClienteQueenBeer;
     isSaving: boolean;
-    fechaAlta: string;
+    fechaAltaDp: any;
 
     constructor(private clienteService: ClienteQueenBeerService, private activatedRoute: ActivatedRoute) {}
 
@@ -23,7 +22,6 @@ export class ClienteQueenBeerUpdateComponent implements OnInit {
         this.isSaving = false;
         this.activatedRoute.data.subscribe(({ cliente }) => {
             this.cliente = cliente;
-            this.fechaAlta = this.cliente.fechaAlta != null ? this.cliente.fechaAlta.format(DATE_TIME_FORMAT) : null;
         });
     }
 
@@ -33,7 +31,6 @@ export class ClienteQueenBeerUpdateComponent implements OnInit {
 
     save() {
         this.isSaving = true;
-        this.cliente.fechaAlta = this.fechaAlta != null ? moment(this.fechaAlta, DATE_TIME_FORMAT) : null;
         if (this.cliente.id !== undefined) {
             this.subscribeToSaveResponse(this.clienteService.update(this.cliente));
         } else {

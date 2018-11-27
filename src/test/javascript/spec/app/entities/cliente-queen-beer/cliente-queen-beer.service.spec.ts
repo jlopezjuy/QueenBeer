@@ -5,7 +5,7 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { of } from 'rxjs';
 import { take, map } from 'rxjs/operators';
 import * as moment from 'moment';
-import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
+import { DATE_FORMAT } from 'app/shared/constants/input.constants';
 import { ClienteQueenBeerService } from 'app/entities/cliente-queen-beer/cliente-queen-beer.service';
 import {
     IClienteQueenBeer,
@@ -52,7 +52,7 @@ describe('Service Tests', () => {
             it('should find an element', async () => {
                 const returnedFromService = Object.assign(
                     {
-                        fechaAlta: currentDate.format(DATE_TIME_FORMAT)
+                        fechaAlta: currentDate.format(DATE_FORMAT)
                     },
                     elemDefault
                 );
@@ -69,7 +69,7 @@ describe('Service Tests', () => {
                 const returnedFromService = Object.assign(
                     {
                         id: 0,
-                        fechaAlta: currentDate.format(DATE_TIME_FORMAT)
+                        fechaAlta: currentDate.format(DATE_FORMAT)
                     },
                     elemDefault
                 );
@@ -95,7 +95,7 @@ describe('Service Tests', () => {
                         categoria: 'BBBBBB',
                         cuit: 'BBBBBB',
                         condicionFiscal: 'BBBBBB',
-                        fechaAlta: currentDate.format(DATE_TIME_FORMAT),
+                        fechaAlta: currentDate.format(DATE_FORMAT),
                         telefono: 'BBBBBB',
                         direccion: 'BBBBBB',
                         localidadCiudad: 'BBBBBB',
@@ -128,7 +128,7 @@ describe('Service Tests', () => {
                         categoria: 'BBBBBB',
                         cuit: 'BBBBBB',
                         condicionFiscal: 'BBBBBB',
-                        fechaAlta: currentDate.format(DATE_TIME_FORMAT),
+                        fechaAlta: currentDate.format(DATE_FORMAT),
                         telefono: 'BBBBBB',
                         direccion: 'BBBBBB',
                         localidadCiudad: 'BBBBBB',
@@ -146,7 +146,10 @@ describe('Service Tests', () => {
                 );
                 service
                     .query(expected)
-                    .pipe(take(1), map(resp => resp.body))
+                    .pipe(
+                        take(1),
+                        map(resp => resp.body)
+                    )
                     .subscribe(body => expect(body).toContainEqual(expected));
                 const req = httpMock.expectOne({ method: 'GET' });
                 req.flush(JSON.stringify([returnedFromService]));

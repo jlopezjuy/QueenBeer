@@ -1,6 +1,6 @@
 {
     "queenBeerApp": {
-        "CategoriaCliente" : {
+        "CategoriaCliente": {
             "null": "",
             "BAR": "BAR",
             "DISTRIBUIDOR": "DISTRIBUIDOR"

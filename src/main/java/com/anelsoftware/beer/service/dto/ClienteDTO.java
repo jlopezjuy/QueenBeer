@@ -1,6 +1,6 @@
 package com.anelsoftware.beer.service.dto;
 
-import java.time.Instant;
+import java.time.LocalDate;
 import java.io.Serializable;
 import java.util.Objects;
 import com.anelsoftware.beer.domain.enumeration.CategoriaCliente;
@@ -24,7 +24,7 @@ public class ClienteDTO implements Serializable {
 
     private CondicionFiscal condicionFiscal;
 
-    private Instant fechaAlta;
+    private LocalDate fechaAlta;
 
     private String telefono;
 
@@ -86,11 +86,11 @@ public class ClienteDTO implements Serializable {
         this.condicionFiscal = condicionFiscal;
     }
 
-    public Instant getFechaAlta() {
+    public LocalDate getFechaAlta() {
         return fechaAlta;
     }
 
-    public void setFechaAlta(Instant fechaAlta) {
+    public void setFechaAlta(LocalDate fechaAlta) {
         this.fechaAlta = fechaAlta;
     }
 

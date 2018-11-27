@@ -99,9 +99,19 @@
                                                         <label class="form-control-label" jhiTranslate="queenBeerApp.cliente.fechaAlta"
                                                                for="field_fechaAlta">Fecha Alta</label>
                                                         <div class="d-flex">
-                                                            <input id="field_fechaAlta" type="datetime-local" class="form-control"
-                                                                   name="fechaAlta" [(ngModel)]="fechaAlta"
-                                                            />
+                                                            <!--<input id="field_fechaAlta" type="text" class="form-control" ngbDatepicker-->
+                                                                   <!--#fechaAlta="ngbDatepicker" name="fechaAlta" [(ngModel)]="fechaAlta"-->
+                                                            <!--/>-->
+                                                            <!--<span class="input-group-append">-->
+                                                                <!--<button type="button" class="btn btn-secondary" (click)="fechaAlta.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>-->
+                                                            <!--</span>-->
+
+
+                                                            <input id="field_fechaAlta" type="text" class="form-control" name="fechaAlta" ngbDatepicker
+                                                                   #fechaAltaDp="ngbDatepicker" [(ngModel)]="fechaAlta" required />
+                                                            <span class="input-group-append">
+                                                                <button type="button" class="btn btn-secondary" (click)="fechaAltaDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                                                            </span>
                                                         </div>
                                                     </div>
                                                 </div>
