@@ -42,7 +42,7 @@ describe('Service Tests', () => {
                 'AAAAAAA',
                 'AAAAAAA',
                 'AAAAAAA',
-                Provincia.BUENOS_AIRES,
+                Provincia.MISIONES,
                 0,
                 'AAAAAAA'
             );

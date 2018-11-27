@@ -80,8 +80,8 @@ public class ClienteResourceIntTest {
     private static final String DEFAULT_LOCALIDAD_CIUDAD = "AAAAAAAAAA";
     private static final String UPDATED_LOCALIDAD_CIUDAD = "BBBBBBBBBB";
 
-    private static final Provincia DEFAULT_PRIVINCIA = Provincia.BUENOS_AIRES;
-    private static final Provincia UPDATED_PRIVINCIA = Provincia.CATAMARCA;
+    private static final Provincia DEFAULT_PRIVINCIA = Provincia.MISIONES;
+    private static final Provincia UPDATED_PRIVINCIA = Provincia.SAN_LUIS;
 
     private static final Long DEFAULT_CODIGO_POSTAL = 1L;
     private static final Long UPDATED_CODIGO_POSTAL = 2L;

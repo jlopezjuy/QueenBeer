@@ -3,7 +3,8 @@
         "CategoriaCliente": {
             "null": "",
             "BAR": "BAR",
-            "DISTRIBUIDOR": "DISTRIBUIDOR"
+            "DISTRIBUIDOR": "DISTRIBUIDOR",
+            "CONSUMIDOR_FINAL": "CONSUMIDOR_FINAL"
         }
     }
 }
