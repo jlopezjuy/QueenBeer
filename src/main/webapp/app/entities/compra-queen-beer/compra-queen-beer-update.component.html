@@ -1,179 +1,205 @@
-<div class="row justify-content-center">
-    <div class="col-8">
-        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
-            <h2 id="jhi-compra-queen-beer-heading" jhiTranslate="queenBeerApp.compra.home.createOrEditLabel">Create or edit a Compra</h2>
-            <div>
-                <jhi-alert-error></jhi-alert-error>
-                <jhi-alert></jhi-alert>
-                <div class="form-group" [hidden]="!compra.id">
-                    <label for="id" jhiTranslate="global.field.id">ID</label>
-                    <input type="text" class="form-control" id="id" name="id" [(ngModel)]="compra.id" readonly />
-                </div>
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-6">
-                            <label class="form-control-label" jhiTranslate="queenBeerApp.compra.fechaCompra" for="field_fechaCompra">Fecha Compra</label>
-                            <div class="input-group">
-                                <input id="field_fechaCompra" type="text" class="form-control" name="fechaCompra" ngbDatepicker
-                                       #fechaCompraDp="ngbDatepicker" [(ngModel)]="compra.fechaCompra" required [disabled]="compra.id"/>
-                                <span class="input-group-append">
+<section class="content blog-page">
+    <div class="block-header">
+        <div class="row">
+            <div class="col-lg-5 col-md-5 col-sm-12">
+                <h2>
+                    <h2 id="jhi-compra-queen-beer-heading" jhiTranslate="queenBeerApp.compra.home.createOrEditLabel">Create or edit a Compra</h2>
+                </h2>
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 text-right">
+                <ul class="breadcrumb float-md-right">
+                    <li class="breadcrumb-item"><a routerLink="/"><i class="zmdi zmdi-home"></i> <span jhiTranslate="global.menu.home">Home</span></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="body">
+                        <div class="row justify-content-center">
+                            <div class="col-8">
+                                <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+                                    <div>
+                                        <jhi-alert-error></jhi-alert-error>
+                                        <jhi-alert></jhi-alert>
+                                        <div class="form-group" [hidden]="!compra.id">
+                                            <label for="id" jhiTranslate="global.field.id">ID</label>
+                                            <input type="text" class="form-control" id="id" name="id" [(ngModel)]="compra.id" readonly />
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <label class="form-control-label" jhiTranslate="queenBeerApp.compra.fechaCompra" for="field_fechaCompra">Fecha Compra</label>
+                                                    <div class="input-group">
+                                                        <input id="field_fechaCompra" type="text" class="form-control" name="fechaCompra" ngbDatepicker
+                                                               #fechaCompraDp="ngbDatepicker" [(ngModel)]="compra.fechaCompra" required [disabled]="compra.id"/>
+                                                        <span class="input-group-append">
                                     <button type="button" class="btn btn-secondary" (click)="fechaCompraDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
                                 </span>
-                                <div *ngIf="fechaCompraDp.dirty && fechaCompraDp.invalid">
-                                    <small class="form-text text-danger" *ngIf="fechaCompraDp.errors.required"
-                                           jhiTranslate="queenBeerApp.compra.validate.fechaCompra.required">
-                                        Your confirmation password is required.
-                                    </small>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <label class="form-control-label" jhiTranslate="queenBeerApp.compra.fechaEntrega" for="field_fechaEntrega">Fecha Entrega</label>
-                            <div class="input-group">
-                                <input id="field_fechaEntrega" type="text" class="form-control" name="fechaEntrega" ngbDatepicker  #fechaEntregaDp="ngbDatepicker" [(ngModel)]="compra.fechaEntrega" [disabled]="compra.id"/>
-                                <span class="input-group-append">
+                                                        <div *ngIf="fechaCompraDp.dirty && fechaCompraDp.invalid">
+                                                            <small class="form-text text-danger" *ngIf="fechaCompraDp.errors.required"
+                                                                   jhiTranslate="queenBeerApp.compra.validate.fechaCompra.required">
+                                                                Your confirmation password is required.
+                                                            </small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <label class="form-control-label" jhiTranslate="queenBeerApp.compra.fechaEntrega" for="field_fechaEntrega">Fecha Entrega</label>
+                                                    <div class="input-group">
+                                                        <input id="field_fechaEntrega" type="text" class="form-control" name="fechaEntrega" ngbDatepicker  #fechaEntregaDp="ngbDatepicker" [(ngModel)]="compra.fechaEntrega" [disabled]="compra.id"/>
+                                                        <span class="input-group-append">
                                     <button type="button" class="btn btn-secondary" (click)="fechaEntregaDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
                                 </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6">
-                            <label class="form-control-label" jhiTranslate="queenBeerApp.compra.nroFactura" for="field_nroFactura">Nro Factura</label>
-                            <input type="text" class="form-control" name="nroFactura" id="field_nroFactura" #nroFacturaInput="ngModel" [(ngModel)]="compra.nroFactura" required [disabled]="compra.id"/>
-                            <div *ngIf="nroFacturaInput.dirty && nroFacturaInput.invalid">
-                                <small class="form-text text-danger" *ngIf="nroFacturaInput.errors.required"
-                                       jhiTranslate="queenBeerApp.compra.validate.fechaCompra.required">
-                                    Your confirmation password is required.
-                                </small>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <label class="form-control-label" jhiTranslate="queenBeerApp.compra.subtotal" for="field_subtotal">Subtotal</label>
-                            <input type="number" class="form-control" name="subtotal" id="field_subtotal" [(ngModel)]="compra.subtotal" disabled required/>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6">
-                            <label class="form-control-label" jhiTranslate="queenBeerApp.compra.impuestos" for="field_impuestos">Impuestos</label>
-                            <input type="number" class="form-control" name="impuestos" id="field_impuestos" #impuestosInput="ngModel" [(ngModel)]="compra.impuestos" required (change)="reloadImpuesto()" [disabled]="compra.id"/>
-                            <div *ngIf="impuestosInput.dirty && impuestosInput.invalid">
-                                <small class="form-text text-danger" *ngIf="impuestosInput.errors.required"
-                                       jhiTranslate="queenBeerApp.compra.validate.fechaCompra.required">
-                                    Your confirmation password is required.
-                                </small>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <label class="form-control-label" jhiTranslate="queenBeerApp.compra.total" for="field_total">Total</label>
-                            <input type="number" class="form-control" name="total" id="field_total"
-                                   [(ngModel)]="compra.total" disabled required/>
-                        </div>
-                    </div>
-                </div>
-                <div class="container" style="background-color: lightgray; padding-bottom: 1%;" [hidden]="compra.id">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <h2 jhiTranslate="queenBeerApp.compra.home.createInsumo">Agregar insumo</h2>
-                        </div>
-                        <div class="panel-body">
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-6">
-                                        <label class="form-control-label" jhiTranslate="queenBeerApp.compraInsumo.insumo" for="field_insumo">Insumo</label>
-                                        <select class="form-control" id="field_insumo" name="insumo" [(ngModel)]="compraInsumo.insumoId">
-                                            <option [ngValue]="null"></option>
-                                            <option [ngValue]="insumoOption.id" *ngFor="let insumoOption of insumos; trackBy: trackInsumoById">{{insumoOption.nombre}} - {{insumoOption.marca}}</option>
-                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <label class="form-control-label" jhiTranslate="queenBeerApp.compra.nroFactura" for="field_nroFactura">Nro Factura</label>
+                                                    <input type="text" class="form-control" name="nroFactura" id="field_nroFactura" #nroFacturaInput="ngModel" [(ngModel)]="compra.nroFactura" required [disabled]="compra.id"/>
+                                                    <div *ngIf="nroFacturaInput.dirty && nroFacturaInput.invalid">
+                                                        <small class="form-text text-danger" *ngIf="nroFacturaInput.errors.required"
+                                                               jhiTranslate="queenBeerApp.compra.validate.fechaCompra.required">
+                                                            Your confirmation password is required.
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <label class="form-control-label" jhiTranslate="queenBeerApp.compra.subtotal" for="field_subtotal">Subtotal</label>
+                                                    <input type="number" class="form-control" name="subtotal" id="field_subtotal" [(ngModel)]="compra.subtotal" disabled required/>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <label class="form-control-label" jhiTranslate="queenBeerApp.compra.impuestos" for="field_impuestos">Impuestos</label>
+                                                    <input type="number" class="form-control" name="impuestos" id="field_impuestos" #impuestosInput="ngModel" [(ngModel)]="compra.impuestos" required (change)="reloadImpuesto()" [disabled]="compra.id"/>
+                                                    <div *ngIf="impuestosInput.dirty && impuestosInput.invalid">
+                                                        <small class="form-text text-danger" *ngIf="impuestosInput.errors.required"
+                                                               jhiTranslate="queenBeerApp.compra.validate.fechaCompra.required">
+                                                            Your confirmation password is required.
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <label class="form-control-label" jhiTranslate="queenBeerApp.compra.total" for="field_total">Total</label>
+                                                    <input type="number" class="form-control" name="total" id="field_total"
+                                                           [(ngModel)]="compra.total" disabled required/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="container" style="background-color: lightgray; padding-bottom: 1%;" [hidden]="compra.id">
+                                            <div class="panel panel-primary">
+                                                <div class="panel-heading">
+                                                    <h2 jhiTranslate="queenBeerApp.compra.home.createInsumo">Agregar insumo</h2>
+                                                </div>
+                                                <div class="panel-body">
+                                                    <div class="form-group">
+                                                        <div class="row">
+                                                            <div class="col-6">
+                                                                <label class="form-control-label" jhiTranslate="queenBeerApp.compraInsumo.insumo" for="field_insumo">Insumo</label>
+                                                                <select class="form-control" id="field_insumo" name="insumo" [(ngModel)]="compraInsumo.insumoId">
+                                                                    <option [ngValue]="null"></option>
+                                                                    <option [ngValue]="insumoOption.id" *ngFor="let insumoOption of insumos; trackBy: trackInsumoById">{{insumoOption.nombre}} - {{insumoOption.marca}}</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-6">
+                                                                <label class="form-control-label" jhiTranslate="queenBeerApp.compraInsumo.cantidad" for="field_cantidad">Cantidad</label>
+                                                                <input type="number" class="form-control" name="cantidad" id="field_cantidad"
+                                                                       [(ngModel)]="compraInsumo.cantidad" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-6">
+                                                                <label class="form-control-label" jhiTranslate="queenBeerApp.compraInsumo.unidad" for="field_unidad">Unidad</label>
+                                                                <select class="form-control" name="unidad" [(ngModel)]="compraInsumo.unidad" id="field_unidad" >
+                                                                    <option value="KILOGRAMO">{{'queenBeerApp.Unidad.KILOGRAMO' | translate}}</option>
+                                                                    <option value="GRAMO">{{'queenBeerApp.Unidad.GRAMO' | translate}}</option>
+                                                                    <option value="VEINTICINCO_KILOS">{{'queenBeerApp.Unidad.VEINTICINCO_KILOS' | translate}}</option>
+                                                                    <option value="DIES_KILOS">{{'queenBeerApp.Unidad.DIES_KILOS' | translate}}</option>
+                                                                    <option value="LITRO">{{'queenBeerApp.Unidad.LITRO' | translate}}</option>
+                                                                    <option value="CM3">{{'queenBeerApp.Unidad.CM3' | translate}}</option>
+                                                                    <option value="ML">{{'queenBeerApp.Unidad.ML' | translate}}</option>
+                                                                    <option value="UNIDAD">{{'queenBeerApp.Unidad.UNIDAD' | translate}}</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-6">
+                                                                <label class="form-control-label" jhiTranslate="queenBeerApp.compraInsumo.descripcion" for="field_descripcion">Descripcion</label>
+                                                                <input type="text" class="form-control" name="descripcion" id="field_descripcion"
+                                                                       [(ngModel)]="compraInsumo.descripcion" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-6">
+                                                                <label class="form-control-label" jhiTranslate="queenBeerApp.compraInsumo.costoTotal" for="field_costoTotal">Costo Total</label>
+                                                                <input type="number" class="form-control" name="costoTotal" id="field_costoTotal" [(ngModel)]="compraInsumo.costoTotal" />
+                                                            </div>
+                                                            <div class="col-6">
+                                                                <label class="form-control-label"><span> </span></label>
+                                                                <button type="button" class="btn btn-primary" (click)="saveInsumo()">
+                                                                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <table class="table table-striped">
+                                                    <thead>
+                                                    <th><span jhiTranslate="queenBeerApp.compraInsumo.insumo">Insumo</span></th>
+                                                    <th><span jhiTranslate="queenBeerApp.compraInsumo.cantidad">Cantidad</span></th>
+                                                    <th><span jhiTranslate="queenBeerApp.compraInsumo.unidad">Unidad</span></th>
+                                                    <th><span jhiTranslate="queenBeerApp.compraInsumo.descripcion">Descripcion</span></th>
+                                                    <th><span jhiTranslate="queenBeerApp.compraInsumo.costoTotal">Costo Total</span></th>
+                                                    <th></th>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr *ngFor="let compraInsumo of compraInsumos">
+                                                        <td>
+                                                            {{compraInsumo.insumoNombre}}
+                                                        </td>
+                                                        <td>
+                                                            {{compraInsumo.cantidad}}
+                                                        </td>
+                                                        <td>
+                                                            {{compraInsumo.unidad}}
+                                                        </td>
+                                                        <td>
+                                                            {{compraInsumo.descripcion}}
+                                                        </td>
+                                                        <td>
+                                                            {{compraInsumo.costoTotal}}
+                                                        </td>
+                                                        <td>
+
+                                                        </td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="col-6">
-                                        <label class="form-control-label" jhiTranslate="queenBeerApp.compraInsumo.cantidad" for="field_cantidad">Cantidad</label>
-                                        <input type="number" class="form-control" name="cantidad" id="field_cantidad"
-                                               [(ngModel)]="compraInsumo.cantidad" />
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-6">
-                                        <label class="form-control-label" jhiTranslate="queenBeerApp.compraInsumo.unidad" for="field_unidad">Unidad</label>
-                                        <select class="form-control" name="unidad" [(ngModel)]="compraInsumo.unidad" id="field_unidad" >
-                                            <option value="KILOGRAMO">{{'queenBeerApp.Unidad.KILOGRAMO' | translate}}</option>
-                                            <option value="GRAMO">{{'queenBeerApp.Unidad.GRAMO' | translate}}</option>
-                                            <option value="VEINTICINCO_KILOS">{{'queenBeerApp.Unidad.VEINTICINCO_KILOS' | translate}}</option>
-                                            <option value="DIES_KILOS">{{'queenBeerApp.Unidad.DIES_KILOS' | translate}}</option>
-                                            <option value="LITRO">{{'queenBeerApp.Unidad.LITRO' | translate}}</option>
-                                            <option value="CM3">{{'queenBeerApp.Unidad.CM3' | translate}}</option>
-                                            <option value="ML">{{'queenBeerApp.Unidad.ML' | translate}}</option>
-                                            <option value="UNIDAD">{{'queenBeerApp.Unidad.UNIDAD' | translate}}</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-6">
-                                        <label class="form-control-label" jhiTranslate="queenBeerApp.compraInsumo.descripcion" for="field_descripcion">Descripcion</label>
-                                        <input type="text" class="form-control" name="descripcion" id="field_descripcion"
-                                               [(ngModel)]="compraInsumo.descripcion" />
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-6">
-                                        <label class="form-control-label" jhiTranslate="queenBeerApp.compraInsumo.costoTotal" for="field_costoTotal">Costo Total</label>
-                                        <input type="number" class="form-control" name="costoTotal" id="field_costoTotal" [(ngModel)]="compraInsumo.costoTotal" />
-                                    </div>
-                                    <div class="col-6">
-                                        <label class="form-control-label"><span> </span></label>
-                                        <button type="button" class="btn btn-primary" (click)="saveInsumo()">
+                                    <div>
+                                        <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                                            <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                                        </button>
+                                        <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
                                             <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
                                         </button>
                                     </div>
-                                </div>
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="form-group">
-                    <div class="row">
-                        <table class="table table-striped">
-                            <thead>
-                                <th><span jhiTranslate="queenBeerApp.compraInsumo.insumo">Insumo</span></th>
-                                <th><span jhiTranslate="queenBeerApp.compraInsumo.cantidad">Cantidad</span></th>
-                                <th><span jhiTranslate="queenBeerApp.compraInsumo.unidad">Unidad</span></th>
-                                <th><span jhiTranslate="queenBeerApp.compraInsumo.descripcion">Descripcion</span></th>
-                                <th><span jhiTranslate="queenBeerApp.compraInsumo.costoTotal">Costo Total</span></th>
-                                <th></th>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let compraInsumo of compraInsumos">
-                                    <td>
-                                        {{compraInsumo.insumoNombre}}
-                                    </td>
-                                    <td>
-                                        {{compraInsumo.cantidad}}
-                                    </td>
-                                    <td>
-                                        {{compraInsumo.unidad}}
-                                    </td>
-                                    <td>
-                                        {{compraInsumo.descripcion}}
-                                    </td>
-                                    <td>
-                                        {{compraInsumo.costoTotal}}
-                                    </td>
-                                    <td>
-
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
             </div>
-            <div>
-                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
-                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
-                </button>
-                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
-                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
-                </button>
-            </div>
-        </form>
+        </div>
     </div>
-</div>
+</section>
