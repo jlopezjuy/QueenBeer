@@ -42,7 +42,7 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="fecha_alta" type="datetime">
+            <column name="fecha_alta" type="date">
                 <constraints nullable="true" />
             </column>
 
@@ -72,7 +72,6 @@
 
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
-        <dropDefaultValue tableName="cliente" columnName="fecha_alta" columnDataType="datetime"/>
         
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->

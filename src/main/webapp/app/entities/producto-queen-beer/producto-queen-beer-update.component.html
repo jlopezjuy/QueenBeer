@@ -1,92 +1,117 @@
-<div class="row justify-content-center">
-    <div class="col-8">
-        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
-            <h2 id="jhi-producto-queen-beer-heading" jhiTranslate="queenBeerApp.producto.home.createOrEditLabel">Create or edit a Producto</h2>
-            <div>
-                <jhi-alert-error></jhi-alert-error>
-                <div class="form-group" [hidden]="!producto.id">
-                    <label for="id" jhiTranslate="global.field.id">ID</label>
-                    <input type="text" class="form-control" id="id" name="id"
-                        [(ngModel)]="producto.id" readonly />
-                </div>
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-6">
-                            <label class="form-control-label" jhiTranslate="queenBeerApp.producto.codigo" for="field_codigo">Codigo</label>
-                            <input type="text" class="form-control" name="codigo" id="field_codigo"
-                                   [(ngModel)]="producto.codigo" />
-                        </div>
-                        <div class="col-6">
-                            <label class="form-control-label" jhiTranslate="queenBeerApp.producto.complementario" for="field_complementario">Complementario</label>
-                            <input type="text" class="form-control" name="complementario" id="field_complementario"
-                                   [(ngModel)]="producto.complementario" />
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6">
-                            <label class="form-control-label" jhiTranslate="queenBeerApp.producto.estilo" for="field_estilo">Estilo</label>
-                            <input type="text" class="form-control" name="estilo" id="field_estilo"
-                                   [(ngModel)]="producto.estilo" />
-                        </div>
-                        <div class="col-6">
-                            <label class="form-control-label" jhiTranslate="queenBeerApp.producto.nombreComercial" for="field_nombreComercial">Nombre Comercial</label>
-                            <input type="text" class="form-control" name="nombreComercial" id="field_nombreComercial"
-                                   [(ngModel)]="producto.nombreComercial" />
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6">
-                            <label class="form-control-label" jhiTranslate="queenBeerApp.producto.precioLitro" for="field_precioLitro">Precio Litro</label>
-                            <input type="number" class="form-control" name="precioLitro" id="field_precioLitro"
-                                   [(ngModel)]="producto.precioLitro" />
-                        </div>
-                        <div class="col-6">
-                            <label class="form-control-label" jhiTranslate="queenBeerApp.producto.tipoProducto" for="field_tipoProducto">Tipo Producto</label>
-                            <select class="form-control" name="tipoProducto" [(ngModel)]="producto.tipoProducto" id="field_tipoProducto" >
-                                <option value="FIJO">{{'queenBeerApp.TipoProducto.FIJO' | translate}}</option>
-                                <option value="ROTATIVO">{{'queenBeerApp.TipoProducto.ROTATIVO' | translate}}</option>
-                                <option value="ESPECIAL">{{'queenBeerApp.TipoProducto.ESPECIAL' | translate}}</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6">
-
-                        </div>
-                        <div class="col-6">
-
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="queenBeerApp.producto.imagen" for="field_imagen">Imagen</label>
-                    <div>
-                        <img [src]="'data:' + producto.imagenContentType + ';base64,' + producto.imagen" style="max-height: 100px;" *ngIf="producto.imagen" alt="producto image"/>
-                        <div *ngIf="producto.imagen" class="form-text text-danger clearfix">
-                            <span class="pull-left">{{producto.imagenContentType}}, {{byteSize(producto.imagen)}}</span>
-                            <button type="button" (click)="clearInputImage('imagen', 'imagenContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
-                                <fa-icon [icon]="'times'"></fa-icon>
-                            </button>
-                        </div>
-                        <input type="file" id="file_imagen" (change)="setFileData($event, producto, 'imagen', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
-                    </div>
-                    <input type="hidden" class="form-control" name="imagen" id="field_imagen"
-                        [(ngModel)]="producto.imagen" />
-                    <input type="hidden" class="form-control" name="imagenContentType" id="field_imagenContentType"
-                        [(ngModel)]="producto.imagenContentType" />
-                </div>
-
+<section class="content blog-page">
+    <div class="block-header">
+        <div class="row">
+            <div class="col-lg-5 col-md-5 col-sm-12">
+                <h2>
+                    <h2 id="jhi-producto-queen-beer-heading" jhiTranslate="queenBeerApp.producto.home.createOrEditLabel">Create or edit a Producto</h2>
+                </h2>
             </div>
-            <div>
-                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
-                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
-                </button>
-                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
-                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
-                </button>
+            <div class="col-lg-7 col-md-7 col-sm-12 text-right">
+                <ul class="breadcrumb float-md-right">
+                    <li class="breadcrumb-item"><a routerLink="/"><i class="zmdi zmdi-home"></i> <span jhiTranslate="global.menu.home">Home</span></a></li>
+                </ul>
             </div>
-        </form>
+        </div>
     </div>
-</div>
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="body">
+                        <div class="row justify-content-center">
+                            <div class="col-8">
+                                <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+                                    <div>
+                                        <jhi-alert-error></jhi-alert-error>
+                                        <div class="form-group" [hidden]="!producto.id">
+                                            <label for="id" jhiTranslate="global.field.id">ID</label>
+                                            <input type="text" class="form-control" id="id" name="id"
+                                                   [(ngModel)]="producto.id" readonly />
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <label class="form-control-label" jhiTranslate="queenBeerApp.producto.codigo" for="field_codigo">Codigo</label>
+                                                    <input type="text" class="form-control" name="codigo" id="field_codigo"
+                                                           [(ngModel)]="producto.codigo" />
+                                                </div>
+                                                <div class="col-6">
+                                                    <label class="form-control-label" jhiTranslate="queenBeerApp.producto.complementario" for="field_complementario">Complementario</label>
+                                                    <input type="text" class="form-control" name="complementario" id="field_complementario"
+                                                           [(ngModel)]="producto.complementario" />
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <label class="form-control-label" jhiTranslate="queenBeerApp.producto.estilo" for="field_estilo">Estilo</label>
+                                                    <input type="text" class="form-control" name="estilo" id="field_estilo"
+                                                           [(ngModel)]="producto.estilo" />
+                                                </div>
+                                                <div class="col-6">
+                                                    <label class="form-control-label" jhiTranslate="queenBeerApp.producto.nombreComercial" for="field_nombreComercial">Nombre Comercial</label>
+                                                    <input type="text" class="form-control" name="nombreComercial" id="field_nombreComercial"
+                                                           [(ngModel)]="producto.nombreComercial" />
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <label class="form-control-label" jhiTranslate="queenBeerApp.producto.precioLitro" for="field_precioLitro">Precio Litro</label>
+                                                    <input type="number" class="form-control" name="precioLitro" id="field_precioLitro"
+                                                           [(ngModel)]="producto.precioLitro" />
+                                                </div>
+                                                <div class="col-6">
+                                                    <label class="form-control-label" jhiTranslate="queenBeerApp.producto.tipoProducto" for="field_tipoProducto">Tipo Producto</label>
+                                                    <select class="form-control" name="tipoProducto" [(ngModel)]="producto.tipoProducto" id="field_tipoProducto" >
+                                                        <option value="FIJO">{{'queenBeerApp.TipoProducto.FIJO' | translate}}</option>
+                                                        <option value="ROTATIVO">{{'queenBeerApp.TipoProducto.ROTATIVO' | translate}}</option>
+                                                        <option value="ESPECIAL">{{'queenBeerApp.TipoProducto.ESPECIAL' | translate}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-6">
+
+                                                </div>
+                                                <div class="col-6">
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="form-control-label" jhiTranslate="queenBeerApp.producto.imagen" for="field_imagen">Imagen</label>
+                                            <div>
+                                                <img [src]="'data:' + producto.imagenContentType + ';base64,' + producto.imagen" style="max-height: 100px;" *ngIf="producto.imagen" alt="producto image"/>
+                                                <div *ngIf="producto.imagen" class="form-text text-danger clearfix">
+                                                    <span class="pull-left">{{producto.imagenContentType}}, {{byteSize(producto.imagen)}}</span>
+                                                    <button type="button" (click)="clearInputImage('imagen', 'imagenContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                                                        <fa-icon [icon]="'times'"></fa-icon>
+                                                    </button>
+                                                </div>
+                                                <input type="file" id="file_imagen" (change)="setFileData($event, producto, 'imagen', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+                                            </div>
+                                            <input type="hidden" class="form-control" name="imagen" id="field_imagen"
+                                                   [(ngModel)]="producto.imagen" />
+                                            <input type="hidden" class="form-control" name="imagenContentType" id="field_imagenContentType"
+                                                   [(ngModel)]="producto.imagenContentType" />
+                                        </div>
+
+                                    </div>
+                                    <div>
+                                        <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                                            <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                                        </button>
+                                        <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                                            <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

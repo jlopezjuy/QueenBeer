@@ -81,7 +81,7 @@ class ClienteGatlingTest extends Simulation {
                 , "telefono":"SAMPLE_TEXT"
                 , "direccion":"SAMPLE_TEXT"
                 , "localidadCiudad":"SAMPLE_TEXT"
-                , "privincia":"BUENOS_AIRES"
+                , "privincia":"MISIONES"
                 , "codigoPostal":null
                 , "email":"SAMPLE_TEXT"
                 }""")).asJSON

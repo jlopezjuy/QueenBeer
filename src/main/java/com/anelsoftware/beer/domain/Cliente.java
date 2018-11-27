@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 import org.springframework.data.elasticsearch.annotations.Document;
 import java.io.Serializable;
-import java.time.Instant;
+import java.time.LocalDate;
 import java.util.Objects;
 
 import com.anelsoftware.beer.domain.enumeration.CategoriaCliente;
@@ -49,7 +49,7 @@ public class Cliente implements Serializable {
     private CondicionFiscal condicionFiscal;
 
     @Column(name = "fecha_alta")
-    private Instant fechaAlta;
+    private LocalDate fechaAlta;
 
     @Column(name = "telefono")
     private String telefono;
@@ -144,16 +144,16 @@ public class Cliente implements Serializable {
         this.condicionFiscal = condicionFiscal;
     }
 
-    public Instant getFechaAlta() {
+    public LocalDate getFechaAlta() {
         return fechaAlta;
     }
 
-    public Cliente fechaAlta(Instant fechaAlta) {
+    public Cliente fechaAlta(LocalDate fechaAlta) {
         this.fechaAlta = fechaAlta;
         return this;
     }
 
-    public void setFechaAlta(Instant fechaAlta) {
+    public void setFechaAlta(LocalDate fechaAlta) {
         this.fechaAlta = fechaAlta;
     }
 

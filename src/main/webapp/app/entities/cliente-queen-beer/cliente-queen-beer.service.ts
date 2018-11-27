@@ -57,22 +57,26 @@ export class ClienteQueenBeerService {
             .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
     }
 
-    private convertDateFromClient(cliente: IClienteQueenBeer): IClienteQueenBeer {
+    protected convertDateFromClient(cliente: IClienteQueenBeer): IClienteQueenBeer {
         const copy: IClienteQueenBeer = Object.assign({}, cliente, {
-            fechaAlta: cliente.fechaAlta != null && cliente.fechaAlta.isValid() ? cliente.fechaAlta.toJSON() : null
+            fechaAlta: cliente.fechaAlta != null && cliente.fechaAlta.isValid() ? cliente.fechaAlta.format(DATE_FORMAT) : null
         });
         return copy;
     }
 
-    private convertDateFromServer(res: EntityResponseType): EntityResponseType {
-        res.body.fechaAlta = res.body.fechaAlta != null ? moment(res.body.fechaAlta) : null;
+    protected convertDateFromServer(res: EntityResponseType): EntityResponseType {
+        if (res.body) {
+            res.body.fechaAlta = res.body.fechaAlta != null ? moment(res.body.fechaAlta) : null;
+        }
         return res;
     }
 
-    private convertDateArrayFromServer(res: EntityArrayResponseType): EntityArrayResponseType {
-        res.body.forEach((cliente: IClienteQueenBeer) => {
-            cliente.fechaAlta = cliente.fechaAlta != null ? moment(cliente.fechaAlta) : null;
-        });
+    protected convertDateArrayFromServer(res: EntityArrayResponseType): EntityArrayResponseType {
+        if (res.body) {
+            res.body.forEach((cliente: IClienteQueenBeer) => {
+                cliente.fechaAlta = cliente.fechaAlta != null ? moment(cliente.fechaAlta) : null;
+            });
+        }
         return res;
     }
 }

@@ -27,8 +27,8 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
-import java.time.Instant;
-import java.time.temporal.ChronoUnit;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Collections;
 import java.util.List;
 
@@ -68,8 +68,8 @@ public class ClienteResourceIntTest {
     private static final CondicionFiscal DEFAULT_CONDICION_FISCAL = CondicionFiscal.RESPONSABLE_INSCRIPTO;
     private static final CondicionFiscal UPDATED_CONDICION_FISCAL = CondicionFiscal.MONOTRIBUTISTA;
 
-    private static final Instant DEFAULT_FECHA_ALTA = Instant.ofEpochMilli(0L);
-    private static final Instant UPDATED_FECHA_ALTA = Instant.now().truncatedTo(ChronoUnit.MILLIS);
+    private static final LocalDate DEFAULT_FECHA_ALTA = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_FECHA_ALTA = LocalDate.now(ZoneId.systemDefault());
 
     private static final String DEFAULT_TELEFONO = "AAAAAAAAAA";
     private static final String UPDATED_TELEFONO = "BBBBBBBBBB";
@@ -80,8 +80,8 @@ public class ClienteResourceIntTest {
     private static final String DEFAULT_LOCALIDAD_CIUDAD = "AAAAAAAAAA";
     private static final String UPDATED_LOCALIDAD_CIUDAD = "BBBBBBBBBB";
 
-    private static final Provincia DEFAULT_PRIVINCIA = Provincia.BUENOS_AIRES;
-    private static final Provincia UPDATED_PRIVINCIA = Provincia.CATAMARCA;
+    private static final Provincia DEFAULT_PRIVINCIA = Provincia.MISIONES;
+    private static final Provincia UPDATED_PRIVINCIA = Provincia.SAN_LUIS;
 
     private static final Long DEFAULT_CODIGO_POSTAL = 1L;
     private static final Long UPDATED_CODIGO_POSTAL = 2L;
@@ -94,7 +94,7 @@ public class ClienteResourceIntTest {
 
     @Autowired
     private ClienteMapper clienteMapper;
-    
+
     @Autowired
     private ClienteService clienteService;
 
@@ -383,18 +383,18 @@ public class ClienteResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(cliente.getId().intValue())))
-            .andExpect(jsonPath("$.[*].nombreFantasia").value(hasItem(DEFAULT_NOMBRE_FANTASIA.toString())))
-            .andExpect(jsonPath("$.[*].razonSocial").value(hasItem(DEFAULT_RAZON_SOCIAL.toString())))
+            .andExpect(jsonPath("$.[*].nombreFantasia").value(hasItem(DEFAULT_NOMBRE_FANTASIA)))
+            .andExpect(jsonPath("$.[*].razonSocial").value(hasItem(DEFAULT_RAZON_SOCIAL)))
             .andExpect(jsonPath("$.[*].categoria").value(hasItem(DEFAULT_CATEGORIA.toString())))
-            .andExpect(jsonPath("$.[*].cuit").value(hasItem(DEFAULT_CUIT.toString())))
+            .andExpect(jsonPath("$.[*].cuit").value(hasItem(DEFAULT_CUIT)))
             .andExpect(jsonPath("$.[*].condicionFiscal").value(hasItem(DEFAULT_CONDICION_FISCAL.toString())))
             .andExpect(jsonPath("$.[*].fechaAlta").value(hasItem(DEFAULT_FECHA_ALTA.toString())))
-            .andExpect(jsonPath("$.[*].telefono").value(hasItem(DEFAULT_TELEFONO.toString())))
-            .andExpect(jsonPath("$.[*].direccion").value(hasItem(DEFAULT_DIRECCION.toString())))
-            .andExpect(jsonPath("$.[*].localidadCiudad").value(hasItem(DEFAULT_LOCALIDAD_CIUDAD.toString())))
+            .andExpect(jsonPath("$.[*].telefono").value(hasItem(DEFAULT_TELEFONO)))
+            .andExpect(jsonPath("$.[*].direccion").value(hasItem(DEFAULT_DIRECCION)))
+            .andExpect(jsonPath("$.[*].localidadCiudad").value(hasItem(DEFAULT_LOCALIDAD_CIUDAD)))
             .andExpect(jsonPath("$.[*].privincia").value(hasItem(DEFAULT_PRIVINCIA.toString())))
             .andExpect(jsonPath("$.[*].codigoPostal").value(hasItem(DEFAULT_CODIGO_POSTAL.intValue())))
-            .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL.toString())));
+            .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL)));
     }
 
     @Test

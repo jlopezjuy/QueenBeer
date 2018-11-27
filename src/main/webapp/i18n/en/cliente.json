@@ -1,7 +1,6 @@
-
 {
     "queenBeerApp": {
-        "cliente" : {
+        "cliente": {
             "home": {
                 "title": "Clientes",
                 "createLabel": "Create a new Cliente",

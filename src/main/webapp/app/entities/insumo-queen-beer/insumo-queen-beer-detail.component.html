@@ -1,52 +1,78 @@
-<div class="row justify-content-center">
-    <div class="col-8">
-        <div *ngIf="insumo">
-            <h2><span jhiTranslate="queenBeerApp.insumo.detail.title">Insumo</span> {{insumo.id}}</h2>
-            <hr>
-            <jhi-alert-error></jhi-alert-error>
-            <dl class="row-md jh-entity-details">
-                <dt><span jhiTranslate="queenBeerApp.insumo.nombre">Nombre</span></dt>
-                <dd>
-                    <span>{{insumo.nombre}}</span>
-                </dd>
-                <dt><span jhiTranslate="queenBeerApp.insumo.marca">Marca</span></dt>
-                <dd>
-                    <span>{{insumo.marca}}</span>
-                </dd>
-                <dt><span jhiTranslate="queenBeerApp.insumo.stockMinimo">Stock Minimo</span></dt>
-                <dd>
-                    <span>{{insumo.stockMinimo}}</span>
-                </dd>
-                <dt><span jhiTranslate="queenBeerApp.insumo.unidad">Unidad</span></dt>
-                <dd>
-                    <span jhiTranslate="{{'queenBeerApp.Unidad.' + insumo.unidad}}">{{insumo.unidad}}</span>
-                </dd>
-                <dt><span jhiTranslate="queenBeerApp.insumo.tipo">Tipo</span></dt>
-                <dd>
-                    <span jhiTranslate="{{'queenBeerApp.TipoInsumo.' + insumo.tipo}}">{{insumo.tipo}}</span>
-                </dd>
-                <dt><span jhiTranslate="queenBeerApp.insumo.imagen">Imagen</span></dt>
-                <dd>
-                    <div *ngIf="insumo.imagen">
-                        <a (click)="openFile(insumo.imagenContentType, insumo.imagen)">
-                            <img [src]="'data:' + insumo.imagenContentType + ';base64,' + insumo.imagen" style="max-width: 100%;" alt="insumo image"/>
-                        </a>
-                        {{insumo.imagenContentType}}, {{byteSize(insumo.imagen)}}
-                    </div>
-                </dd>
-            </dl>
-
-            <button type="submit"
-                    (click)="previousState()"
-                    class="btn btn-info">
-                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
-            </button>
-
-            <button type="button"
-                    [routerLink]="['/insumo-queen-beer', insumo.id, 'edit']"
-                    class="btn btn-primary">
-                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
-            </button>
+<section class="content blog-page">
+    <div class="block-header">
+        <div class="row">
+            <div class="col-lg-5 col-md-5 col-sm-12">
+                <h2>
+                    <h2><span jhiTranslate="queenBeerApp.insumo.detail.title">Insumo</span> {{insumo.id}}</h2>
+                </h2>
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 text-right">
+                <ul class="breadcrumb float-md-right">
+                    <li class="breadcrumb-item"><a routerLink="/"><i class="zmdi zmdi-home"></i> <span jhiTranslate="global.menu.home">Home</span></a></li>
+                </ul>
+            </div>
         </div>
     </div>
-</div>
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="body">
+                        <div class="row justify-content-center">
+                            <div class="col-8">
+                                <div *ngIf="insumo">
+
+                                    <hr>
+                                    <jhi-alert-error></jhi-alert-error>
+                                    <dl class="row-md jh-entity-details">
+                                        <dt><span jhiTranslate="queenBeerApp.insumo.nombre">Nombre</span></dt>
+                                        <dd>
+                                            <span>{{insumo.nombre}}</span>
+                                        </dd>
+                                        <dt><span jhiTranslate="queenBeerApp.insumo.marca">Marca</span></dt>
+                                        <dd>
+                                            <span>{{insumo.marca}}</span>
+                                        </dd>
+                                        <dt><span jhiTranslate="queenBeerApp.insumo.stockMinimo">Stock Minimo</span></dt>
+                                        <dd>
+                                            <span>{{insumo.stockMinimo}}</span>
+                                        </dd>
+                                        <dt><span jhiTranslate="queenBeerApp.insumo.unidad">Unidad</span></dt>
+                                        <dd>
+                                            <span jhiTranslate="{{'queenBeerApp.Unidad.' + insumo.unidad}}">{{insumo.unidad}}</span>
+                                        </dd>
+                                        <dt><span jhiTranslate="queenBeerApp.insumo.tipo">Tipo</span></dt>
+                                        <dd>
+                                            <span jhiTranslate="{{'queenBeerApp.TipoInsumo.' + insumo.tipo}}">{{insumo.tipo}}</span>
+                                        </dd>
+                                        <dt><span jhiTranslate="queenBeerApp.insumo.imagen">Imagen</span></dt>
+                                        <dd>
+                                            <div *ngIf="insumo.imagen">
+                                                <a (click)="openFile(insumo.imagenContentType, insumo.imagen)">
+                                                    <img [src]="'data:' + insumo.imagenContentType + ';base64,' + insumo.imagen" style="max-width: 100%;" alt="insumo image"/>
+                                                </a>
+                                                {{insumo.imagenContentType}}, {{byteSize(insumo.imagen)}}
+                                            </div>
+                                        </dd>
+                                    </dl>
+
+                                    <button type="submit"
+                                            (click)="previousState()"
+                                            class="btn btn-info">
+                                        <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+                                    </button>
+
+                                    <button type="button"
+                                            [routerLink]="['/insumo-queen-beer', insumo.id, 'edit']"
+                                            class="btn btn-primary">
+                                        <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

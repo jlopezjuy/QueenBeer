@@ -1,114 +1,144 @@
-<div>
-    <h2 id="page-heading">
-        <span jhiTranslate="queenBeerApp.elaboracion.home.title">Elaboracions</span>
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-elaboracion-queen-beer" [routerLink]="['/elaboracion-queen-beer/new']">
-            <fa-icon [icon]="'plus'"></fa-icon>
-            <span class="hidden-sm-down"  jhiTranslate="queenBeerApp.elaboracion.home.createLabel">
-            Create new Elaboracion
-            </span>
-        </button>
-    </h2>
-    <jhi-alert></jhi-alert>
-    <div class="row">
-        <div class="col-sm-12">
-            <form name="searchForm" class="form-inline">
-                <div class="input-group w-100 mt-3">
-                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'queenBeerApp.elaboracion.home.search' | translate }}">
-                    <button class="input-group-append btn btn-info" (click)="search(currentSearch)">
-                        <fa-icon [icon]="'search'"></fa-icon>
-                    </button>
-                    <button class="input-group-append btn btn-danger" (click)="clear()" *ngIf="currentSearch">
-                        <fa-icon [icon]="'trash-alt'"></fa-icon>
-                    </button>
-                </div>
-            </form>
+<section class="content blog-page">
+    <div class="block-header">
+        <div class="row">
+            <div class="col-lg-5 col-md-5 col-sm-12">
+                <h2>
+                    <span jhiTranslate="queenBeerApp.elaboracion.home.title">Elaboracions</span>
+                </h2>
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 text-right">
+                <ul class="breadcrumb float-md-right">
+                    <li class="breadcrumb-item"><a routerLink="/"><i class="zmdi zmdi-home"></i> <span jhiTranslate="global.menu.home">Home</span></a></li>
+                </ul>
+            </div>
         </div>
     </div>
-    <br/>
-    <div class="table-responsive" *ngIf="elaboracions">
-        <table class="table table-striped">
-            <thead>
-            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="lote"><span jhiTranslate="queenBeerApp.elaboracion.lote">Lote</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="nombre"><span jhiTranslate="queenBeerApp.elaboracion.nombre">Nombre</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="estilo"><span jhiTranslate="queenBeerApp.elaboracion.estilo">Estilo</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="fechaInicio"><span jhiTranslate="queenBeerApp.elaboracion.fechaInicio">Fecha Inicio</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="fechaFin"><span jhiTranslate="queenBeerApp.elaboracion.fechaFin">Fecha Fin</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="chequeo"><span jhiTranslate="queenBeerApp.elaboracion.chequeo">Chequeo</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="limpieza"><span jhiTranslate="queenBeerApp.elaboracion.limpieza">Limpieza</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="limpiezaOlla"><span jhiTranslate="queenBeerApp.elaboracion.limpiezaOlla">Limpieza Olla</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="limpiezaManguera"><span jhiTranslate="queenBeerApp.elaboracion.limpiezaManguera">Limpieza Manguera</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="macerado"><span jhiTranslate="queenBeerApp.elaboracion.macerado">Macerado</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="inicioMacerado"><span jhiTranslate="queenBeerApp.elaboracion.inicioMacerado">Inicio Macerado</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="infucion"><span jhiTranslate="queenBeerApp.elaboracion.infucion">Infucion</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="primerEscalon"><span jhiTranslate="queenBeerApp.elaboracion.primerEscalon">Primer Escalon</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="segundoEscalon"><span jhiTranslate="queenBeerApp.elaboracion.segundoEscalon">Segundo Escalon</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="tercerEscalon"><span jhiTranslate="queenBeerApp.elaboracion.tercerEscalon">Tercer Escalon</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="litroInicial"><span jhiTranslate="queenBeerApp.elaboracion.litroInicial">Litro Inicial</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="relacionMaltaAgua"><span jhiTranslate="queenBeerApp.elaboracion.relacionMaltaAgua">Relacion Malta Agua</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="litroFalsoFondo"><span jhiTranslate="queenBeerApp.elaboracion.litroFalsoFondo">Litro Falso Fondo</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="litroTotal"><span jhiTranslate="queenBeerApp.elaboracion.litroTotal">Litro Total</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor="let elaboracion of elaboracions ;trackBy: trackId">
-                <td><a [routerLink]="['/elaboracion-queen-beer', elaboracion.id, 'view' ]">{{elaboracion.id}}</a></td>
-                <td>{{elaboracion.lote}}</td>
-                <td>{{elaboracion.nombre}}</td>
-                <td>{{elaboracion.estilo}}</td>
-                <td>{{elaboracion.fechaInicio | date:'medium'}}</td>
-                <td>{{elaboracion.fechaFin | date:'medium'}}</td>
-                <td>{{elaboracion.chequeo}}</td>
-                <td>{{elaboracion.limpieza}}</td>
-                <td>{{elaboracion.limpiezaOlla}}</td>
-                <td>{{elaboracion.limpiezaManguera}}</td>
-                <td jhiTranslate="{{'queenBeerApp.TipoMacerado.' + elaboracion.macerado}}">{{elaboracion.macerado}}</td>
-                <td>{{elaboracion.inicioMacerado | date:'medium'}}</td>
-                <td>{{elaboracion.infucion}}</td>
-                <td>{{elaboracion.primerEscalon}}</td>
-                <td>{{elaboracion.segundoEscalon}}</td>
-                <td>{{elaboracion.tercerEscalon}}</td>
-                <td>{{elaboracion.litroInicial}}</td>
-                <td>{{elaboracion.relacionMaltaAgua}}</td>
-                <td>{{elaboracion.litroFalsoFondo}}</td>
-                <td>{{elaboracion.litroTotal}}</td>
-                <td class="text-right">
-                    <div class="btn-group flex-btn-group-container">
-                        <button type="submit"
-                                [routerLink]="['/elaboracion-queen-beer', elaboracion.id, 'view' ]"
-                                class="btn btn-info btn-sm">
-                            <fa-icon [icon]="'eye'"></fa-icon>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
-                        </button>
-                        <button type="submit"
-                                [routerLink]="['/elaboracion-queen-beer', elaboracion.id, 'edit']"
-                                class="btn btn-primary btn-sm">
-                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
-                        </button>
-                        <button type="submit"
-                                [routerLink]="['/', { outlets: { popup: 'elaboracion-queen-beer/'+ elaboracion.id + '/delete'} }]"
-                                replaceUrl="true"
-                                queryParamsHandling="merge"
-                                class="btn btn-danger btn-sm">
-                            <fa-icon [icon]="'times'"></fa-icon>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
-                        </button>
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="body">
+                        <div class="row justify-content-center">
+                            <div>
+                                <h2 id="page-heading">
+
+                                    <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-elaboracion-queen-beer" [routerLink]="['/elaboracion-queen-beer/new']">
+                                        <fa-icon [icon]="'plus'"></fa-icon>
+                                        <span class="hidden-sm-down"  jhiTranslate="queenBeerApp.elaboracion.home.createLabel">
+                                            Create new Elaboracion
+                                        </span>
+                                    </button>
+                                </h2>
+                                <jhi-alert></jhi-alert>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <form name="searchForm" class="form-inline">
+                                            <div class="input-group w-100 mt-3">
+                                                <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'queenBeerApp.elaboracion.home.search' | translate }}">
+                                                <button class="input-group-append btn btn-info" (click)="search(currentSearch)">
+                                                    <fa-icon [icon]="'search'"></fa-icon>
+                                                </button>
+                                                <button class="input-group-append btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                                                    <fa-icon [icon]="'trash-alt'"></fa-icon>
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <br/>
+                                <div class="table-responsive" *ngIf="elaboracions">
+                                    <table class="table table-striped">
+                                        <thead>
+                                        <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+                                            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                                            <th jhiSortBy="lote"><span jhiTranslate="queenBeerApp.elaboracion.lote">Lote</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                                            <th jhiSortBy="nombre"><span jhiTranslate="queenBeerApp.elaboracion.nombre">Nombre</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                                            <th jhiSortBy="estilo"><span jhiTranslate="queenBeerApp.elaboracion.estilo">Estilo</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                                            <th jhiSortBy="fechaInicio"><span jhiTranslate="queenBeerApp.elaboracion.fechaInicio">Fecha Inicio</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                                            <th jhiSortBy="fechaFin"><span jhiTranslate="queenBeerApp.elaboracion.fechaFin">Fecha Fin</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                                            <th jhiSortBy="chequeo"><span jhiTranslate="queenBeerApp.elaboracion.chequeo">Chequeo</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                                            <th jhiSortBy="limpieza"><span jhiTranslate="queenBeerApp.elaboracion.limpieza">Limpieza</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                                            <th jhiSortBy="limpiezaOlla"><span jhiTranslate="queenBeerApp.elaboracion.limpiezaOlla">Limpieza Olla</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                                            <th jhiSortBy="limpiezaManguera"><span jhiTranslate="queenBeerApp.elaboracion.limpiezaManguera">Limpieza Manguera</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                                            <th jhiSortBy="macerado"><span jhiTranslate="queenBeerApp.elaboracion.macerado">Macerado</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                                            <th jhiSortBy="inicioMacerado"><span jhiTranslate="queenBeerApp.elaboracion.inicioMacerado">Inicio Macerado</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                                            <th jhiSortBy="infucion"><span jhiTranslate="queenBeerApp.elaboracion.infucion">Infucion</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                                            <th jhiSortBy="primerEscalon"><span jhiTranslate="queenBeerApp.elaboracion.primerEscalon">Primer Escalon</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                                            <th jhiSortBy="segundoEscalon"><span jhiTranslate="queenBeerApp.elaboracion.segundoEscalon">Segundo Escalon</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                                            <th jhiSortBy="tercerEscalon"><span jhiTranslate="queenBeerApp.elaboracion.tercerEscalon">Tercer Escalon</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                                            <th jhiSortBy="litroInicial"><span jhiTranslate="queenBeerApp.elaboracion.litroInicial">Litro Inicial</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                                            <th jhiSortBy="relacionMaltaAgua"><span jhiTranslate="queenBeerApp.elaboracion.relacionMaltaAgua">Relacion Malta Agua</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                                            <th jhiSortBy="litroFalsoFondo"><span jhiTranslate="queenBeerApp.elaboracion.litroFalsoFondo">Litro Falso Fondo</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                                            <th jhiSortBy="litroTotal"><span jhiTranslate="queenBeerApp.elaboracion.litroTotal">Litro Total</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                                            <th></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr *ngFor="let elaboracion of elaboracions ;trackBy: trackId">
+                                            <td><a [routerLink]="['/elaboracion-queen-beer', elaboracion.id, 'view' ]">{{elaboracion.id}}</a></td>
+                                            <td>{{elaboracion.lote}}</td>
+                                            <td>{{elaboracion.nombre}}</td>
+                                            <td>{{elaboracion.estilo}}</td>
+                                            <td>{{elaboracion.fechaInicio | date:'medium'}}</td>
+                                            <td>{{elaboracion.fechaFin | date:'medium'}}</td>
+                                            <td>{{elaboracion.chequeo}}</td>
+                                            <td>{{elaboracion.limpieza}}</td>
+                                            <td>{{elaboracion.limpiezaOlla}}</td>
+                                            <td>{{elaboracion.limpiezaManguera}}</td>
+                                            <td jhiTranslate="{{'queenBeerApp.TipoMacerado.' + elaboracion.macerado}}">{{elaboracion.macerado}}</td>
+                                            <td>{{elaboracion.inicioMacerado | date:'medium'}}</td>
+                                            <td>{{elaboracion.infucion}}</td>
+                                            <td>{{elaboracion.primerEscalon}}</td>
+                                            <td>{{elaboracion.segundoEscalon}}</td>
+                                            <td>{{elaboracion.tercerEscalon}}</td>
+                                            <td>{{elaboracion.litroInicial}}</td>
+                                            <td>{{elaboracion.relacionMaltaAgua}}</td>
+                                            <td>{{elaboracion.litroFalsoFondo}}</td>
+                                            <td>{{elaboracion.litroTotal}}</td>
+                                            <td class="text-right">
+                                                <div class="btn-group flex-btn-group-container">
+                                                    <button type="submit"
+                                                            [routerLink]="['/elaboracion-queen-beer', elaboracion.id, 'view' ]"
+                                                            class="btn btn-info btn-sm">
+                                                        <fa-icon [icon]="'eye'"></fa-icon>
+                                                        <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                                                    </button>
+                                                    <button type="submit"
+                                                            [routerLink]="['/elaboracion-queen-beer', elaboracion.id, 'edit']"
+                                                            class="btn btn-primary btn-sm">
+                                                        <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                                                        <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                                                    </button>
+                                                    <button type="submit"
+                                                            [routerLink]="['/', { outlets: { popup: 'elaboracion-queen-beer/'+ elaboracion.id + '/delete'} }]"
+                                                            replaceUrl="true"
+                                                            queryParamsHandling="merge"
+                                                            class="btn btn-danger btn-sm">
+                                                        <fa-icon [icon]="'times'"></fa-icon>
+                                                        <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- Pager is not implemented yet, so this is normal pagination instead -->
+                                <div *ngIf="elaboracions && elaboracions.length">
+                                    <div class="row justify-content-center">
+                                        <jhi-item-count [page]="page" [total]="queryCount" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+                                    </div>
+                                    <div class="row justify-content-center">
+                                        <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-    <!-- Pager is not implemented yet, so this is normal pagination instead -->
-    <div *ngIf="elaboracions && elaboracions.length">
-        <div class="row justify-content-center">
-            <jhi-item-count [page]="page" [total]="queryCount" [itemsPerPage]="itemsPerPage"></jhi-item-count>
-        </div>
-        <div class="row justify-content-center">
-            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+                </div>
+            </div>
         </div>
     </div>
-</div>
+</section>
+
+
