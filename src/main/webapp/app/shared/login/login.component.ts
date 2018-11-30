@@ -69,6 +69,7 @@ export class JhiLoginModalComponent implements AfterViewInit {
                     this.stateStorageService.storeUrl(null);
                     this.router.navigate([redirect]);
                 }
+                window.location.reload();
             })
             .catch(() => {
                 this.authenticationError = true;
