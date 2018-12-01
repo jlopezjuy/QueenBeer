@@ -16,6 +16,7 @@
                 "elaboracionInsumoQueenBeer": "Elaboracion Insumo",
                 "compraQueenBeer": "Compra",
                 "compraInsumoQueenBeer": "Compra Insumo",
+                "userProfile": "User Profile",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
