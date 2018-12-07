@@ -144,4 +144,18 @@ public class UserProfileResource {
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
+    /**
+     * GET  /user-profiles/:id : get the "id" userProfile.
+     *
+     * @param login the login of the userProfileDTO to retrieve
+     * @return the ResponseEntity with status 200 (OK) and with body the userProfileDTO, or with status 404 (Not Found)
+     */
+    @GetMapping("/user-profiles/login/{login}")
+    @Timed
+    public ResponseEntity<UserProfileDTO> getUserProfileByLogin(@PathVariable String login) {
+        log.debug("REST request to get UserProfile : {}", login);
+        Optional<UserProfileDTO> userProfileDTO = userProfileService.findByUser(login);
+        return ResponseUtil.wrapOrNotFound(userProfileDTO);
+    }
+
 }

@@ -1,5 +1,6 @@
 package com.anelsoftware.beer.service;
 
+import com.anelsoftware.beer.service.dto.UserDTO;
 import com.anelsoftware.beer.service.dto.UserProfileDTO;
 
 import org.springframework.data.domain.Page;
@@ -53,4 +54,11 @@ public interface UserProfileService {
      * @return the list of entities
      */
     Page<UserProfileDTO> search(String query, Pageable pageable);
+
+    /**
+     *
+     * @param login
+     * @return
+     */
+    Optional<UserProfileDTO> findByUser(String login);
 }

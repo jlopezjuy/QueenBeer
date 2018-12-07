@@ -1,9 +1,12 @@
 package com.anelsoftware.beer.service.impl;
 
+import com.anelsoftware.beer.domain.User;
+import com.anelsoftware.beer.repository.UserRepository;
 import com.anelsoftware.beer.service.UserProfileService;
 import com.anelsoftware.beer.domain.UserProfile;
 import com.anelsoftware.beer.repository.UserProfileRepository;
 import com.anelsoftware.beer.repository.search.UserProfileSearchRepository;
+import com.anelsoftware.beer.service.dto.UserDTO;
 import com.anelsoftware.beer.service.dto.UserProfileDTO;
 import com.anelsoftware.beer.service.mapper.UserProfileMapper;
 import org.slf4j.Logger;
@@ -33,10 +36,13 @@ public class UserProfileServiceImpl implements UserProfileService {
 
     private final UserProfileSearchRepository userProfileSearchRepository;
 
-    public UserProfileServiceImpl(UserProfileRepository userProfileRepository, UserProfileMapper userProfileMapper, UserProfileSearchRepository userProfileSearchRepository) {
+    private final UserRepository userRepository;
+
+    public UserProfileServiceImpl(UserProfileRepository userProfileRepository, UserProfileMapper userProfileMapper, UserProfileSearchRepository userProfileSearchRepository, UserRepository userRepository) {
         this.userProfileRepository = userProfileRepository;
         this.userProfileMapper = userProfileMapper;
         this.userProfileSearchRepository = userProfileSearchRepository;
+        this.userRepository = userRepository;
     }
 
     /**
@@ -110,5 +116,11 @@ public class UserProfileServiceImpl implements UserProfileService {
         log.debug("Request to search for a page of UserProfiles for query {}", query);
         return userProfileSearchRepository.search(queryStringQuery(query), pageable)
             .map(userProfileMapper::toDto);
+    }
+
+    @Override
+    public Optional<UserProfileDTO> findByUser(String login) {
+        Optional<User> user = this.userRepository.findOneByLogin(login);
+        return this.userProfileRepository.findOneByUser(user.get()).map(this.userProfileMapper::toDto);
     }
 }

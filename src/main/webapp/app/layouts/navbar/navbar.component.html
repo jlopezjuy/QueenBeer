@@ -224,8 +224,14 @@
                             <ul class="list">
                                 <li>
                                     <div class="user-info m-b-20 p-b-15">
-                                        <div class="image"><a routerLink="/sample-pages/profile"><img
-                                            src="../../../content/images/profile_av.jpg" alt="User"></a></div>
+                                        <div class="image">
+                                            <a *ngIf="!getImageUrl()" routerLink="/sample-pages/profile">
+                                                <img src="../../../content/images/profile_av.jpg" alt="User">
+                                            </a>
+                                            <div *ngIf="getImageUrl()">
+                                                    <img [src]="'data:' + getImageUserAvatarContentType() + ';base64,' + getImageUrl()" style="max-width: 100%;" alt="userProfile image"/>
+                                            </div>
+                                        </div>
                                         <div class="detail">
                                             <h4>Michael</h4>
                                             <small>UI UX Designer</small>
@@ -255,6 +261,7 @@
                                 <li class="header">MAIN NAVIGATION</li>
                                 <li routerLinkActive="active open"><a routerLink="/"><i
                                     class="zmdi zmdi-home"></i><span jhiTranslate="global.menu.home">Home</span></a></li>
+                                <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
                                 <li *ngSwitchCase="true">
                                     <a href="javascript:void(0);" class="menu-toggle">
                                         <i class="zmdi zmdi-view-list col-blue"></i>
@@ -317,6 +324,13 @@
                                                 <span jhiTranslate="global.menu.entities.compraInsumoQueenBeer">Compra Insumo Queen Beer</span>
                                             </a>
                                         </li>
+                                        <li>
+                                            <a class="dropdown-item" routerLink="envase" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                                                <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                                                <span jhiTranslate="global.menu.entities.envase">Envase</span>
+                                            </a>
+                                        </li>
+                                        <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
                                     </ul>
                                 </li>
 

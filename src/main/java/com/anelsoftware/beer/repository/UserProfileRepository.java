@@ -1,8 +1,11 @@
 package com.anelsoftware.beer.repository;
 
+import com.anelsoftware.beer.domain.User;
 import com.anelsoftware.beer.domain.UserProfile;
 import org.springframework.data.jpa.repository.*;
 import org.springframework.stereotype.Repository;
+
+import java.util.Optional;
 
 
 /**
@@ -12,4 +15,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserProfileRepository extends JpaRepository<UserProfile, Long> {
 
+    Optional<UserProfile> findOneByUser(User user);
 }

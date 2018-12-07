@@ -1,0 +1,37 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="envase">
+            <h2><span jhiTranslate="queenBeerApp.envase.detail.title">Envase</span> {{envase.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="queenBeerApp.envase.nombre">Nombre</span></dt>
+                <dd>
+                    <span>{{envase.nombre}}</span>
+                </dd>
+                <dt><span jhiTranslate="queenBeerApp.envase.precio">Precio</span></dt>
+                <dd>
+                    <span>{{envase.precio}}</span>
+                </dd>
+                <dt><span jhiTranslate="queenBeerApp.envase.producto">Producto</span></dt>
+                <dd>
+                    <div *ngIf="envase.productoId">
+                        <a [routerLink]="['/producto-queen-beer', envase.productoId, 'view']">{{envase.productoId}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/envase', envase.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

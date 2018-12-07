@@ -10,6 +10,7 @@ import { QueenBeerElaboracionInsumoQueenBeerModule } from './elaboracion-insumo-
 import { QueenBeerCompraQueenBeerModule } from './compra-queen-beer/compra-queen-beer.module';
 import { QueenBeerCompraInsumoQueenBeerModule } from './compra-insumo-queen-beer/compra-insumo-queen-beer.module';
 import { QueenBeerUserProfileModule } from './user-profile/user-profile.module';
+import { QueenBeerEnvaseModule } from './envase/envase.module';
 /* jhipster-needle-add-entity-module-import - JHipster will add entity modules imports here */
 
 @NgModule({
@@ -25,6 +26,7 @@ import { QueenBeerUserProfileModule } from './user-profile/user-profile.module';
         QueenBeerCompraQueenBeerModule,
         QueenBeerCompraInsumoQueenBeerModule,
         QueenBeerUserProfileModule,
+        QueenBeerEnvaseModule,
         /* jhipster-needle-add-entity-module - JHipster will add entity modules here */
     ],
     declarations: [],
