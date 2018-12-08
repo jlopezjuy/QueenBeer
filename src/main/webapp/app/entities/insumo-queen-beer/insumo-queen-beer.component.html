@@ -33,15 +33,24 @@
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <form name="searchForm" class="form-inline">
-                                            <div class="input-group w-100 mt-3">
-                                                <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'queenBeerApp.insumo.home.search' | translate }}">
-                                                <button class="input-group-append btn btn-info" (click)="search(currentSearch)">
-                                                    <fa-icon [icon]="'search'"></fa-icon>
-                                                </button>
-                                                <button class="input-group-append btn btn-danger" (click)="clear()" *ngIf="currentSearch">
-                                                    <fa-icon [icon]="'trash-alt'"></fa-icon>
-                                                </button>
-                                            </div>
+                                            <!--<div class="input-group w-100 mt-3">-->
+                                                <!--<input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'queenBeerApp.insumo.home.search' | translate }}">-->
+                                                <!--<button class="input-group-append btn btn-info" (click)="search(currentSearch)">-->
+                                                    <!--<fa-icon [icon]="'search'"></fa-icon>-->
+                                                <!--</button>-->
+                                                <!--<button class="input-group-append btn btn-danger" (click)="clear()" *ngIf="currentSearch">-->
+                                                    <!--<fa-icon [icon]="'trash-alt'"></fa-icon>-->
+                                                <!--</button>-->
+                                            <!--</div>-->
+                                                <div class="input-group w-100 mt-3">
+                                                    <input type="text" class="form-control"  [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'queenBeerApp.insumo.home.search' | translate }}">
+                                                    <span class="input-group-addon" style="padding: 5px 19px 1px 17px;" (click)="search(currentSearch)">
+                                                        <fa-icon [icon]="'search'"></fa-icon>
+                                                    </span>
+                                                    <span class="input-group-addon" style="padding: 5px 19px 1px 17px;" (click)="clear()" *ngIf="currentSearch">
+                                                        <fa-icon [icon]="'trash-alt'"></fa-icon>
+                                                    </span>
+                                                </div>
                                         </form>
                                     </div>
                                 </div>
