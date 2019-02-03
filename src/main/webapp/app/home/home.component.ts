@@ -2,10 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { JhiEventManager } from 'ng-jhipster';
 
-import { LoginModalService, Principal, Account } from 'app/core';
-import { UserProfileService } from 'app/entities/user-profile';
-import { LocalStorageService } from 'ngx-webstorage';
-import { UserProfile } from 'app/shared/model/user-profile.model';
+import { LoginModalService, AccountService, Account } from 'app/core';
 
 @Component({
     selector: 'jhi-home',
@@ -17,43 +14,31 @@ export class HomeComponent implements OnInit {
     modalRef: NgbModalRef;
 
     constructor(
-        private principal: Principal,
+        private accountService: AccountService,
         private loginModalService: LoginModalService,
-        private eventManager: JhiEventManager,
-        private userProfileService: UserProfileService,
-        private localStorage: LocalStorageService
+        private eventManager: JhiEventManager
     ) {}
 
     ngOnInit() {
-        this.principal.identity().then(account => {
+        this.accountService.identity().then((account: Account) => {
             this.account = account;
-            this.loadUserProfileAvatar(this.account.login);
         });
         this.registerAuthenticationSuccess();
     }
 
     registerAuthenticationSuccess() {
         this.eventManager.subscribe('authenticationSuccess', message => {
-            this.principal.identity().then(account => {
+            this.accountService.identity().then(account => {
                 this.account = account;
             });
         });
     }
 
     isAuthenticated() {
-        return this.principal.isAuthenticated();
+        return this.accountService.isAuthenticated();
     }
 
     login() {
         this.modalRef = this.loginModalService.open();
-    }
-
-    private loadUserProfileAvatar(login: string) {
-        let userProfile: UserProfile;
-        this.userProfileService.findByLogin(login).subscribe(resp => {
-            userProfile = resp.body;
-            this.localStorage.store('userAvatarProfile', userProfile.avatar);
-            this.localStorage.store('userAvatarContentType', userProfile.avatarContentType);
-        });
     }
 }

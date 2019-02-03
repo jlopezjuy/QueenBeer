@@ -1,16 +1,12 @@
-import { Component, OnInit, Renderer2 } from '@angular/core';
-import { NavigationStart, Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { JhiLanguageService } from 'ng-jhipster';
-import { LocalStorageService, SessionStorageService } from 'ngx-webstorage';
+import { SessionStorageService } from 'ngx-webstorage';
 
 import { VERSION } from 'app/app.constants';
-import { JhiLanguageHelper, Principal, LoginModalService, LoginService } from 'app/core';
-import { ProfileService } from '../profiles/profile.service';
-
-declare const $: any;
-declare const Morris: any;
-declare const slimscroll: any;
+import { JhiLanguageHelper, AccountService, LoginModalService, LoginService } from 'app/core';
+import { ProfileService } from 'app/layouts/profiles/profile.service';
 
 @Component({
     selector: 'jhi-navbar',
@@ -25,36 +21,18 @@ export class NavbarComponent implements OnInit {
     modalRef: NgbModalRef;
     version: string;
 
-    previousUrl: string;
-
     constructor(
-        private renderer: Renderer2,
         private loginService: LoginService,
         private languageService: JhiLanguageService,
         private languageHelper: JhiLanguageHelper,
         private sessionStorage: SessionStorageService,
-        private principal: Principal,
+        private accountService: AccountService,
         private loginModalService: LoginModalService,
         private profileService: ProfileService,
-        private router: Router,
-        private localStorage: LocalStorageService
+        private router: Router
     ) {
         this.version = VERSION ? 'v' + VERSION : '';
         this.isNavbarCollapsed = true;
-
-        this.router.events.subscribe(event => {
-            if (event instanceof NavigationStart) {
-                if (this.previousUrl) {
-                    this.renderer.removeClass(document.body, this.previousUrl);
-                }
-                const currentUrl = event.url.split('/');
-                const currentUrlSlug = currentUrl[currentUrl.length - 1];
-                if (currentUrlSlug) {
-                    this.renderer.addClass(document.body, currentUrlSlug);
-                }
-                this.previousUrl = currentUrlSlug;
-            }
-        });
     }
 
     ngOnInit() {
@@ -65,24 +43,6 @@ export class NavbarComponent implements OnInit {
         this.profileService.getProfileInfo().then(profileInfo => {
             this.inProduction = profileInfo.inProduction;
             this.swaggerEnabled = profileInfo.swaggerEnabled;
-        });
-
-        $('.theme-light-dark .t-light').on('click', function() {
-            $('body').removeClass('menu_dark');
-        });
-
-        $('.theme-light-dark .t-dark').on('click', function() {
-            $('body').addClass('menu_dark');
-        });
-
-        $('.m_img_btn').on('click', function() {
-            $('body').toggleClass('menu_img');
-        });
-
-        $('.boxs-close').on('click', function() {
-            const element = $(this);
-            const cards = element.parents('.card');
-            cards.addClass('closed').fadeOut();
         });
     }
 
@@ -96,7 +56,7 @@ export class NavbarComponent implements OnInit {
     }
 
     isAuthenticated() {
-        return this.principal.isAuthenticated();
+        return this.accountService.isAuthenticated();
     }
 
     login() {
@@ -114,9 +74,6 @@ export class NavbarComponent implements OnInit {
     }
 
     getImageUrl() {
-        return this.isAuthenticated() ? this.localStorage.retrieve('userAvatarProfile') : null;
-    }
-    getImageUserAvatarContentType() {
-        return this.isAuthenticated() ? this.localStorage.retrieve('userAvatarContentType') : null;
+        return this.isAuthenticated() ? this.accountService.getImageUrl() : null;
     }
 }
