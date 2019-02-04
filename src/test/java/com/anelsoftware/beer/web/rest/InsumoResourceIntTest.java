@@ -381,4 +381,24 @@ public class InsumoResourceIntTest {
         assertThat(insumoMapper.fromId(42L).getId()).isEqualTo(42);
         assertThat(insumoMapper.fromId(null)).isNull();
     }
+
+    @Test
+    @Transactional
+    public void getAllInsumosByMarca() throws Exception {
+        // Initialize the database
+        insumoRepository.saveAndFlush(insumo);
+
+        // Get all the insumoList
+        restInsumoMockMvc.perform(get("/api/insumos/all"))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(insumo.getId().intValue())))
+            .andExpect(jsonPath("$.[*].nombre").value(hasItem(DEFAULT_NOMBRE.toString())))
+            .andExpect(jsonPath("$.[*].marca").value(hasItem(DEFAULT_MARCA.toString())))
+            .andExpect(jsonPath("$.[*].stockMinimo").value(hasItem(DEFAULT_STOCK_MINIMO.intValue())))
+            .andExpect(jsonPath("$.[*].unidad").value(hasItem(DEFAULT_UNIDAD.toString())))
+            .andExpect(jsonPath("$.[*].tipo").value(hasItem(DEFAULT_TIPO.toString())))
+            .andExpect(jsonPath("$.[*].imagenContentType").value(hasItem(DEFAULT_IMAGEN_CONTENT_TYPE)))
+            .andExpect(jsonPath("$.[*].imagen").value(hasItem(Base64Utils.encodeToString(DEFAULT_IMAGEN))));
+    }
 }

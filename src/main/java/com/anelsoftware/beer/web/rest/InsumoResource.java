@@ -97,11 +97,39 @@ public class InsumoResource {
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
+    /**
+     * GET /insumos/all : get all the insumos withouth pageable
+     * @return the ResponseEntity with status 200 (OK) and the list of insumos in body
+     */
     @GetMapping("/insumos/all")
     @Timed
     public ResponseEntity<List<InsumoDTO>> getAllInsumosWithOuthPage() {
         log.debug("REST request to get a page of Insumos");
         List<InsumoDTO> page = insumoService.findAll();
+        return new ResponseEntity<>(page, HttpStatus.OK);
+    }
+
+    /**
+     * GET /insumos/all-malta : get all insumos filter by MALTA
+     * @return the ResponseEntity with status 200 (OK) and the list of insumos in body
+     */
+    @GetMapping("/insumos/all-malta")
+    @Timed
+    public ResponseEntity<List<InsumoDTO>> getAllInsumosMalta() {
+        log.debug("REST request to get a page of Insumos");
+        List<InsumoDTO> page = insumoService.findAllMalta();
+        return new ResponseEntity<>(page, HttpStatus.OK);
+    }
+
+    /**
+     * GET /insumos/all-lupulo : get all insumos filter by LUPULO
+     * @return the ResponseEntity with status 200 (OK) and the list of insumos in body
+     */
+    @GetMapping("/insumos/all-lupulo")
+    @Timed
+    public ResponseEntity<List<InsumoDTO>> getAllInsumosLupulo() {
+        log.debug("REST request to get a page of Insumos");
+        List<InsumoDTO> page = insumoService.findAllLupulo();
         return new ResponseEntity<>(page, HttpStatus.OK);
     }
 

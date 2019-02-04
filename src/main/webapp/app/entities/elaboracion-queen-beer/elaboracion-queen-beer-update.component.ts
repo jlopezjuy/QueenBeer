@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import * as moment from 'moment';
 import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
 
-import { IElaboracionQueenBeer } from 'app/shared/model/elaboracion-queen-beer.model';
+import { IElaboracionQueenBeer, TipoMacerado } from 'app/shared/model/elaboracion-queen-beer.model';
 import { ElaboracionQueenBeerService } from './elaboracion-queen-beer.service';
 import { ElaboracionInsumoQueenBeer, IElaboracionInsumoQueenBeer } from 'app/shared/model/elaboracion-insumo-queen-beer.model';
 import { IInsumoQueenBeer } from 'app/shared/model/insumo-queen-beer.model';
@@ -24,6 +24,7 @@ export class ElaboracionQueenBeerUpdateComponent implements OnInit {
     fechaFin: string;
     inicioMacerado: string;
     insumosAgregado: ElaboracionInsumoQueenBeer[] = [];
+    isMacerado: boolean;
 
     insumos: IInsumoQueenBeer[];
 
@@ -36,13 +37,15 @@ export class ElaboracionQueenBeerUpdateComponent implements OnInit {
 
     ngOnInit() {
         this.isSaving = false;
+        this.isMacerado = false;
         this.activatedRoute.data.subscribe(({ elaboracion }) => {
             this.elaboracion = elaboracion;
             this.fechaInicio = this.elaboracion.fechaInicio != null ? this.elaboracion.fechaInicio.format(DATE_TIME_FORMAT) : null;
             this.fechaFin = this.elaboracion.fechaFin != null ? this.elaboracion.fechaFin.format(DATE_TIME_FORMAT) : null;
             this.inicioMacerado = this.elaboracion.inicioMacerado != null ? this.elaboracion.inicioMacerado.format(DATE_TIME_FORMAT) : null;
+            this.changeMacerado();
         });
-        this.insumoService.query().subscribe(
+        this.insumoService.queryAllMalta().subscribe(
             (res: HttpResponse<IInsumoQueenBeer[]>) => {
                 this.insumos = res.body;
             },
@@ -64,6 +67,14 @@ export class ElaboracionQueenBeerUpdateComponent implements OnInit {
         // insumoAdd.insumoId = +this.elaboracionInsumo;
         // insumoAdd.isEditable = false;
         // this.insumosAgregado.push(insumoAdd);
+    }
+
+    changeMacerado() {
+        if (this.elaboracion.macerado === TipoMacerado.INFUCION) {
+            this.isMacerado = true;
+        } else {
+            this.isMacerado = false;
+        }
     }
 
     save() {
