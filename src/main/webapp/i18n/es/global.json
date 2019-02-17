@@ -20,6 +20,7 @@
                 "envase": "Envase",
                 "facturaVenta": "Factura Venta",
                 "detalleVenta": "Detalle Venta",
+                "productoEnvase": "Producto Envase",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

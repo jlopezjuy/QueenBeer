@@ -26,6 +26,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Base64Utils;
+import org.springframework.validation.Validator;
 
 import javax.persistence.EntityManager;
 import java.math.BigDecimal;
@@ -74,12 +75,15 @@ public class ProductoResourceIntTest {
     private static final String DEFAULT_IMAGEN_CONTENT_TYPE = "image/jpg";
     private static final String UPDATED_IMAGEN_CONTENT_TYPE = "image/png";
 
+    private static final Long DEFAULT_CANTIDAD = 1L;
+    private static final Long UPDATED_CANTIDAD = 2L;
+
     @Autowired
     private ProductoRepository productoRepository;
 
     @Autowired
     private ProductoMapper productoMapper;
-    
+
     @Autowired
     private ProductoService productoService;
 
@@ -103,6 +107,9 @@ public class ProductoResourceIntTest {
     @Autowired
     private EntityManager em;
 
+    @Autowired
+    private Validator validator;
+
     private MockMvc restProductoMockMvc;
 
     private Producto producto;
@@ -115,7 +122,8 @@ public class ProductoResourceIntTest {
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
             .setConversionService(createFormattingConversionService())
-            .setMessageConverters(jacksonMessageConverter).build();
+            .setMessageConverters(jacksonMessageConverter)
+            .setValidator(validator).build();
     }
 
     /**
@@ -133,7 +141,8 @@ public class ProductoResourceIntTest {
             .precioLitro(DEFAULT_PRECIO_LITRO)
             .tipoProducto(DEFAULT_TIPO_PRODUCTO)
             .imagen(DEFAULT_IMAGEN)
-            .imagenContentType(DEFAULT_IMAGEN_CONTENT_TYPE);
+            .imagenContentType(DEFAULT_IMAGEN_CONTENT_TYPE)
+            .cantidad(DEFAULT_CANTIDAD);
         return producto;
     }
 
@@ -166,6 +175,7 @@ public class ProductoResourceIntTest {
         assertThat(testProducto.getTipoProducto()).isEqualTo(DEFAULT_TIPO_PRODUCTO);
         assertThat(testProducto.getImagen()).isEqualTo(DEFAULT_IMAGEN);
         assertThat(testProducto.getImagenContentType()).isEqualTo(DEFAULT_IMAGEN_CONTENT_TYPE);
+        assertThat(testProducto.getCantidad()).isEqualTo(DEFAULT_CANTIDAD);
 
         // Validate the Producto in Elasticsearch
         verify(mockProductoSearchRepository, times(1)).save(testProducto);
@@ -212,7 +222,8 @@ public class ProductoResourceIntTest {
             .andExpect(jsonPath("$.[*].precioLitro").value(hasItem(DEFAULT_PRECIO_LITRO.intValue())))
             .andExpect(jsonPath("$.[*].tipoProducto").value(hasItem(DEFAULT_TIPO_PRODUCTO.toString())))
             .andExpect(jsonPath("$.[*].imagenContentType").value(hasItem(DEFAULT_IMAGEN_CONTENT_TYPE)))
-            .andExpect(jsonPath("$.[*].imagen").value(hasItem(Base64Utils.encodeToString(DEFAULT_IMAGEN))));
+            .andExpect(jsonPath("$.[*].imagen").value(hasItem(Base64Utils.encodeToString(DEFAULT_IMAGEN))))
+            .andExpect(jsonPath("$.[*].cantidad").value(hasItem(DEFAULT_CANTIDAD.intValue())));
     }
     
     @Test
@@ -233,7 +244,8 @@ public class ProductoResourceIntTest {
             .andExpect(jsonPath("$.precioLitro").value(DEFAULT_PRECIO_LITRO.intValue()))
             .andExpect(jsonPath("$.tipoProducto").value(DEFAULT_TIPO_PRODUCTO.toString()))
             .andExpect(jsonPath("$.imagenContentType").value(DEFAULT_IMAGEN_CONTENT_TYPE))
-            .andExpect(jsonPath("$.imagen").value(Base64Utils.encodeToString(DEFAULT_IMAGEN)));
+            .andExpect(jsonPath("$.imagen").value(Base64Utils.encodeToString(DEFAULT_IMAGEN)))
+            .andExpect(jsonPath("$.cantidad").value(DEFAULT_CANTIDAD.intValue()));
     }
 
     @Test
@@ -264,7 +276,8 @@ public class ProductoResourceIntTest {
             .precioLitro(UPDATED_PRECIO_LITRO)
             .tipoProducto(UPDATED_TIPO_PRODUCTO)
             .imagen(UPDATED_IMAGEN)
-            .imagenContentType(UPDATED_IMAGEN_CONTENT_TYPE);
+            .imagenContentType(UPDATED_IMAGEN_CONTENT_TYPE)
+            .cantidad(UPDATED_CANTIDAD);
         ProductoDTO productoDTO = productoMapper.toDto(updatedProducto);
 
         restProductoMockMvc.perform(put("/api/productos")
@@ -284,6 +297,7 @@ public class ProductoResourceIntTest {
         assertThat(testProducto.getTipoProducto()).isEqualTo(UPDATED_TIPO_PRODUCTO);
         assertThat(testProducto.getImagen()).isEqualTo(UPDATED_IMAGEN);
         assertThat(testProducto.getImagenContentType()).isEqualTo(UPDATED_IMAGEN_CONTENT_TYPE);
+        assertThat(testProducto.getCantidad()).isEqualTo(UPDATED_CANTIDAD);
 
         // Validate the Producto in Elasticsearch
         verify(mockProductoSearchRepository, times(1)).save(testProducto);
@@ -319,7 +333,7 @@ public class ProductoResourceIntTest {
 
         int databaseSizeBeforeDelete = productoRepository.findAll().size();
 
-        // Get the producto
+        // Delete the producto
         restProductoMockMvc.perform(delete("/api/productos/{id}", producto.getId())
             .accept(TestUtil.APPLICATION_JSON_UTF8))
             .andExpect(status().isOk());
@@ -344,14 +358,15 @@ public class ProductoResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(producto.getId().intValue())))
-            .andExpect(jsonPath("$.[*].codigo").value(hasItem(DEFAULT_CODIGO.toString())))
-            .andExpect(jsonPath("$.[*].complementario").value(hasItem(DEFAULT_COMPLEMENTARIO.toString())))
-            .andExpect(jsonPath("$.[*].estilo").value(hasItem(DEFAULT_ESTILO.toString())))
-            .andExpect(jsonPath("$.[*].nombreComercial").value(hasItem(DEFAULT_NOMBRE_COMERCIAL.toString())))
+            .andExpect(jsonPath("$.[*].codigo").value(hasItem(DEFAULT_CODIGO)))
+            .andExpect(jsonPath("$.[*].complementario").value(hasItem(DEFAULT_COMPLEMENTARIO)))
+            .andExpect(jsonPath("$.[*].estilo").value(hasItem(DEFAULT_ESTILO)))
+            .andExpect(jsonPath("$.[*].nombreComercial").value(hasItem(DEFAULT_NOMBRE_COMERCIAL)))
             .andExpect(jsonPath("$.[*].precioLitro").value(hasItem(DEFAULT_PRECIO_LITRO.intValue())))
             .andExpect(jsonPath("$.[*].tipoProducto").value(hasItem(DEFAULT_TIPO_PRODUCTO.toString())))
             .andExpect(jsonPath("$.[*].imagenContentType").value(hasItem(DEFAULT_IMAGEN_CONTENT_TYPE)))
-            .andExpect(jsonPath("$.[*].imagen").value(hasItem(Base64Utils.encodeToString(DEFAULT_IMAGEN))));
+            .andExpect(jsonPath("$.[*].imagen").value(hasItem(Base64Utils.encodeToString(DEFAULT_IMAGEN))))
+            .andExpect(jsonPath("$.[*].cantidad").value(hasItem(DEFAULT_CANTIDAD.intValue())));
     }
 
     @Test

@@ -14,7 +14,7 @@ export class ProductoQueenBeerService {
     public resourceUrl = SERVER_API_URL + 'api/productos';
     public resourceSearchUrl = SERVER_API_URL + 'api/_search/productos';
 
-    constructor(private http: HttpClient) {}
+    constructor(protected http: HttpClient) {}
 
     create(producto: IProductoQueenBeer): Observable<EntityResponseType> {
         return this.http.post<IProductoQueenBeer>(this.resourceUrl, producto, { observe: 'response' });

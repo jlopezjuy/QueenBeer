@@ -2,8 +2,8 @@ import { Component, OnInit, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { filter, map } from 'rxjs/operators';
 import { JhiDataUtils } from 'ng-jhipster';
-
 import { IProductoQueenBeer } from 'app/shared/model/producto-queen-beer.model';
 import { ProductoQueenBeerService } from './producto-queen-beer.service';
 
@@ -16,10 +16,10 @@ export class ProductoQueenBeerUpdateComponent implements OnInit {
     isSaving: boolean;
 
     constructor(
-        private dataUtils: JhiDataUtils,
-        private productoService: ProductoQueenBeerService,
-        private elementRef: ElementRef,
-        private activatedRoute: ActivatedRoute
+        protected dataUtils: JhiDataUtils,
+        protected productoService: ProductoQueenBeerService,
+        protected elementRef: ElementRef,
+        protected activatedRoute: ActivatedRoute
     ) {}
 
     ngOnInit() {
@@ -58,16 +58,16 @@ export class ProductoQueenBeerUpdateComponent implements OnInit {
         }
     }
 
-    private subscribeToSaveResponse(result: Observable<HttpResponse<IProductoQueenBeer>>) {
+    protected subscribeToSaveResponse(result: Observable<HttpResponse<IProductoQueenBeer>>) {
         result.subscribe((res: HttpResponse<IProductoQueenBeer>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
     }
 
-    private onSaveSuccess() {
+    protected onSaveSuccess() {
         this.isSaving = false;
         this.previousState();
     }
 
-    private onSaveError() {
+    protected onSaveError() {
         this.isSaving = false;
     }
 }

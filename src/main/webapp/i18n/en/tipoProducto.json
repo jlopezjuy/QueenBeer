@@ -1,6 +1,6 @@
 {
     "queenBeerApp": {
-        "TipoProducto" : {
+        "TipoProducto": {
             "null": "",
             "FIJO": "FIJO",
             "ROTATIVO": "ROTATIVO",

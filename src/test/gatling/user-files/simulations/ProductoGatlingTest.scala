@@ -79,6 +79,7 @@ class ProductoGatlingTest extends Simulation {
                 , "precioLitro":"0"
                 , "tipoProducto":"FIJO"
                 , "imagen":null
+                , "cantidad":null
                 }""")).asJSON
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_producto_url"))).exitHereIfFailed

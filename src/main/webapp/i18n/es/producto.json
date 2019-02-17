@@ -1,7 +1,6 @@
-
 {
     "queenBeerApp": {
-        "producto" : {
+        "producto": {
             "home": {
                 "title": "Productos",
                 "createLabel": "Crear nuevo Producto",
@@ -23,7 +22,8 @@
             "nombreComercial": "Nombre Comercial",
             "precioLitro": "Precio Litro",
             "tipoProducto": "Tipo Producto",
-            "imagen": "Imagen"
+            "imagen": "Imagen",
+            "cantidad": "Cantidad"
         }
     }
 }

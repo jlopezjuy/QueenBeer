@@ -1,5 +1,7 @@
 {
-    "name": "Producto",
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [],
     "fields": [
         {
             "fieldName": "codigo",
@@ -30,17 +32,19 @@
             "fieldName": "imagen",
             "fieldType": "byte[]",
             "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "cantidad",
+            "fieldType": "Long"
         }
     ],
-    "relationships": [],
     "changelogDate": "20181017191607",
-    "entityTableName": "producto",
     "dto": "mapstruct",
-    "pagination": "pager",
+    "searchEngine": "elasticsearch",
     "service": "serviceImpl",
+    "entityTableName": "producto",
+    "databaseType": "sql",
     "jpaMetamodelFiltering": false,
-    "fluentMethods": true,
-    "clientRootFolder": "",
-    "applications": "*",
+    "pagination": "pager",
     "angularJSSuffix": "queenBeer"
 }

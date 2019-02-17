@@ -1,12 +1,10 @@
 package com.anelsoftware.beer.web.rest;
-
 import com.anelsoftware.beer.service.ProductoService;
 import com.anelsoftware.beer.web.rest.errors.BadRequestAlertException;
 import com.anelsoftware.beer.web.rest.util.HeaderUtil;
 import com.anelsoftware.beer.web.rest.util.PaginationUtil;
 import com.anelsoftware.beer.service.dto.ProductoDTO;
 import io.github.jhipster.web.util.ResponseUtil;
-import io.micrometer.core.annotation.Timed;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -21,6 +19,9 @@ import java.net.URISyntaxException;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.StreamSupport;
+
+import static org.elasticsearch.index.query.QueryBuilders.*;
 
 /**
  * REST controller for managing Producto.
@@ -33,7 +34,7 @@ public class ProductoResource {
 
     private static final String ENTITY_NAME = "producto";
 
-    private ProductoService productoService;
+    private final ProductoService productoService;
 
     public ProductoResource(ProductoService productoService) {
         this.productoService = productoService;
@@ -47,7 +48,6 @@ public class ProductoResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PostMapping("/productos")
-    @Timed
     public ResponseEntity<ProductoDTO> createProducto(@RequestBody ProductoDTO productoDTO) throws URISyntaxException {
         log.debug("REST request to save Producto : {}", productoDTO);
         if (productoDTO.getId() != null) {
@@ -69,7 +69,6 @@ public class ProductoResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PutMapping("/productos")
-    @Timed
     public ResponseEntity<ProductoDTO> updateProducto(@RequestBody ProductoDTO productoDTO) throws URISyntaxException {
         log.debug("REST request to update Producto : {}", productoDTO);
         if (productoDTO.getId() == null) {
@@ -88,12 +87,11 @@ public class ProductoResource {
      * @return the ResponseEntity with status 200 (OK) and the list of productos in body
      */
     @GetMapping("/productos")
-    @Timed
     public ResponseEntity<List<ProductoDTO>> getAllProductos(Pageable pageable) {
         log.debug("REST request to get a page of Productos");
         Page<ProductoDTO> page = productoService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/productos");
-        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
     /**
@@ -103,7 +101,6 @@ public class ProductoResource {
      * @return the ResponseEntity with status 200 (OK) and with body the productoDTO, or with status 404 (Not Found)
      */
     @GetMapping("/productos/{id}")
-    @Timed
     public ResponseEntity<ProductoDTO> getProducto(@PathVariable Long id) {
         log.debug("REST request to get Producto : {}", id);
         Optional<ProductoDTO> productoDTO = productoService.findOne(id);
@@ -117,7 +114,6 @@ public class ProductoResource {
      * @return the ResponseEntity with status 200 (OK)
      */
     @DeleteMapping("/productos/{id}")
-    @Timed
     public ResponseEntity<Void> deleteProducto(@PathVariable Long id) {
         log.debug("REST request to delete Producto : {}", id);
         productoService.delete(id);
@@ -133,12 +129,11 @@ public class ProductoResource {
      * @return the result of the search
      */
     @GetMapping("/_search/productos")
-    @Timed
     public ResponseEntity<List<ProductoDTO>> searchProductos(@RequestParam String query, Pageable pageable) {
         log.debug("REST request to search for a page of Productos for query {}", query);
         Page<ProductoDTO> page = productoService.search(query, pageable);
         HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/productos");
-        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
 }

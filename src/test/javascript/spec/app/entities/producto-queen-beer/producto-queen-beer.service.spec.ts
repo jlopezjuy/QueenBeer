@@ -30,7 +30,8 @@ describe('Service Tests', () => {
                 0,
                 TipoProducto.FIJO,
                 'image/png',
-                'AAAAAAA'
+                'AAAAAAA',
+                0
             );
         });
 
@@ -71,7 +72,8 @@ describe('Service Tests', () => {
                         nombreComercial: 'BBBBBB',
                         precioLitro: 1,
                         tipoProducto: 'BBBBBB',
-                        imagen: 'BBBBBB'
+                        imagen: 'BBBBBB',
+                        cantidad: 1
                     },
                     elemDefault
                 );
@@ -94,14 +96,18 @@ describe('Service Tests', () => {
                         nombreComercial: 'BBBBBB',
                         precioLitro: 1,
                         tipoProducto: 'BBBBBB',
-                        imagen: 'BBBBBB'
+                        imagen: 'BBBBBB',
+                        cantidad: 1
                     },
                     elemDefault
                 );
                 const expected = Object.assign({}, returnedFromService);
                 service
                     .query(expected)
-                    .pipe(take(1), map(resp => resp.body))
+                    .pipe(
+                        take(1),
+                        map(resp => resp.body)
+                    )
                     .subscribe(body => expect(body).toContainEqual(expected));
                 const req = httpMock.expectOne({ method: 'GET' });
                 req.flush(JSON.stringify([returnedFromService]));

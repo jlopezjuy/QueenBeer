@@ -27,11 +27,11 @@ public class ProductoServiceImpl implements ProductoService {
 
     private final Logger log = LoggerFactory.getLogger(ProductoServiceImpl.class);
 
-    private ProductoRepository productoRepository;
+    private final ProductoRepository productoRepository;
 
-    private ProductoMapper productoMapper;
+    private final ProductoMapper productoMapper;
 
-    private ProductoSearchRepository productoSearchRepository;
+    private final ProductoSearchRepository productoSearchRepository;
 
     public ProductoServiceImpl(ProductoRepository productoRepository, ProductoMapper productoMapper, ProductoSearchRepository productoSearchRepository) {
         this.productoRepository = productoRepository;
@@ -48,7 +48,6 @@ public class ProductoServiceImpl implements ProductoService {
     @Override
     public ProductoDTO save(ProductoDTO productoDTO) {
         log.debug("Request to save Producto : {}", productoDTO);
-
         Producto producto = productoMapper.toEntity(productoDTO);
         producto = productoRepository.save(producto);
         ProductoDTO result = productoMapper.toDto(producto);
@@ -92,8 +91,7 @@ public class ProductoServiceImpl implements ProductoService {
      */
     @Override
     public void delete(Long id) {
-        log.debug("Request to delete Producto : {}", id);
-        productoRepository.deleteById(id);
+        log.debug("Request to delete Producto : {}", id);        productoRepository.deleteById(id);
         productoSearchRepository.deleteById(id);
     }
 
