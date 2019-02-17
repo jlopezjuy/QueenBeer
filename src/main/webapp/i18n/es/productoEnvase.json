@@ -1,0 +1,23 @@
+{
+    "queenBeerApp": {
+        "productoEnvase": {
+            "home": {
+                "title": "Producto Envases",
+                "createLabel": "Crear nuevo Producto Envase",
+                "createOrEditLabel": "Crear o editar Producto Envase",
+                "search": "Search for Producto Envase"
+            },
+            "created": "Un nuevo Producto Envase ha sido creado con el identificador {{ param }}",
+            "updated": "Un Producto Envase ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Producto Envase ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Producto Envase {{ id }}?"
+            },
+            "detail": {
+                "title": "Producto Envase"
+            },
+            "producto": "Producto",
+            "envase": "Envase"
+        }
+    }
+}
