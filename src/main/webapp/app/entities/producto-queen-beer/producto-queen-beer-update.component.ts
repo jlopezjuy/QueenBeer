@@ -6,6 +6,7 @@ import { filter, map } from 'rxjs/operators';
 import { JhiDataUtils } from 'ng-jhipster';
 import { IProductoQueenBeer } from 'app/shared/model/producto-queen-beer.model';
 import { ProductoQueenBeerService } from './producto-queen-beer.service';
+import { Envase, IEnvase } from 'app/shared/model/envase.model';
 
 @Component({
     selector: 'jhi-producto-queen-beer-update',
@@ -13,6 +14,8 @@ import { ProductoQueenBeerService } from './producto-queen-beer.service';
 })
 export class ProductoQueenBeerUpdateComponent implements OnInit {
     producto: IProductoQueenBeer;
+    envase: IEnvase;
+    envases: IEnvase[];
     isSaving: boolean;
 
     constructor(
@@ -26,7 +29,9 @@ export class ProductoQueenBeerUpdateComponent implements OnInit {
         this.isSaving = false;
         this.activatedRoute.data.subscribe(({ producto }) => {
             this.producto = producto;
+            this.envase = new Envase();
         });
+        this.envases = [];
     }
 
     byteSize(field) {
@@ -69,5 +74,11 @@ export class ProductoQueenBeerUpdateComponent implements OnInit {
 
     protected onSaveError() {
         this.isSaving = false;
+    }
+
+    addEnvase() {
+        console.log(this.envase);
+        this.envases.push(this.envase);
+        this.envase = new Envase();
     }
 }
