@@ -1,0 +1,66 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-factura-venta-heading" jhiTranslate="queenBeerApp.facturaVenta.home.createOrEditLabel">Create or edit a Factura Venta</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!facturaVenta.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="facturaVenta.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="queenBeerApp.facturaVenta.tipoDocumento" for="field_tipoDocumento">Tipo Documento</label>
+                    <select class="form-control" name="tipoDocumento" [(ngModel)]="facturaVenta.tipoDocumento" id="field_tipoDocumento" >
+                        <option value="FACTURA">{{'queenBeerApp.TipoDocumento.FACTURA' | translate}}</option>
+                        <option value="REMITO">{{'queenBeerApp.TipoDocumento.REMITO' | translate}}</option>
+                        <option value="PRESUPUESTO">{{'queenBeerApp.TipoDocumento.PRESUPUESTO' | translate}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="queenBeerApp.facturaVenta.fecha" for="field_fecha">Fecha</label>
+                    <div class="input-group">
+                        <input id="field_fecha" type="text" class="form-control" name="fecha" ngbDatepicker  #fechaDp="ngbDatepicker" [(ngModel)]="facturaVenta.fecha"
+                        />
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="fechaDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="queenBeerApp.facturaVenta.totalNeto" for="field_totalNeto">Total Neto</label>
+                    <input type="number" class="form-control" name="totalNeto" id="field_totalNeto"
+                        [(ngModel)]="facturaVenta.totalNeto" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="queenBeerApp.facturaVenta.tipoMoneda" for="field_tipoMoneda">Tipo Moneda</label>
+                    <select class="form-control" name="tipoMoneda" [(ngModel)]="facturaVenta.tipoMoneda" id="field_tipoMoneda" >
+                        <option value="PESOS_ARGENTINOS">{{'queenBeerApp.TipoMoneda.PESOS_ARGENTINOS' | translate}}</option>
+                        <option value="DOLARES">{{'queenBeerApp.TipoMoneda.DOLARES' | translate}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="queenBeerApp.facturaVenta.nroFactura" for="field_nroFactura">Nro Factura</label>
+                    <input type="text" class="form-control" name="nroFactura" id="field_nroFactura"
+                        [(ngModel)]="facturaVenta.nroFactura" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="queenBeerApp.facturaVenta.cliente" for="field_cliente">Cliente</label>
+                    <select class="form-control" id="field_cliente" name="cliente" [(ngModel)]="facturaVenta.clienteId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="clienteOption.id" *ngFor="let clienteOption of clientes; trackBy: trackClienteById">{{clienteOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

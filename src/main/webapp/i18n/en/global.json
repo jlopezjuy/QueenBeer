@@ -18,6 +18,8 @@
                 "compraInsumoQueenBeer": "Compra Insumo",
                 "userProfile": "User Profile",
                 "envase": "Envase",
+                "facturaVenta": "Factura Venta",
+                "detalleVenta": "Detalle Venta",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

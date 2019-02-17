@@ -25,6 +25,22 @@ import { QueenBeerEnvaseModule } from './envase/envase.module';
         QueenBeerUserProfileModule,
         QueenBeerEnvaseModule,
         RouterModule.forChild([
+            {
+                path: 'factura-venta',
+                loadChildren: './factura-venta/factura-venta.module#QueenBeerFacturaVentaModule'
+            },
+            {
+                path: 'factura-venta',
+                loadChildren: './factura-venta/factura-venta.module#QueenBeerFacturaVentaModule'
+            },
+            {
+                path: 'factura-venta',
+                loadChildren: './factura-venta/factura-venta.module#QueenBeerFacturaVentaModule'
+            },
+            {
+                path: 'detalle-venta',
+                loadChildren: './detalle-venta/detalle-venta.module#QueenBeerDetalleVentaModule'
+            }
             /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
         ])
     ],

@@ -1,0 +1,27 @@
+{
+    "queenBeerApp": {
+        "facturaVenta": {
+            "home": {
+                "title": "Factura Ventas",
+                "createLabel": "Create a new Factura Venta",
+                "createOrEditLabel": "Create or edit a Factura Venta",
+                "search": "Search for Factura Venta"
+            },
+            "created": "A new Factura Venta is created with identifier {{ param }}",
+            "updated": "A Factura Venta is updated with identifier {{ param }}",
+            "deleted": "A Factura Venta is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Factura Venta {{ id }}?"
+            },
+            "detail": {
+                "title": "Factura Venta"
+            },
+            "tipoDocumento": "Tipo Documento",
+            "fecha": "Fecha",
+            "totalNeto": "Total Neto",
+            "tipoMoneda": "Tipo Moneda",
+            "nroFactura": "Nro Factura",
+            "cliente": "Cliente"
+        }
+    }
+}

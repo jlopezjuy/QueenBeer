@@ -1,0 +1,23 @@
+{
+    "queenBeerApp": {
+        "detalleVenta": {
+            "home": {
+                "title": "Detalle Ventas",
+                "createLabel": "Create a new Detalle Venta",
+                "createOrEditLabel": "Create or edit a Detalle Venta",
+                "search": "Search for Detalle Venta"
+            },
+            "created": "A new Detalle Venta is created with identifier {{ param }}",
+            "updated": "A Detalle Venta is updated with identifier {{ param }}",
+            "deleted": "A Detalle Venta is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Detalle Venta {{ id }}?"
+            },
+            "detail": {
+                "title": "Detalle Venta"
+            },
+            "facturaVenta": "Factura Venta",
+            "producto": "Producto"
+        }
+    }
+}
