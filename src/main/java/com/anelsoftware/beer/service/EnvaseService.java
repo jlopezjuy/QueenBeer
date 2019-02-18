@@ -2,6 +2,7 @@ package com.anelsoftware.beer.service;
 
 import com.anelsoftware.beer.service.dto.EnvaseDTO;
 
+import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -53,4 +54,11 @@ public interface EnvaseService {
      * @return the list of entities
      */
     Page<EnvaseDTO> search(String query, Pageable pageable);
+
+    /**
+     *
+     * @param productoId
+     * @return
+     */
+    List<EnvaseDTO> findAllByProductoId(Long productoId);
 }

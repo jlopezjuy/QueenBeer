@@ -1,11 +1,13 @@
 package com.anelsoftware.beer.service.impl;
 
+import com.anelsoftware.beer.repository.ProductoRepository;
 import com.anelsoftware.beer.service.EnvaseService;
 import com.anelsoftware.beer.domain.Envase;
 import com.anelsoftware.beer.repository.EnvaseRepository;
 import com.anelsoftware.beer.repository.search.EnvaseSearchRepository;
 import com.anelsoftware.beer.service.dto.EnvaseDTO;
 import com.anelsoftware.beer.service.mapper.EnvaseMapper;
+import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,12 +31,17 @@ public class EnvaseServiceImpl implements EnvaseService {
 
     private final EnvaseRepository envaseRepository;
 
+    private final ProductoRepository productoRepository;
+
     private final EnvaseMapper envaseMapper;
 
     private final EnvaseSearchRepository envaseSearchRepository;
 
-    public EnvaseServiceImpl(EnvaseRepository envaseRepository, EnvaseMapper envaseMapper, EnvaseSearchRepository envaseSearchRepository) {
+    public EnvaseServiceImpl(EnvaseRepository envaseRepository,
+        ProductoRepository productoRepository,
+        EnvaseMapper envaseMapper, EnvaseSearchRepository envaseSearchRepository) {
         this.envaseRepository = envaseRepository;
+        this.productoRepository = productoRepository;
         this.envaseMapper = envaseMapper;
         this.envaseSearchRepository = envaseSearchRepository;
     }
@@ -110,5 +117,10 @@ public class EnvaseServiceImpl implements EnvaseService {
         log.debug("Request to search for a page of Envases for query {}", query);
         return envaseSearchRepository.search(queryStringQuery(query), pageable)
             .map(envaseMapper::toDto);
+    }
+
+    @Override
+    public List<EnvaseDTO> findAllByProductoId(Long productoId) {
+        return envaseMapper.toDto(envaseRepository.findAllByProducto(productoRepository.getOne(productoId)));
     }
 }

@@ -12,6 +12,7 @@ type EntityArrayResponseType = HttpResponse<IEnvase[]>;
 @Injectable({ providedIn: 'root' })
 export class EnvaseService {
     public resourceUrl = SERVER_API_URL + 'api/envases';
+    public resourceUrlProducto = SERVER_API_URL + 'api/envases/producto';
     public resourceSearchUrl = SERVER_API_URL + 'api/_search/envases';
 
     constructor(private http: HttpClient) {}
@@ -40,5 +41,10 @@ export class EnvaseService {
     search(req?: any): Observable<EntityArrayResponseType> {
         const options = createRequestOption(req);
         return this.http.get<IEnvase[]>(this.resourceSearchUrl, { params: options, observe: 'response' });
+    }
+
+    queryByProductoId(productoId: number, req?: any): Observable<EntityArrayResponseType> {
+        const options = createRequestOption(req);
+        return this.http.get<IEnvase[]>(`${this.resourceUrlProducto}/${productoId}`, { params: options, observe: 'response' });
     }
 }

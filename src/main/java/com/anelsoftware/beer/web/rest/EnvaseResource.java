@@ -141,4 +141,18 @@ public class EnvaseResource {
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
+    /**
+     * GET  /envases : get all the envases by producto.
+     *
+     * @param productoId the pagination information
+     * @return the ResponseEntity with status 200 (OK) and the list of envases in body
+     */
+    @GetMapping("/envases/producto/{productoId}")
+    @Timed
+    public ResponseEntity<List<EnvaseDTO>> getAllEnvasesByProducto(@PathVariable Long productoId) {
+        log.debug("REST request to get a page of Envases");
+        List<EnvaseDTO> page = envaseService.findAllByProductoId(productoId);
+        return ResponseEntity.ok().body(page);
+    }
+
 }
