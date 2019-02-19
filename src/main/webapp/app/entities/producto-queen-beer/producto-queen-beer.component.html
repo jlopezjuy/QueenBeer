@@ -37,7 +37,6 @@
             <th jhiSortBy="precioLitro"><span jhiTranslate="queenBeerApp.producto.precioLitro">Precio Litro</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="tipoProducto"><span jhiTranslate="queenBeerApp.producto.tipoProducto">Tipo Producto</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="imagen"><span jhiTranslate="queenBeerApp.producto.imagen">Imagen</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="cantidad"><span jhiTranslate="queenBeerApp.producto.cantidad">Cantidad</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
             </thead>
@@ -56,7 +55,6 @@
                     </a>
                     <span *ngIf="producto.imagen">{{producto.imagenContentType}}, {{byteSize(producto.imagen)}}</span>
                 </td>
-                <td>{{producto.cantidad}}</td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

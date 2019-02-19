@@ -30,8 +30,7 @@ describe('Service Tests', () => {
                 0,
                 TipoProducto.FIJO,
                 'image/png',
-                'AAAAAAA',
-                0
+                'AAAAAAA'
             );
         });
 
@@ -72,8 +71,7 @@ describe('Service Tests', () => {
                         nombreComercial: 'BBBBBB',
                         precioLitro: 1,
                         tipoProducto: 'BBBBBB',
-                        imagen: 'BBBBBB',
-                        cantidad: 1
+                        imagen: 'BBBBBB'
                     },
                     elemDefault
                 );
@@ -96,8 +94,7 @@ describe('Service Tests', () => {
                         nombreComercial: 'BBBBBB',
                         precioLitro: 1,
                         tipoProducto: 'BBBBBB',
-                        imagen: 'BBBBBB',
-                        cantidad: 1
+                        imagen: 'BBBBBB'
                     },
                     elemDefault
                 );

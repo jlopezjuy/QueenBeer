@@ -54,9 +54,6 @@ public class Producto implements Serializable {
     @Column(name = "imagen_content_type")
     private String imagenContentType;
 
-    @Column(name = "cantidad")
-    private Long cantidad;
-
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -169,19 +166,6 @@ public class Producto implements Serializable {
     public void setImagenContentType(String imagenContentType) {
         this.imagenContentType = imagenContentType;
     }
-
-    public Long getCantidad() {
-        return cantidad;
-    }
-
-    public Producto cantidad(Long cantidad) {
-        this.cantidad = cantidad;
-        return this;
-    }
-
-    public void setCantidad(Long cantidad) {
-        this.cantidad = cantidad;
-    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
@@ -216,7 +200,6 @@ public class Producto implements Serializable {
             ", tipoProducto='" + getTipoProducto() + "'" +
             ", imagen='" + getImagen() + "'" +
             ", imagenContentType='" + getImagenContentType() + "'" +
-            ", cantidad=" + getCantidad() +
             "}";
     }
 }

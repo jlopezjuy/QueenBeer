@@ -75,9 +75,6 @@ public class ProductoResourceIntTest {
     private static final String DEFAULT_IMAGEN_CONTENT_TYPE = "image/jpg";
     private static final String UPDATED_IMAGEN_CONTENT_TYPE = "image/png";
 
-    private static final Long DEFAULT_CANTIDAD = 1L;
-    private static final Long UPDATED_CANTIDAD = 2L;
-
     @Autowired
     private ProductoRepository productoRepository;
 
@@ -141,8 +138,7 @@ public class ProductoResourceIntTest {
             .precioLitro(DEFAULT_PRECIO_LITRO)
             .tipoProducto(DEFAULT_TIPO_PRODUCTO)
             .imagen(DEFAULT_IMAGEN)
-            .imagenContentType(DEFAULT_IMAGEN_CONTENT_TYPE)
-            .cantidad(DEFAULT_CANTIDAD);
+            .imagenContentType(DEFAULT_IMAGEN_CONTENT_TYPE);
         return producto;
     }
 
@@ -175,7 +171,6 @@ public class ProductoResourceIntTest {
         assertThat(testProducto.getTipoProducto()).isEqualTo(DEFAULT_TIPO_PRODUCTO);
         assertThat(testProducto.getImagen()).isEqualTo(DEFAULT_IMAGEN);
         assertThat(testProducto.getImagenContentType()).isEqualTo(DEFAULT_IMAGEN_CONTENT_TYPE);
-        assertThat(testProducto.getCantidad()).isEqualTo(DEFAULT_CANTIDAD);
 
         // Validate the Producto in Elasticsearch
         verify(mockProductoSearchRepository, times(1)).save(testProducto);
@@ -222,8 +217,7 @@ public class ProductoResourceIntTest {
             .andExpect(jsonPath("$.[*].precioLitro").value(hasItem(DEFAULT_PRECIO_LITRO.intValue())))
             .andExpect(jsonPath("$.[*].tipoProducto").value(hasItem(DEFAULT_TIPO_PRODUCTO.toString())))
             .andExpect(jsonPath("$.[*].imagenContentType").value(hasItem(DEFAULT_IMAGEN_CONTENT_TYPE)))
-            .andExpect(jsonPath("$.[*].imagen").value(hasItem(Base64Utils.encodeToString(DEFAULT_IMAGEN))))
-            .andExpect(jsonPath("$.[*].cantidad").value(hasItem(DEFAULT_CANTIDAD.intValue())));
+            .andExpect(jsonPath("$.[*].imagen").value(hasItem(Base64Utils.encodeToString(DEFAULT_IMAGEN))));
     }
     
     @Test
@@ -244,8 +238,7 @@ public class ProductoResourceIntTest {
             .andExpect(jsonPath("$.precioLitro").value(DEFAULT_PRECIO_LITRO.intValue()))
             .andExpect(jsonPath("$.tipoProducto").value(DEFAULT_TIPO_PRODUCTO.toString()))
             .andExpect(jsonPath("$.imagenContentType").value(DEFAULT_IMAGEN_CONTENT_TYPE))
-            .andExpect(jsonPath("$.imagen").value(Base64Utils.encodeToString(DEFAULT_IMAGEN)))
-            .andExpect(jsonPath("$.cantidad").value(DEFAULT_CANTIDAD.intValue()));
+            .andExpect(jsonPath("$.imagen").value(Base64Utils.encodeToString(DEFAULT_IMAGEN)));
     }
 
     @Test
@@ -276,8 +269,7 @@ public class ProductoResourceIntTest {
             .precioLitro(UPDATED_PRECIO_LITRO)
             .tipoProducto(UPDATED_TIPO_PRODUCTO)
             .imagen(UPDATED_IMAGEN)
-            .imagenContentType(UPDATED_IMAGEN_CONTENT_TYPE)
-            .cantidad(UPDATED_CANTIDAD);
+            .imagenContentType(UPDATED_IMAGEN_CONTENT_TYPE);
         ProductoDTO productoDTO = productoMapper.toDto(updatedProducto);
 
         restProductoMockMvc.perform(put("/api/productos")
@@ -297,7 +289,6 @@ public class ProductoResourceIntTest {
         assertThat(testProducto.getTipoProducto()).isEqualTo(UPDATED_TIPO_PRODUCTO);
         assertThat(testProducto.getImagen()).isEqualTo(UPDATED_IMAGEN);
         assertThat(testProducto.getImagenContentType()).isEqualTo(UPDATED_IMAGEN_CONTENT_TYPE);
-        assertThat(testProducto.getCantidad()).isEqualTo(UPDATED_CANTIDAD);
 
         // Validate the Producto in Elasticsearch
         verify(mockProductoSearchRepository, times(1)).save(testProducto);
@@ -365,8 +356,7 @@ public class ProductoResourceIntTest {
             .andExpect(jsonPath("$.[*].precioLitro").value(hasItem(DEFAULT_PRECIO_LITRO.intValue())))
             .andExpect(jsonPath("$.[*].tipoProducto").value(hasItem(DEFAULT_TIPO_PRODUCTO.toString())))
             .andExpect(jsonPath("$.[*].imagenContentType").value(hasItem(DEFAULT_IMAGEN_CONTENT_TYPE)))
-            .andExpect(jsonPath("$.[*].imagen").value(hasItem(Base64Utils.encodeToString(DEFAULT_IMAGEN))))
-            .andExpect(jsonPath("$.[*].cantidad").value(hasItem(DEFAULT_CANTIDAD.intValue())));
+            .andExpect(jsonPath("$.[*].imagen").value(hasItem(Base64Utils.encodeToString(DEFAULT_IMAGEN))));
     }
 
     @Test

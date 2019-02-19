@@ -28,8 +28,6 @@ public class ProductoDTO implements Serializable {
     private byte[] imagen;
 
     private String imagenContentType;
-    private Long cantidad;
-
 
     public Long getId() {
         return id;
@@ -103,14 +101,6 @@ public class ProductoDTO implements Serializable {
         this.imagenContentType = imagenContentType;
     }
 
-    public Long getCantidad() {
-        return cantidad;
-    }
-
-    public void setCantidad(Long cantidad) {
-        this.cantidad = cantidad;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -143,7 +133,6 @@ public class ProductoDTO implements Serializable {
             ", precioLitro=" + getPrecioLitro() +
             ", tipoProducto='" + getTipoProducto() + "'" +
             ", imagen='" + getImagen() + "'" +
-            ", cantidad=" + getCantidad() +
             "}";
     }
 }

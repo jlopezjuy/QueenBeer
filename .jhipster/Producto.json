@@ -32,10 +32,6 @@
             "fieldName": "imagen",
             "fieldType": "byte[]",
             "fieldTypeBlobContent": "image"
-        },
-        {
-            "fieldName": "cantidad",
-            "fieldType": "Long"
         }
     ],
     "changelogDate": "20181017191607",
