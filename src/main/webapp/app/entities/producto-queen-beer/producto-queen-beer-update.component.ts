@@ -107,9 +107,17 @@ export class ProductoQueenBeerUpdateComponent implements OnInit {
                 console.log('updateeeeeeeeeeeeeeeeeeeeeee');
                 console.log(envase);
                 envase.productoId = producto.id;
-                this.envaseService.update(envase).subscribe(resp => {
-                    console.log('update');
-                });
+                this.envaseService.update(envase).subscribe(
+                    resp => {
+                        console.log('update');
+                    },
+                    error => {
+                        console.log('error al insertar nuevo envase.... se procede a insertar');
+                        this.envaseService.create(envase).subscribe(resp => {
+                            console.log('create');
+                        });
+                    }
+                );
             }
         });
     }
