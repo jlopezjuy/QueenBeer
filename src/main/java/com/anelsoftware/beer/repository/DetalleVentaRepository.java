@@ -1,6 +1,8 @@
 package com.anelsoftware.beer.repository;
 
 import com.anelsoftware.beer.domain.DetalleVenta;
+import com.anelsoftware.beer.domain.FacturaVenta;
+import java.util.List;
 import org.springframework.data.jpa.repository.*;
 import org.springframework.stereotype.Repository;
 
@@ -12,4 +14,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface DetalleVentaRepository extends JpaRepository<DetalleVenta, Long> {
 
+    List<DetalleVenta> findAllByFacturaVenta(FacturaVenta facturaVenta);
 }

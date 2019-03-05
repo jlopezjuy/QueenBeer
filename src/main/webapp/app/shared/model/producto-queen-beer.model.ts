@@ -14,6 +14,8 @@ export interface IProductoQueenBeer {
     tipoProducto?: TipoProducto;
     imagenContentType?: string;
     imagen?: any;
+    cantidad?: number;
+    precioTotal?: number;
 }
 
 export class ProductoQueenBeer implements IProductoQueenBeer {
@@ -26,6 +28,8 @@ export class ProductoQueenBeer implements IProductoQueenBeer {
         public precioLitro?: number,
         public tipoProducto?: TipoProducto,
         public imagenContentType?: string,
-        public imagen?: any
+        public imagen?: any,
+        public cantidad?: number,
+        public precioTotal?: number
     ) {}
 }

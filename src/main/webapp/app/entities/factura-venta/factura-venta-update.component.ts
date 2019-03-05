@@ -9,6 +9,9 @@ import { IFacturaVenta } from 'app/shared/model/factura-venta.model';
 import { FacturaVentaService } from './factura-venta.service';
 import { IClienteQueenBeer } from 'app/shared/model/cliente-queen-beer.model';
 import { ClienteQueenBeerService } from 'app/entities/cliente-queen-beer';
+import { IProductoQueenBeer } from 'app/shared/model/producto-queen-beer.model';
+import { ProductoQueenBeerService } from 'app/entities/producto-queen-beer';
+import { DetalleVenta, IDetalleVenta } from 'app/shared/model/detalle-venta.model';
 
 @Component({
     selector: 'jhi-factura-venta-update',
@@ -17,22 +20,31 @@ import { ClienteQueenBeerService } from 'app/entities/cliente-queen-beer';
 export class FacturaVentaUpdateComponent implements OnInit {
     facturaVenta: IFacturaVenta;
     isSaving: boolean;
-
+    productos: IProductoQueenBeer[];
+    productosAlta: IProductoQueenBeer[];
+    detalleVentas: IDetalleVenta[];
+    detalleVenta: IDetalleVenta;
     clientes: IClienteQueenBeer[];
     fechaDp: any;
+    productoId: number;
+    cantidad: number;
 
     constructor(
         protected jhiAlertService: JhiAlertService,
         protected facturaVentaService: FacturaVentaService,
         protected clienteService: ClienteQueenBeerService,
-        protected activatedRoute: ActivatedRoute
+        protected activatedRoute: ActivatedRoute,
+        protected productoService: ProductoQueenBeerService
     ) {}
 
     ngOnInit() {
         this.isSaving = false;
+        this.productoId = null;
+        this.productosAlta = [];
         this.activatedRoute.data.subscribe(({ facturaVenta }) => {
             this.facturaVenta = facturaVenta;
         });
+        this.facturaVenta.totalNeto = 0;
         this.clienteService
             .query({ filter: 'facturaventa-is-null' })
             .pipe(
@@ -55,6 +67,19 @@ export class FacturaVentaUpdateComponent implements OnInit {
                                 (subRes: HttpErrorResponse) => this.onError(subRes.message)
                             );
                     }
+                },
+                (res: HttpErrorResponse) => this.onError(res.message)
+            );
+        this.productoService
+            .query()
+            .pipe(
+                filter((mayBeOk: HttpResponse<IProductoQueenBeer[]>) => mayBeOk.ok),
+                map((response: HttpResponse<IProductoQueenBeer[]>) => response.body)
+            )
+            .subscribe(
+                (res: IProductoQueenBeer[]) => {
+                    console.log(res);
+                    this.productos = res;
                 },
                 (res: HttpErrorResponse) => this.onError(res.message)
             );
@@ -92,5 +117,19 @@ export class FacturaVentaUpdateComponent implements OnInit {
 
     trackClienteById(index: number, item: IClienteQueenBeer) {
         return item.id;
+    }
+
+    addProductToList() {
+        console.log(this.productoId);
+        console.log(this.facturaVenta.totalNeto);
+        this.productoService.find(this.productoId).subscribe(resp => {
+            resp.body.cantidad = this.cantidad;
+            resp.body.precioTotal = this.cantidad * resp.body.precioLitro;
+            this.facturaVenta.totalNeto = this.facturaVenta.totalNeto + resp.body.precioTotal;
+            console.log(resp);
+            this.cantidad = null;
+            this.productosAlta.push(resp.body);
+            this.productoId = null;
+        });
     }
 }

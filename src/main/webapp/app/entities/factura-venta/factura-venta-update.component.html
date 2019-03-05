@@ -1,66 +1,233 @@
-<div class="row justify-content-center">
-    <div class="col-8">
-        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
-            <h2 id="jhi-factura-venta-heading" jhiTranslate="queenBeerApp.facturaVenta.home.createOrEditLabel">Create or edit a Factura Venta</h2>
-            <div>
-                <jhi-alert-error></jhi-alert-error>
-                <div class="form-group" [hidden]="!facturaVenta.id">
-                    <label for="id" jhiTranslate="global.field.id">ID</label>
-                    <input type="text" class="form-control" id="id" name="id"
-                        [(ngModel)]="facturaVenta.id" readonly />
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="queenBeerApp.facturaVenta.tipoDocumento" for="field_tipoDocumento">Tipo Documento</label>
-                    <select class="form-control" name="tipoDocumento" [(ngModel)]="facturaVenta.tipoDocumento" id="field_tipoDocumento" >
-                        <option value="FACTURA">{{'queenBeerApp.TipoDocumento.FACTURA' | translate}}</option>
-                        <option value="REMITO">{{'queenBeerApp.TipoDocumento.REMITO' | translate}}</option>
-                        <option value="PRESUPUESTO">{{'queenBeerApp.TipoDocumento.PRESUPUESTO' | translate}}</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="queenBeerApp.facturaVenta.fecha" for="field_fecha">Fecha</label>
-                    <div class="input-group">
-                        <input id="field_fecha" type="text" class="form-control" name="fecha" ngbDatepicker  #fechaDp="ngbDatepicker" [(ngModel)]="facturaVenta.fecha"
-                        />
-                        <span class="input-group-append">
-                            <button type="button" class="btn btn-secondary" (click)="fechaDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
-                        </span>
+<section class="content blog-page">
+    <div class="block-header">
+        <div class="row">
+            <div class="col-lg-5 col-md-5 col-sm-12">
+                <h2>
+                    <h2 id="jhi-factura-venta-heading"
+                        jhiTranslate="queenBeerApp.facturaVenta.home.createOrEditLabel">Create or
+                        edit a Factura Venta</h2>
+                </h2>
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 text-right">
+                <ul class="breadcrumb float-md-right">
+                    <li class="breadcrumb-item"><a routerLink="/"><i class="zmdi zmdi-home"></i>
+                        <span jhiTranslate="global.menu.home">Home</span></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="body">
+
+                        <div class="row justify-content-center">
+                            <div class="col-10">
+                                <form name="editForm" role="form" novalidate (ngSubmit)="save()"
+                                      #editForm="ngForm">
+                                    <!--<h2 id="jhi-factura-venta-heading" jhiTranslate="queenBeerApp.facturaVenta.home.createOrEditLabel">Create or edit a Factura Venta</h2>-->
+                                    <div>
+                                        <jhi-alert-error></jhi-alert-error>
+
+
+                                        <div class="form-group" [hidden]="!facturaVenta.id">
+                                            <label for="id"
+                                                   jhiTranslate="global.field.id">ID</label>
+                                            <input type="text" class="form-control" id="id"
+                                                   name="id"
+                                                   [(ngModel)]="facturaVenta.id" readonly/>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <label class="form-control-label"
+                                                           jhiTranslate="queenBeerApp.facturaVenta.nroFactura"
+                                                           for="field_nroFactura">Nro Factura</label>
+                                                    <input type="text" class="form-control"
+                                                           name="nroFactura" id="field_nroFactura"
+                                                           [(ngModel)]="facturaVenta.nroFactura"/>
+
+
+
+                                                </div>
+                                                <div class="col-6">
+
+                                                    <label class="form-control-label"
+                                                           jhiTranslate="queenBeerApp.facturaVenta.tipoDocumento"
+                                                           for="field_tipoDocumento">Tipo Documento</label>
+                                                    <select class="form-control" name="tipoDocumento"
+                                                            [(ngModel)]="facturaVenta.tipoDocumento"
+                                                            id="field_tipoDocumento">
+                                                        <option
+                                                            value="FACTURA">{{'queenBeerApp.TipoDocumento.FACTURA' | translate}}</option>
+                                                        <option
+                                                            value="REMITO">{{'queenBeerApp.TipoDocumento.REMITO' | translate}}</option>
+                                                        <option
+                                                            value="PRESUPUESTO">{{'queenBeerApp.TipoDocumento.PRESUPUESTO' | translate}}</option>
+                                                    </select>
+
+
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <label class="form-control-label"
+                                                           jhiTranslate="queenBeerApp.facturaVenta.fecha"
+                                                           for="field_fecha">Fecha</label>
+                                                    <div class="input-group">
+                                                        <input id="field_fecha" type="text"
+                                                               class="form-control" name="fecha"
+                                                               ngbDatepicker #fechaDp="ngbDatepicker"
+                                                               [(ngModel)]="facturaVenta.fecha"
+                                                        />
+                                                        <span class="input-group-append">
+                                                            <button type="button"
+                                                                    class="btn btn-secondary"
+                                                                    (click)="fechaDp.toggle()"><fa-icon
+                                                                [icon]="'calendar-alt'"></fa-icon></button>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <label class="form-control-label"
+                                                           jhiTranslate="queenBeerApp.facturaVenta.tipoMoneda"
+                                                           for="field_tipoMoneda">Tipo Moneda</label>
+                                                    <select class="form-control" name="tipoMoneda"
+                                                            [(ngModel)]="facturaVenta.tipoMoneda"
+                                                            id="field_tipoMoneda">
+                                                        <option
+                                                            value="PESOS_ARGENTINOS">{{'queenBeerApp.TipoMoneda.PESOS_ARGENTINOS' | translate}}</option>
+                                                        <option
+                                                            value="DOLARES">{{'queenBeerApp.TipoMoneda.DOLARES' | translate}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-6">
+
+                                                </div>
+                                                <div class="col-6">
+                                                    <label class="form-control-label"
+                                                           jhiTranslate="queenBeerApp.facturaVenta.cliente"
+                                                           for="field_cliente">Cliente</label>
+                                                    <select class="form-control" id="field_cliente"
+                                                            name="cliente"
+                                                            [(ngModel)]="facturaVenta.clienteId">
+                                                        <option [ngValue]="null"></option>
+                                                        <option [ngValue]="clienteOption.id"
+                                                                *ngFor="let clienteOption of clientes; trackBy: trackClienteById">{{clienteOption.id}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <label class="form-control-label" jhiTranslate="queenBeerApp.detalleVenta.producto" for="field_producto">Producto</label>
+                                                    <select class="form-control" id="field_producto" name="producto" [(ngModel)]="productoId" >
+                                                        <option [ngValue]="null"></option>
+                                                        <option [ngValue]="productoOption.id" *ngFor="let productoOption of productos; trackBy: trackProductoById">{{productoOption.nombreComercial}}</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-6">
+                                                    <label class="form-control-label"
+
+                                                           for="field_cantidad">Cantidad</label>
+                                                    <input type="number" class="form-control"
+                                                           name="totalNeto" id="field_cantidad"
+                                                           [(ngModel)]="cantidad"/>
+
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <button type="button" id="save-product"
+                                                        class="btn btn-primary" (click)="addProductToList()">
+                                                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span
+                                                    jhiTranslate="entity.action.add">Add</span>
+                                                </button>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="table-responsive">
+                                            <table class="table table-striped">
+                                                <thead>
+                                                <tr>
+                                                    <th><span
+                                                        jhiTranslate="queenBeerApp.producto.nombreComercial">Nombre Comercial</span>
+                                                        <fa-icon [icon]="'sort'"></fa-icon>
+                                                    </th>
+                                                    <th><span
+                                                        jhiTranslate="queenBeerApp.producto.precioLitro">Precio Litro</span>
+                                                        <fa-icon [icon]="'sort'"></fa-icon>
+                                                    </th>
+                                                    <th><span
+                                                        jhiTranslate="queenBeerApp.producto.tipoProducto">Tipo Producto</span>
+                                                        <fa-icon [icon]="'sort'"></fa-icon>
+                                                    </th>
+                                                    <th>
+                                                        <span>Cantidad</span>
+                                                    </th>
+                                                    <th>
+                                                        <span>
+                                                            Total
+                                                        </span>
+                                                    </th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr *ngFor="let producto of productosAlta ;trackBy: trackId">
+                                                    <td>{{producto.nombreComercial}}</td>
+                                                    <td>{{producto.precioLitro}}</td>
+                                                    <td jhiTranslate="{{'queenBeerApp.TipoProducto.' + producto.tipoProducto}}">{{producto.tipoProducto}}</td>
+                                                    <td>{{producto.cantidad}}</td>
+                                                    <td>{{producto.precioTotal}}</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                        <div class="col-6">
+
+                                        </div>
+                                        <div class="col-6">
+                                            <label class="form-control-label"
+                                                   jhiTranslate="queenBeerApp.facturaVenta.totalNeto">Total Neto</label>
+
+                                            {{facturaVenta.totalNeto}}
+                                        </div>
+
+
+                                    </div>
+                                    <div>
+                                        <button type="button" id="cancel-save"
+                                                class="btn btn-secondary" (click)="previousState()">
+                                            <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span
+                                            jhiTranslate="entity.action.cancel">Cancel</span>
+                                        </button>
+                                        <button type="submit" id="save-entity"
+                                                [disabled]="editForm.form.invalid || isSaving"
+                                                class="btn btn-primary">
+                                            <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span
+                                            jhiTranslate="entity.action.save">Save</span>
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="queenBeerApp.facturaVenta.totalNeto" for="field_totalNeto">Total Neto</label>
-                    <input type="number" class="form-control" name="totalNeto" id="field_totalNeto"
-                        [(ngModel)]="facturaVenta.totalNeto" />
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="queenBeerApp.facturaVenta.tipoMoneda" for="field_tipoMoneda">Tipo Moneda</label>
-                    <select class="form-control" name="tipoMoneda" [(ngModel)]="facturaVenta.tipoMoneda" id="field_tipoMoneda" >
-                        <option value="PESOS_ARGENTINOS">{{'queenBeerApp.TipoMoneda.PESOS_ARGENTINOS' | translate}}</option>
-                        <option value="DOLARES">{{'queenBeerApp.TipoMoneda.DOLARES' | translate}}</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="queenBeerApp.facturaVenta.nroFactura" for="field_nroFactura">Nro Factura</label>
-                    <input type="text" class="form-control" name="nroFactura" id="field_nroFactura"
-                        [(ngModel)]="facturaVenta.nroFactura" />
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="queenBeerApp.facturaVenta.cliente" for="field_cliente">Cliente</label>
-                    <select class="form-control" id="field_cliente" name="cliente" [(ngModel)]="facturaVenta.clienteId">
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="clienteOption.id" *ngFor="let clienteOption of clientes; trackBy: trackClienteById">{{clienteOption.id}}</option>
-                    </select>
-                </div>
             </div>
-            <div>
-                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
-                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
-                </button>
-                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
-                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
-                </button>
-            </div>
-        </form>
+        </div>
     </div>
-</div>
+</section>
+
+
+
+
+

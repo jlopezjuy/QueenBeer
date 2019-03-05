@@ -1,11 +1,18 @@
 package com.anelsoftware.beer.service.impl;
 
+import com.anelsoftware.beer.domain.DetalleVenta;
+import com.anelsoftware.beer.domain.FacturaVenta;
+import com.anelsoftware.beer.repository.DetalleVentaRepository;
+import com.anelsoftware.beer.repository.FacturaVentaRepository;
 import com.anelsoftware.beer.service.ProductoService;
 import com.anelsoftware.beer.domain.Producto;
 import com.anelsoftware.beer.repository.ProductoRepository;
 import com.anelsoftware.beer.repository.search.ProductoSearchRepository;
 import com.anelsoftware.beer.service.dto.ProductoDTO;
+import com.anelsoftware.beer.service.mapper.DetalleVentaMapper;
 import com.anelsoftware.beer.service.mapper.ProductoMapper;
+import java.util.ArrayList;
+import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -33,10 +40,23 @@ public class ProductoServiceImpl implements ProductoService {
 
     private final ProductoSearchRepository productoSearchRepository;
 
-    public ProductoServiceImpl(ProductoRepository productoRepository, ProductoMapper productoMapper, ProductoSearchRepository productoSearchRepository) {
+    private final DetalleVentaRepository detalleVentaRepository;
+
+    private final DetalleVentaMapper detalleVentaMapper;
+
+    private final FacturaVentaRepository facturaVentaRepository;
+
+    public ProductoServiceImpl(ProductoRepository productoRepository, ProductoMapper productoMapper,
+        ProductoSearchRepository productoSearchRepository,
+        DetalleVentaRepository detalleVentaRepository,
+        DetalleVentaMapper detalleVentaMapper,
+        FacturaVentaRepository facturaVentaRepository) {
         this.productoRepository = productoRepository;
         this.productoMapper = productoMapper;
         this.productoSearchRepository = productoSearchRepository;
+        this.detalleVentaRepository = detalleVentaRepository;
+        this.detalleVentaMapper = detalleVentaMapper;
+        this.facturaVentaRepository = facturaVentaRepository;
     }
 
     /**
@@ -91,7 +111,8 @@ public class ProductoServiceImpl implements ProductoService {
      */
     @Override
     public void delete(Long id) {
-        log.debug("Request to delete Producto : {}", id);        productoRepository.deleteById(id);
+        log.debug("Request to delete Producto : {}", id);
+        productoRepository.deleteById(id);
         productoSearchRepository.deleteById(id);
     }
 
@@ -108,5 +129,20 @@ public class ProductoServiceImpl implements ProductoService {
         log.debug("Request to search for a page of Productos for query {}", query);
         return productoSearchRepository.search(queryStringQuery(query), pageable)
             .map(productoMapper::toDto);
+    }
+
+    @Override
+    public List<ProductoDTO> findAllByFacturaId(Long facturaId) {
+        List<ProductoDTO> list = new ArrayList<ProductoDTO>();
+        Optional<FacturaVenta> facturaVenta = facturaVentaRepository.findById(facturaId);
+        if(facturaVenta.isPresent()){
+            List<DetalleVenta> detalleVentas = detalleVentaRepository
+                .findAllByFacturaVenta(facturaVenta.get());
+            detalleVentas.forEach( detalleVenta -> {
+                list.add(productoMapper.toDto(detalleVenta.getProducto()));
+            } );
+            return list;
+        }
+        return null;
     }
 }

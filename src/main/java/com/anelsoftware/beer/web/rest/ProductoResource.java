@@ -5,6 +5,7 @@ import com.anelsoftware.beer.web.rest.util.HeaderUtil;
 import com.anelsoftware.beer.web.rest.util.PaginationUtil;
 import com.anelsoftware.beer.service.dto.ProductoDTO;
 import io.github.jhipster.web.util.ResponseUtil;
+import io.micrometer.core.annotation.Timed;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -134,6 +135,20 @@ public class ProductoResource {
         Page<ProductoDTO> page = productoService.search(query, pageable);
         HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/productos");
         return ResponseEntity.ok().headers(headers).body(page.getContent());
+    }
+
+    /**
+     * GET  /productos/factura/:facturaId : get all the productos by factura.
+     *
+     * @param facturaId the pagination information
+     * @return the ResponseEntity with status 200 (OK) and the list of envases in body
+     */
+    @GetMapping("/productos/factura/{facturaId}")
+    @Timed
+    public ResponseEntity<List<ProductoDTO>> getAllEnvasesByProducto(@PathVariable Long facturaId) {
+        log.debug("REST request to get a page of Envases: " + facturaId);
+        List<ProductoDTO> page = productoService.findAllByFacturaId(facturaId);
+        return ResponseEntity.ok().body(page);
     }
 
 }
