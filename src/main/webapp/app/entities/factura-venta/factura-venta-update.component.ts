@@ -12,6 +12,8 @@ import { ClienteQueenBeerService } from 'app/entities/cliente-queen-beer';
 import { IProductoQueenBeer } from 'app/shared/model/producto-queen-beer.model';
 import { ProductoQueenBeerService } from 'app/entities/producto-queen-beer';
 import { DetalleVenta, IDetalleVenta } from 'app/shared/model/detalle-venta.model';
+import { EnvaseService } from 'app/entities/envase';
+import { IEnvase } from 'app/shared/model/envase.model';
 
 @Component({
     selector: 'jhi-factura-venta-update',
@@ -25,21 +27,25 @@ export class FacturaVentaUpdateComponent implements OnInit {
     detalleVentas: IDetalleVenta[];
     detalleVenta: IDetalleVenta;
     clientes: IClienteQueenBeer[];
+    envases: IEnvase[];
     fechaDp: any;
     productoId: number;
     cantidad: number;
+    envaseId: number;
 
     constructor(
         protected jhiAlertService: JhiAlertService,
         protected facturaVentaService: FacturaVentaService,
         protected clienteService: ClienteQueenBeerService,
         protected activatedRoute: ActivatedRoute,
-        protected productoService: ProductoQueenBeerService
+        protected productoService: ProductoQueenBeerService,
+        protected envaseService: EnvaseService
     ) {}
 
     ngOnInit() {
         this.isSaving = false;
         this.productoId = null;
+        this.envaseId = null;
         this.productosAlta = [];
         this.activatedRoute.data.subscribe(({ facturaVenta }) => {
             this.facturaVenta = facturaVenta;
@@ -130,6 +136,21 @@ export class FacturaVentaUpdateComponent implements OnInit {
             this.cantidad = null;
             this.productosAlta.push(resp.body);
             this.productoId = null;
+        });
+    }
+
+    changeProducto(productoId: number) {
+        console.log(productoId);
+        this.envaseService.queryByProductoId(productoId).subscribe(resp => {
+            console.log(resp);
+            this.envases = resp.body;
+        });
+    }
+
+    changeEnvase(envase: number) {
+        console.log(envase);
+        this.envaseService.find(envase).subscribe(resp => {
+            console.log(resp);
         });
     }
 }
