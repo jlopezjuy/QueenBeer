@@ -27,10 +27,16 @@ public class DetalleVenta implements Serializable {
     private Long id;
 
     @ManyToOne
+    @JsonIgnoreProperties("detalleVentas")
     private FacturaVenta facturaVenta;
 
     @ManyToOne
+    @JsonIgnoreProperties("detalleVentas")
     private Producto producto;
+
+    @ManyToOne
+    @JsonIgnoreProperties("detalleVentas")
+    private Envase envase;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -65,6 +71,19 @@ public class DetalleVenta implements Serializable {
 
     public void setProducto(Producto producto) {
         this.producto = producto;
+    }
+
+    public Envase getEnvase() {
+        return envase;
+    }
+
+    public DetalleVenta envase(Envase envase) {
+        this.envase = envase;
+        return this;
+    }
+
+    public void setEnvase(Envase envase) {
+        this.envase = envase;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

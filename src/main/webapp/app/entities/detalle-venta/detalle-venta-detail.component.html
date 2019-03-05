@@ -17,6 +17,12 @@
                         <a [routerLink]="['/producto-queen-beer', detalleVenta.productoId, 'view']">{{detalleVenta.productoId}}</a>
                     </div>
                 </dd>
+                <dt><span jhiTranslate="queenBeerApp.detalleVenta.envase">Envase</span></dt>
+                <dd>
+                    <div *ngIf="detalleVenta.envaseId">
+                        <a [routerLink]="['/envase', detalleVenta.envaseId, 'view']">{{detalleVenta.envaseId}}</a>
+                    </div>
+                </dd>
             </dl>
 
             <button type="submit"

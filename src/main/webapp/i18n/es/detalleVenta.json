@@ -17,7 +17,8 @@
                 "title": "Detalle Venta"
             },
             "facturaVenta": "Factura Venta",
-            "producto": "Producto"
+            "producto": "Producto",
+            "envase": "Envase"
         }
     }
 }

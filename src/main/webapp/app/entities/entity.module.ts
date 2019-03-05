@@ -48,6 +48,10 @@ import { QueenBeerEnvaseModule } from './envase/envase.module';
             {
                 path: 'producto-envase',
                 loadChildren: './producto-envase/producto-envase.module#QueenBeerProductoEnvaseModule'
+            },
+            {
+                path: 'detalle-venta',
+                loadChildren: './detalle-venta/detalle-venta.module#QueenBeerDetalleVentaModule'
             }
             /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
         ])

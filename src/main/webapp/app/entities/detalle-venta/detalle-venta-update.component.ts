@@ -10,6 +10,8 @@ import { IFacturaVenta } from 'app/shared/model/factura-venta.model';
 import { FacturaVentaService } from 'app/entities/factura-venta';
 import { IProductoQueenBeer } from 'app/shared/model/producto-queen-beer.model';
 import { ProductoQueenBeerService } from 'app/entities/producto-queen-beer';
+import { IEnvase } from 'app/shared/model/envase.model';
+import { EnvaseService } from 'app/entities/envase';
 
 @Component({
     selector: 'jhi-detalle-venta-update',
@@ -23,11 +25,14 @@ export class DetalleVentaUpdateComponent implements OnInit {
 
     productos: IProductoQueenBeer[];
 
+    envases: IEnvase[];
+
     constructor(
         protected jhiAlertService: JhiAlertService,
         protected detalleVentaService: DetalleVentaService,
         protected facturaVentaService: FacturaVentaService,
         protected productoService: ProductoQueenBeerService,
+        protected envaseService: EnvaseService,
         protected activatedRoute: ActivatedRoute
     ) {}
 
@@ -50,6 +55,13 @@ export class DetalleVentaUpdateComponent implements OnInit {
                 map((response: HttpResponse<IProductoQueenBeer[]>) => response.body)
             )
             .subscribe((res: IProductoQueenBeer[]) => (this.productos = res), (res: HttpErrorResponse) => this.onError(res.message));
+        this.envaseService
+            .query()
+            .pipe(
+                filter((mayBeOk: HttpResponse<IEnvase[]>) => mayBeOk.ok),
+                map((response: HttpResponse<IEnvase[]>) => response.body)
+            )
+            .subscribe((res: IEnvase[]) => (this.envases = res), (res: HttpErrorResponse) => this.onError(res.message));
     }
 
     previousState() {
@@ -87,6 +99,10 @@ export class DetalleVentaUpdateComponent implements OnInit {
     }
 
     trackProductoById(index: number, item: IProductoQueenBeer) {
+        return item.id;
+    }
+
+    trackEnvaseById(index: number, item: IEnvase) {
         return item.id;
     }
 }

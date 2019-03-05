@@ -32,6 +32,7 @@
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="facturaVentaId"><span jhiTranslate="queenBeerApp.detalleVenta.facturaVenta">Factura Venta</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="productoId"><span jhiTranslate="queenBeerApp.detalleVenta.producto">Producto</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="envaseId"><span jhiTranslate="queenBeerApp.detalleVenta.envase">Envase</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
             </thead>
@@ -46,6 +47,11 @@
                 <td>
                     <div *ngIf="detalleVenta.productoId">
                         <a [routerLink]="['../producto-queen-beer', detalleVenta.productoId , 'view' ]" >{{detalleVenta.productoId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="detalleVenta.envaseId">
+                        <a [routerLink]="['../envase', detalleVenta.envaseId , 'view' ]" >{{detalleVenta.envaseId}}</a>
                     </div>
                 </td>
                 <td class="text-right">

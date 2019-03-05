@@ -14,6 +14,8 @@ public class DetalleVentaDTO implements Serializable {
 
     private Long productoId;
 
+    private Long envaseId;
+
     public Long getId() {
         return id;
     }
@@ -36,6 +38,14 @@ public class DetalleVentaDTO implements Serializable {
 
     public void setProductoId(Long productoId) {
         this.productoId = productoId;
+    }
+
+    public Long getEnvaseId() {
+        return envaseId;
+    }
+
+    public void setEnvaseId(Long envaseId) {
+        this.envaseId = envaseId;
     }
 
     @Override
@@ -65,6 +75,7 @@ public class DetalleVentaDTO implements Serializable {
             "id=" + getId() +
             ", facturaVenta=" + getFacturaVentaId() +
             ", producto=" + getProductoId() +
+            ", envase=" + getEnvaseId() +
             "}";
     }
 }

@@ -20,5 +20,11 @@
                                  referencedColumnNames="id"
                                  referencedTableName="producto"/>
 
+        <addForeignKeyConstraint baseColumnNames="envase_id"
+                                 baseTableName="detalle_venta"
+                                 constraintName="fk_detalle_venta_envase_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="envase"/>
+
     </changeSet>
 </databaseChangeLog>
