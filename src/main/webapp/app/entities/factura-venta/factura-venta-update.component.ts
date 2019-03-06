@@ -9,7 +9,7 @@ import { IFacturaVenta } from 'app/shared/model/factura-venta.model';
 import { FacturaVentaService } from './factura-venta.service';
 import { IClienteQueenBeer } from 'app/shared/model/cliente-queen-beer.model';
 import { ClienteQueenBeerService } from 'app/entities/cliente-queen-beer';
-import { IProductoQueenBeer } from 'app/shared/model/producto-queen-beer.model';
+import { IProductoQueenBeer, ProductoQueenBeer } from 'app/shared/model/producto-queen-beer.model';
 import { ProductoQueenBeerService } from 'app/entities/producto-queen-beer';
 import { DetalleVenta, IDetalleVenta } from 'app/shared/model/detalle-venta.model';
 import { EnvaseService } from 'app/entities/envase';
@@ -55,9 +55,11 @@ export class FacturaVentaUpdateComponent implements OnInit {
             this.facturaVenta = facturaVenta;
             if (this.facturaVenta.id) {
                 this.loadDetalles(this.facturaVenta);
+            } else {
+                this.facturaVenta.totalNeto = 0;
             }
         });
-        this.facturaVenta.totalNeto = 0;
+
         this.clienteService
             .query({ filter: 'facturaventa-is-null' })
             .pipe(
@@ -185,6 +187,22 @@ export class FacturaVentaUpdateComponent implements OnInit {
     protected loadDetalles(factura: IFacturaVenta) {
         this.detalleVentaService.queryAllByFactura(factura.id).subscribe(resp => {
             console.log(resp);
+            resp.body.forEach(detalle => {
+                console.log(detalle);
+                const producto = new ProductoQueenBeer();
+                this.envaseService.find(detalle.envaseId).subscribe(respDeta => {
+                    producto.envaseId = detalle.envaseId;
+                    producto.productoId = respDeta.body.productoId;
+                    producto.cantidad = detalle.cantidad;
+                    producto.precioLitro = respDeta.body.precio;
+                    producto.precioTotal = detalle.cantidad * respDeta.body.precio;
+                });
+                this.productoService.find(detalle.productoId).subscribe(respProd => {
+                    producto.nombreComercial = respProd.body.nombreComercial;
+                    producto.tipoProducto = respProd.body.tipoProducto;
+                });
+                this.productosAlta.push(producto);
+            });
         });
     }
 }
