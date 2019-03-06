@@ -16,6 +16,8 @@
             "detail": {
                 "title": "Detalle Venta"
             },
+            "cantidad": "Cantidad",
+            "precioSubTotal": "Precio Sub Total",
             "facturaVenta": "Factura Venta",
             "producto": "Producto",
             "envase": "Envase"

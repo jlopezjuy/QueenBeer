@@ -72,6 +72,8 @@ class DetalleVentaGatlingTest extends Simulation {
             .headers(headers_http_authenticated)
             .body(StringBody("""{
                 "id":null
+                , "cantidad":null
+                , "precioSubTotal":"0"
                 }""")).asJSON
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_detalleVenta_url"))).exitHereIfFailed

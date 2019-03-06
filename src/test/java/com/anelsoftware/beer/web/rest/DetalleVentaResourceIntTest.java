@@ -28,6 +28,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.Validator;
 
 import javax.persistence.EntityManager;
+import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.List;
 
@@ -48,6 +49,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = QueenBeerApp.class)
 public class DetalleVentaResourceIntTest {
+
+    private static final Long DEFAULT_CANTIDAD = 1L;
+    private static final Long UPDATED_CANTIDAD = 2L;
+
+    private static final BigDecimal DEFAULT_PRECIO_SUB_TOTAL = new BigDecimal(1);
+    private static final BigDecimal UPDATED_PRECIO_SUB_TOTAL = new BigDecimal(2);
 
     @Autowired
     private DetalleVentaRepository detalleVentaRepository;
@@ -104,7 +111,9 @@ public class DetalleVentaResourceIntTest {
      * if they test an entity which requires the current entity.
      */
     public static DetalleVenta createEntity(EntityManager em) {
-        DetalleVenta detalleVenta = new DetalleVenta();
+        DetalleVenta detalleVenta = new DetalleVenta()
+            .cantidad(DEFAULT_CANTIDAD)
+            .precioSubTotal(DEFAULT_PRECIO_SUB_TOTAL);
         return detalleVenta;
     }
 
@@ -129,6 +138,8 @@ public class DetalleVentaResourceIntTest {
         List<DetalleVenta> detalleVentaList = detalleVentaRepository.findAll();
         assertThat(detalleVentaList).hasSize(databaseSizeBeforeCreate + 1);
         DetalleVenta testDetalleVenta = detalleVentaList.get(detalleVentaList.size() - 1);
+        assertThat(testDetalleVenta.getCantidad()).isEqualTo(DEFAULT_CANTIDAD);
+        assertThat(testDetalleVenta.getPrecioSubTotal()).isEqualTo(DEFAULT_PRECIO_SUB_TOTAL);
 
         // Validate the DetalleVenta in Elasticsearch
         verify(mockDetalleVentaSearchRepository, times(1)).save(testDetalleVenta);
@@ -167,7 +178,9 @@ public class DetalleVentaResourceIntTest {
         restDetalleVentaMockMvc.perform(get("/api/detalle-ventas?sort=id,desc"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(detalleVenta.getId().intValue())));
+            .andExpect(jsonPath("$.[*].id").value(hasItem(detalleVenta.getId().intValue())))
+            .andExpect(jsonPath("$.[*].cantidad").value(hasItem(DEFAULT_CANTIDAD.intValue())))
+            .andExpect(jsonPath("$.[*].precioSubTotal").value(hasItem(DEFAULT_PRECIO_SUB_TOTAL.intValue())));
     }
     
     @Test
@@ -180,7 +193,9 @@ public class DetalleVentaResourceIntTest {
         restDetalleVentaMockMvc.perform(get("/api/detalle-ventas/{id}", detalleVenta.getId()))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.id").value(detalleVenta.getId().intValue()));
+            .andExpect(jsonPath("$.id").value(detalleVenta.getId().intValue()))
+            .andExpect(jsonPath("$.cantidad").value(DEFAULT_CANTIDAD.intValue()))
+            .andExpect(jsonPath("$.precioSubTotal").value(DEFAULT_PRECIO_SUB_TOTAL.intValue()));
     }
 
     @Test
@@ -203,6 +218,9 @@ public class DetalleVentaResourceIntTest {
         DetalleVenta updatedDetalleVenta = detalleVentaRepository.findById(detalleVenta.getId()).get();
         // Disconnect from session so that the updates on updatedDetalleVenta are not directly saved in db
         em.detach(updatedDetalleVenta);
+        updatedDetalleVenta
+            .cantidad(UPDATED_CANTIDAD)
+            .precioSubTotal(UPDATED_PRECIO_SUB_TOTAL);
         DetalleVentaDTO detalleVentaDTO = detalleVentaMapper.toDto(updatedDetalleVenta);
 
         restDetalleVentaMockMvc.perform(put("/api/detalle-ventas")
@@ -214,6 +232,8 @@ public class DetalleVentaResourceIntTest {
         List<DetalleVenta> detalleVentaList = detalleVentaRepository.findAll();
         assertThat(detalleVentaList).hasSize(databaseSizeBeforeUpdate);
         DetalleVenta testDetalleVenta = detalleVentaList.get(detalleVentaList.size() - 1);
+        assertThat(testDetalleVenta.getCantidad()).isEqualTo(UPDATED_CANTIDAD);
+        assertThat(testDetalleVenta.getPrecioSubTotal()).isEqualTo(UPDATED_PRECIO_SUB_TOTAL);
 
         // Validate the DetalleVenta in Elasticsearch
         verify(mockDetalleVentaSearchRepository, times(1)).save(testDetalleVenta);
@@ -273,7 +293,9 @@ public class DetalleVentaResourceIntTest {
         restDetalleVentaMockMvc.perform(get("/api/_search/detalle-ventas?query=id:" + detalleVenta.getId()))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(detalleVenta.getId().intValue())));
+            .andExpect(jsonPath("$.[*].id").value(hasItem(detalleVenta.getId().intValue())))
+            .andExpect(jsonPath("$.[*].cantidad").value(hasItem(DEFAULT_CANTIDAD.intValue())))
+            .andExpect(jsonPath("$.[*].precioSubTotal").value(hasItem(DEFAULT_PRECIO_SUB_TOTAL.intValue())));
     }
 
     @Test

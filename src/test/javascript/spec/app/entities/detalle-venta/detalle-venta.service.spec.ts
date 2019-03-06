@@ -21,7 +21,7 @@ describe('Service Tests', () => {
             service = injector.get(DetalleVentaService);
             httpMock = injector.get(HttpTestingController);
 
-            elemDefault = new DetalleVenta(0);
+            elemDefault = new DetalleVenta(0, 0, 0);
         });
 
         describe('Service methods', async () => {
@@ -53,7 +53,13 @@ describe('Service Tests', () => {
             });
 
             it('should update a DetalleVenta', async () => {
-                const returnedFromService = Object.assign({}, elemDefault);
+                const returnedFromService = Object.assign(
+                    {
+                        cantidad: 1,
+                        precioSubTotal: 1
+                    },
+                    elemDefault
+                );
 
                 const expected = Object.assign({}, returnedFromService);
                 service
@@ -65,7 +71,13 @@ describe('Service Tests', () => {
             });
 
             it('should return a list of DetalleVenta', async () => {
-                const returnedFromService = Object.assign({}, elemDefault);
+                const returnedFromService = Object.assign(
+                    {
+                        cantidad: 1,
+                        precioSubTotal: 1
+                    },
+                    elemDefault
+                );
                 const expected = Object.assign({}, returnedFromService);
                 service
                     .query(expected)

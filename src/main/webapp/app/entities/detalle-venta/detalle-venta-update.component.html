@@ -9,6 +9,16 @@
                     <input type="text" class="form-control" id="id" name="id"
                         [(ngModel)]="detalleVenta.id" readonly />
                 </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="queenBeerApp.detalleVenta.cantidad" for="field_cantidad">Cantidad</label>
+                    <input type="number" class="form-control" name="cantidad" id="field_cantidad"
+                        [(ngModel)]="detalleVenta.cantidad" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="queenBeerApp.detalleVenta.precioSubTotal" for="field_precioSubTotal">Precio Sub Total</label>
+                    <input type="number" class="form-control" name="precioSubTotal" id="field_precioSubTotal"
+                        [(ngModel)]="detalleVenta.precioSubTotal" />
+                </div>
 
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="queenBeerApp.detalleVenta.facturaVenta" for="field_facturaVenta">Factura Venta</label>

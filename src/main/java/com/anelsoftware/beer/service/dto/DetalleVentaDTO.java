@@ -1,5 +1,6 @@
 package com.anelsoftware.beer.service.dto;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Objects;
 
 /**
@@ -8,6 +9,10 @@ import java.util.Objects;
 public class DetalleVentaDTO implements Serializable {
 
     private Long id;
+
+    private Long cantidad;
+
+    private BigDecimal precioSubTotal;
 
 
     private Long facturaVentaId;
@@ -22,6 +27,22 @@ public class DetalleVentaDTO implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(Long cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    public BigDecimal getPrecioSubTotal() {
+        return precioSubTotal;
+    }
+
+    public void setPrecioSubTotal(BigDecimal precioSubTotal) {
+        this.precioSubTotal = precioSubTotal;
     }
 
     public Long getFacturaVentaId() {
@@ -73,6 +94,8 @@ public class DetalleVentaDTO implements Serializable {
     public String toString() {
         return "DetalleVentaDTO{" +
             "id=" + getId() +
+            ", cantidad=" + getCantidad() +
+            ", precioSubTotal=" + getPrecioSubTotal() +
             ", facturaVenta=" + getFacturaVentaId() +
             ", producto=" + getProductoId() +
             ", envase=" + getEnvaseId() +

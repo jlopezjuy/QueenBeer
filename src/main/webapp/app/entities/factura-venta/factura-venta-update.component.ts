@@ -28,6 +28,7 @@ export class FacturaVentaUpdateComponent implements OnInit {
     detalleVenta: IDetalleVenta;
     clientes: IClienteQueenBeer[];
     envases: IEnvase[];
+    envase: IEnvase;
     fechaDp: any;
     productoId: number;
     cantidad: number;
@@ -130,12 +131,14 @@ export class FacturaVentaUpdateComponent implements OnInit {
         console.log(this.facturaVenta.totalNeto);
         this.productoService.find(this.productoId).subscribe(resp => {
             resp.body.cantidad = this.cantidad;
-            resp.body.precioTotal = this.cantidad * resp.body.precioLitro;
+            resp.body.precioLitro = this.envase.precio;
+            resp.body.precioTotal = this.cantidad * this.envase.precio;
             this.facturaVenta.totalNeto = this.facturaVenta.totalNeto + resp.body.precioTotal;
             console.log(resp);
             this.cantidad = null;
             this.productosAlta.push(resp.body);
             this.productoId = null;
+            this.envaseId = null;
         });
     }
 
@@ -151,6 +154,7 @@ export class FacturaVentaUpdateComponent implements OnInit {
         console.log(envase);
         this.envaseService.find(envase).subscribe(resp => {
             console.log(resp);
+            this.envase = resp.body;
         });
     }
 }

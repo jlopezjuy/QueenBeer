@@ -22,6 +22,14 @@
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
+            <column name="cantidad" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="precio_sub_total" type="decimal(10,2)">
+                <constraints nullable="true" />
+            </column>
+
             <column name="factura_venta_id" type="bigint">
                 <constraints nullable="true" />
             </column>

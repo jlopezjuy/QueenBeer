@@ -9,6 +9,7 @@ import javax.persistence.*;
 
 import org.springframework.data.elasticsearch.annotations.Document;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Objects;
 
 /**
@@ -25,6 +26,12 @@ public class DetalleVenta implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "cantidad")
+    private Long cantidad;
+
+    @Column(name = "precio_sub_total", precision = 10, scale = 2)
+    private BigDecimal precioSubTotal;
 
     @ManyToOne
     @JsonIgnoreProperties("detalleVentas")
@@ -45,6 +52,32 @@ public class DetalleVenta implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getCantidad() {
+        return cantidad;
+    }
+
+    public DetalleVenta cantidad(Long cantidad) {
+        this.cantidad = cantidad;
+        return this;
+    }
+
+    public void setCantidad(Long cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    public BigDecimal getPrecioSubTotal() {
+        return precioSubTotal;
+    }
+
+    public DetalleVenta precioSubTotal(BigDecimal precioSubTotal) {
+        this.precioSubTotal = precioSubTotal;
+        return this;
+    }
+
+    public void setPrecioSubTotal(BigDecimal precioSubTotal) {
+        this.precioSubTotal = precioSubTotal;
     }
 
     public FacturaVenta getFacturaVenta() {
@@ -111,6 +144,8 @@ public class DetalleVenta implements Serializable {
     public String toString() {
         return "DetalleVenta{" +
             "id=" + getId() +
+            ", cantidad=" + getCantidad() +
+            ", precioSubTotal=" + getPrecioSubTotal() +
             "}";
     }
 }
