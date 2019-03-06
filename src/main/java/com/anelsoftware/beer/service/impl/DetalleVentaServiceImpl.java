@@ -1,11 +1,14 @@
 package com.anelsoftware.beer.service.impl;
 
+import com.anelsoftware.beer.domain.FacturaVenta;
+import com.anelsoftware.beer.repository.FacturaVentaRepository;
 import com.anelsoftware.beer.service.DetalleVentaService;
 import com.anelsoftware.beer.domain.DetalleVenta;
 import com.anelsoftware.beer.repository.DetalleVentaRepository;
 import com.anelsoftware.beer.repository.search.DetalleVentaSearchRepository;
 import com.anelsoftware.beer.service.dto.DetalleVentaDTO;
 import com.anelsoftware.beer.service.mapper.DetalleVentaMapper;
+import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -33,10 +36,16 @@ public class DetalleVentaServiceImpl implements DetalleVentaService {
 
     private final DetalleVentaSearchRepository detalleVentaSearchRepository;
 
-    public DetalleVentaServiceImpl(DetalleVentaRepository detalleVentaRepository, DetalleVentaMapper detalleVentaMapper, DetalleVentaSearchRepository detalleVentaSearchRepository) {
+    private final FacturaVentaRepository facturaVentaRepository;
+
+    public DetalleVentaServiceImpl(DetalleVentaRepository detalleVentaRepository,
+        DetalleVentaMapper detalleVentaMapper,
+        DetalleVentaSearchRepository detalleVentaSearchRepository,
+        FacturaVentaRepository facturaVentaRepository) {
         this.detalleVentaRepository = detalleVentaRepository;
         this.detalleVentaMapper = detalleVentaMapper;
         this.detalleVentaSearchRepository = detalleVentaSearchRepository;
+        this.facturaVentaRepository = facturaVentaRepository;
     }
 
     /**
@@ -108,5 +117,11 @@ public class DetalleVentaServiceImpl implements DetalleVentaService {
         log.debug("Request to search for a page of DetalleVentas for query {}", query);
         return detalleVentaSearchRepository.search(queryStringQuery(query), pageable)
             .map(detalleVentaMapper::toDto);
+    }
+
+    @Override
+    public List<DetalleVentaDTO> findAllByFactura(Long facturaId) {
+        Optional<FacturaVenta> facturaVenta = this.facturaVentaRepository.findById(facturaId);
+        return detalleVentaMapper.toDto(detalleVentaRepository.findAllByFacturaVenta(facturaVenta.get()));
     }
 }

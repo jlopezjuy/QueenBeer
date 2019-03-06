@@ -54,9 +54,9 @@ public class FacturaVentaResource {
         if (facturaVentaDTO.getId() != null) {
             throw new BadRequestAlertException("A new facturaVenta cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        if (Objects.isNull(facturaVentaDTO.getClienteId())) {
-            throw new BadRequestAlertException("Invalid association value provided", ENTITY_NAME, "null");
-        }
+//        if (Objects.isNull(facturaVentaDTO.getClienteId())) {
+//            throw new BadRequestAlertException("Invalid association value provided", ENTITY_NAME, "null");
+//        }
         FacturaVentaDTO result = facturaVentaService.save(facturaVentaDTO);
         return ResponseEntity.created(new URI("/api/factura-ventas/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))

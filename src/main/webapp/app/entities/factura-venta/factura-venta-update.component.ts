@@ -14,6 +14,7 @@ import { ProductoQueenBeerService } from 'app/entities/producto-queen-beer';
 import { DetalleVenta, IDetalleVenta } from 'app/shared/model/detalle-venta.model';
 import { EnvaseService } from 'app/entities/envase';
 import { IEnvase } from 'app/shared/model/envase.model';
+import { DetalleVentaService } from 'app/entities/detalle-venta';
 
 @Component({
     selector: 'jhi-factura-venta-update',
@@ -26,6 +27,7 @@ export class FacturaVentaUpdateComponent implements OnInit {
     productosAlta: IProductoQueenBeer[];
     detalleVentas: IDetalleVenta[];
     detalleVenta: IDetalleVenta;
+    detalleVentaSave: IDetalleVenta;
     clientes: IClienteQueenBeer[];
     envases: IEnvase[];
     envase: IEnvase;
@@ -40,7 +42,8 @@ export class FacturaVentaUpdateComponent implements OnInit {
         protected clienteService: ClienteQueenBeerService,
         protected activatedRoute: ActivatedRoute,
         protected productoService: ProductoQueenBeerService,
-        protected envaseService: EnvaseService
+        protected envaseService: EnvaseService,
+        protected detalleVentaService: DetalleVentaService
     ) {}
 
     ngOnInit() {
@@ -50,6 +53,9 @@ export class FacturaVentaUpdateComponent implements OnInit {
         this.productosAlta = [];
         this.activatedRoute.data.subscribe(({ facturaVenta }) => {
             this.facturaVenta = facturaVenta;
+            if (this.facturaVenta.id) {
+                this.loadDetalles(this.facturaVenta);
+            }
         });
         this.facturaVenta.totalNeto = 0;
         this.clienteService
@@ -106,11 +112,12 @@ export class FacturaVentaUpdateComponent implements OnInit {
     }
 
     protected subscribeToSaveResponse(result: Observable<HttpResponse<IFacturaVenta>>) {
-        result.subscribe((res: HttpResponse<IFacturaVenta>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
+        result.subscribe((res: HttpResponse<IFacturaVenta>) => this.onSaveSuccess(res), (res: HttpErrorResponse) => this.onSaveError());
     }
 
-    protected onSaveSuccess() {
+    protected onSaveSuccess(res: HttpResponse<IFacturaVenta>) {
         this.isSaving = false;
+        this.saveDetalleProducto(res.body.id);
         this.previousState();
     }
 
@@ -133,6 +140,7 @@ export class FacturaVentaUpdateComponent implements OnInit {
             resp.body.cantidad = this.cantidad;
             resp.body.precioLitro = this.envase.precio;
             resp.body.precioTotal = this.cantidad * this.envase.precio;
+            resp.body.envaseId = this.envase.id;
             this.facturaVenta.totalNeto = this.facturaVenta.totalNeto + resp.body.precioTotal;
             console.log(resp);
             this.cantidad = null;
@@ -155,6 +163,28 @@ export class FacturaVentaUpdateComponent implements OnInit {
         this.envaseService.find(envase).subscribe(resp => {
             console.log(resp);
             this.envase = resp.body;
+        });
+    }
+
+    protected saveDetalleProducto(facturaId: number) {
+        this.productosAlta.forEach(producto => {
+            console.log(producto);
+            this.detalleVentaSave = new DetalleVenta();
+            this.detalleVentaSave.facturaVentaId = facturaId;
+            this.detalleVentaSave.envaseId = producto.envaseId;
+            this.detalleVentaSave.productoId = producto.id;
+            this.detalleVentaSave.cantidad = producto.cantidad;
+            this.detalleVentaSave.precioSubTotal = producto.precioTotal;
+            this.detalleVentaService.create(this.detalleVentaSave).subscribe(resp => {
+                console.log('ok');
+            });
+            // this.detalleVentas
+        });
+    }
+
+    protected loadDetalles(factura: IFacturaVenta) {
+        this.detalleVentaService.queryAllByFactura(factura.id).subscribe(resp => {
+            console.log(resp);
         });
     }
 }

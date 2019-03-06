@@ -12,6 +12,7 @@ type EntityArrayResponseType = HttpResponse<IDetalleVenta[]>;
 @Injectable({ providedIn: 'root' })
 export class DetalleVentaService {
     public resourceUrl = SERVER_API_URL + 'api/detalle-ventas';
+    public resourceUrlFactura = SERVER_API_URL + 'api/detalle-ventas/factura';
     public resourceSearchUrl = SERVER_API_URL + 'api/_search/detalle-ventas';
 
     constructor(protected http: HttpClient) {}
@@ -40,5 +41,10 @@ export class DetalleVentaService {
     search(req?: any): Observable<EntityArrayResponseType> {
         const options = createRequestOption(req);
         return this.http.get<IDetalleVenta[]>(this.resourceSearchUrl, { params: options, observe: 'response' });
+    }
+
+    queryAllByFactura(facturaId: number, req?: any): Observable<EntityArrayResponseType> {
+        const options = createRequestOption(req);
+        return this.http.get<IDetalleVenta[]>(`${this.resourceUrlFactura}/${facturaId}`, { params: options, observe: 'response' });
     }
 }

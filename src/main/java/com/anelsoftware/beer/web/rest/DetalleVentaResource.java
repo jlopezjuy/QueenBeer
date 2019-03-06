@@ -136,4 +136,16 @@ public class DetalleVentaResource {
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
+    /**
+     * GET  /detalle-ventas : get all the detalleVentas.
+     *
+     * @param facturaId the pagination information
+     * @return the ResponseEntity with status 200 (OK) and the list of detalleVentas in body
+     */
+    @GetMapping("/detalle-ventas/factura/{facturaId}")
+    public ResponseEntity<List<DetalleVentaDTO>> getAllDetalleVentasByFactura(@PathVariable Long facturaId) {
+        log.debug("REST request to get a page of DetalleVentas");
+        List<DetalleVentaDTO> page = detalleVentaService.findAllByFactura(facturaId);
+        return ResponseEntity.ok().body(page);
+    }
 }
