@@ -11,7 +11,7 @@ import { IProductoQueenBeer } from 'app/shared/model/producto-queen-beer.model';
 export class ProductoQueenBeerDetailComponent implements OnInit {
     producto: IProductoQueenBeer;
 
-    constructor(private dataUtils: JhiDataUtils, private activatedRoute: ActivatedRoute) {}
+    constructor(protected dataUtils: JhiDataUtils, protected activatedRoute: ActivatedRoute) {}
 
     ngOnInit() {
         this.activatedRoute.data.subscribe(({ producto }) => {

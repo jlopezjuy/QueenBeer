@@ -1,12 +1,12 @@
 package com.anelsoftware.beer.web.rest;
 
-import com.codahale.metrics.annotation.Timed;
 import com.anelsoftware.beer.service.CompraService;
 import com.anelsoftware.beer.web.rest.errors.BadRequestAlertException;
 import com.anelsoftware.beer.web.rest.util.HeaderUtil;
 import com.anelsoftware.beer.web.rest.util.PaginationUtil;
 import com.anelsoftware.beer.service.dto.CompraDTO;
 import io.github.jhipster.web.util.ResponseUtil;
+import io.micrometer.core.annotation.Timed;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -21,9 +21,7 @@ import java.net.URISyntaxException;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.StreamSupport;
 
-import static org.elasticsearch.index.query.QueryBuilders.*;
 
 /**
  * REST controller for managing Compra.

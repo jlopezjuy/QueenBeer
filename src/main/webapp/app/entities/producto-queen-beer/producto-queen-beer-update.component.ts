@@ -2,10 +2,12 @@ import { Component, OnInit, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { filter, map } from 'rxjs/operators';
 import { JhiDataUtils } from 'ng-jhipster';
-
 import { IProductoQueenBeer } from 'app/shared/model/producto-queen-beer.model';
 import { ProductoQueenBeerService } from './producto-queen-beer.service';
+import { Envase, IEnvase } from 'app/shared/model/envase.model';
+import { EnvaseService } from 'app/entities/envase';
 
 @Component({
     selector: 'jhi-producto-queen-beer-update',
@@ -13,20 +15,29 @@ import { ProductoQueenBeerService } from './producto-queen-beer.service';
 })
 export class ProductoQueenBeerUpdateComponent implements OnInit {
     producto: IProductoQueenBeer;
+    envase: IEnvase;
+    envases: IEnvase[];
     isSaving: boolean;
+    isSavindEnvase: boolean;
 
     constructor(
-        private dataUtils: JhiDataUtils,
-        private productoService: ProductoQueenBeerService,
-        private elementRef: ElementRef,
-        private activatedRoute: ActivatedRoute
+        protected dataUtils: JhiDataUtils,
+        protected productoService: ProductoQueenBeerService,
+        protected elementRef: ElementRef,
+        private envaseService: EnvaseService,
+        protected activatedRoute: ActivatedRoute
     ) {}
 
     ngOnInit() {
         this.isSaving = false;
         this.activatedRoute.data.subscribe(({ producto }) => {
             this.producto = producto;
+            this.envase = new Envase();
+            if (this.producto.id) {
+                this.loadEnvases(this.producto.id);
+            }
         });
+        this.envases = [];
     }
 
     byteSize(field) {
@@ -52,22 +63,66 @@ export class ProductoQueenBeerUpdateComponent implements OnInit {
     save() {
         this.isSaving = true;
         if (this.producto.id !== undefined) {
+            this.isSavindEnvase = false;
             this.subscribeToSaveResponse(this.productoService.update(this.producto));
         } else {
+            this.isSavindEnvase = true;
             this.subscribeToSaveResponse(this.productoService.create(this.producto));
         }
     }
 
-    private subscribeToSaveResponse(result: Observable<HttpResponse<IProductoQueenBeer>>) {
-        result.subscribe((res: HttpResponse<IProductoQueenBeer>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
+    protected subscribeToSaveResponse(result: Observable<HttpResponse<IProductoQueenBeer>>) {
+        result.subscribe(
+            (res: HttpResponse<IProductoQueenBeer>) => {
+                this.onSaveSuccess();
+                console.log(res);
+                this.saveEnvases(res.body);
+            },
+            (res: HttpErrorResponse) => this.onSaveError()
+        );
     }
 
-    private onSaveSuccess() {
+    protected onSaveSuccess() {
         this.isSaving = false;
         this.previousState();
     }
 
-    private onSaveError() {
+    protected onSaveError() {
         this.isSaving = false;
+    }
+
+    addEnvase() {
+        this.envases.push(this.envase);
+        this.envase = new Envase();
+    }
+
+    protected saveEnvases(producto: IProductoQueenBeer) {
+        this.envases.forEach(envase => {
+            if (this.isSavindEnvase) {
+                envase.productoId = producto.id;
+                this.envaseService.create(envase).subscribe(resp => {
+                    console.log('create');
+                });
+            } else {
+                envase.productoId = producto.id;
+                this.envaseService.update(envase).subscribe(
+                    resp => {
+                        console.log('update');
+                    },
+                    error => {
+                        this.envaseService.create(envase).subscribe(resp => {
+                            console.log('create');
+                        });
+                    }
+                );
+            }
+        });
+    }
+
+    protected loadEnvases(productoId: number) {
+        console.log('Producto Id: ' + productoId);
+        this.envaseService.queryByProductoId(productoId).subscribe(resp => {
+            this.envases = resp.body;
+        });
     }
 }

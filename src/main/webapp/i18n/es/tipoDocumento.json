@@ -1,0 +1,10 @@
+{
+    "queenBeerApp": {
+        "TipoDocumento": {
+            "null": "",
+            "FACTURA": "FACTURA",
+            "REMITO": "REMITO",
+            "PRESUPUESTO": "PRESUPUESTO"
+        }
+    }
+}

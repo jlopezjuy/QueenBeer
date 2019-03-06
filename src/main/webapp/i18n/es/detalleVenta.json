@@ -1,0 +1,26 @@
+{
+    "queenBeerApp": {
+        "detalleVenta": {
+            "home": {
+                "title": "Detalle Ventas",
+                "createLabel": "Crear nuevo Detalle Venta",
+                "createOrEditLabel": "Crear o editar Detalle Venta",
+                "search": "Search for Detalle Venta"
+            },
+            "created": "Un nuevo Detalle Venta ha sido creado con el identificador {{ param }}",
+            "updated": "Un Detalle Venta ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Detalle Venta ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Detalle Venta {{ id }}?"
+            },
+            "detail": {
+                "title": "Detalle Venta"
+            },
+            "cantidad": "Cantidad",
+            "precioSubTotal": "Precio Sub Total",
+            "facturaVenta": "Factura Venta",
+            "producto": "Producto",
+            "envase": "Envase"
+        }
+    }
+}

@@ -1,0 +1,48 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [
+        {
+            "relationshipName": "cliente",
+            "otherEntityName": "cliente",
+            "relationshipType": "one-to-one",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "useJPADerivedIdentifier": true,
+            "otherEntityRelationshipName": "facturaVenta",
+            "otherEntityRelationshipNameUndefined": false
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "tipoDocumento",
+            "fieldType": "TipoDocumento",
+            "fieldValues": "FACTURA,REMITO,PRESUPUESTO"
+        },
+        {
+            "fieldName": "fecha",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "totalNeto",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "tipoMoneda",
+            "fieldType": "TipoMoneda",
+            "fieldValues": "PESOS_ARGENTINOS,DOLARES"
+        },
+        {
+            "fieldName": "nroFactura",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20190217151709",
+    "dto": "mapstruct",
+    "searchEngine": "elasticsearch",
+    "service": "serviceImpl",
+    "entityTableName": "factura_venta",
+    "databaseType": "sql",
+    "jpaMetamodelFiltering": false,
+    "pagination": "pagination"
+}

@@ -1,5 +1,6 @@
 package com.anelsoftware.beer.service.impl;
 
+import com.anelsoftware.beer.domain.enumeration.TipoInsumo;
 import com.anelsoftware.beer.service.InsumoService;
 import com.anelsoftware.beer.domain.Insumo;
 import com.anelsoftware.beer.repository.InsumoRepository;
@@ -78,6 +79,16 @@ public class InsumoServiceImpl implements InsumoService {
     @Override
     public List<InsumoDTO> findAll() {
         return insumoMapper.toDto(insumoRepository.findAllByOrderByNombre());
+    }
+
+    @Override
+    public List<InsumoDTO> findAllMalta() {
+        return insumoMapper.toDto(insumoRepository.findAllByTipoOrderByNombre(TipoInsumo.MALTA));
+    }
+
+    @Override
+    public List<InsumoDTO> findAllLupulo() {
+        return insumoMapper.toDto(insumoRepository.findAllByTipoOrderByNombre(TipoInsumo.LUPULO));
     }
 
 

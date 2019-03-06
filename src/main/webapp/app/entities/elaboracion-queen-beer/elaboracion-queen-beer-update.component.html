@@ -93,7 +93,7 @@
                                             <div class="row">
                                                 <div class="col-6">
                                                     <label class="form-control-label" jhiTranslate="queenBeerApp.elaboracion.macerado" for="field_macerado">Macerado</label>
-                                                    <select class="form-control" name="macerado" [(ngModel)]="elaboracion.macerado" id="field_macerado" >
+                                                    <select class="form-control" name="macerado" [(ngModel)]="elaboracion.macerado" id="field_macerado" (change)="changeMacerado()">
                                                         <option value="INFUCION">{{'queenBeerApp.TipoMacerado.INFUCION' | translate}}</option>
                                                         <option value="ESCALONADO">{{'queenBeerApp.TipoMacerado.ESCALONADO' | translate}}</option>
                                                     </select>
@@ -105,7 +105,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="row">
+                                            <div class="row" *ngIf="isMacerado">
                                                 <div class="col-6">
                                                     <label class="form-control-label" jhiTranslate="queenBeerApp.elaboracion.primerEscalon" for="field_primerEscalon">Primer Escalon</label>
                                                     <input type="checkbox" class="form-control" name="primerEscalon" id="field_primerEscalon"
@@ -117,7 +117,7 @@
                                                            [(ngModel)]="elaboracion.segundoEscalon" />
                                                 </div>
                                             </div>
-                                            <div class="row">
+                                            <div class="row" *ngIf="isMacerado">
                                                 <div class="col-6">
                                                     <label class="form-control-label" jhiTranslate="queenBeerApp.elaboracion.tercerEscalon" for="field_tercerEscalon">Tercer Escalon</label>
                                                     <input type="checkbox" class="form-control" name="tercerEscalon" id="field_tercerEscalon"

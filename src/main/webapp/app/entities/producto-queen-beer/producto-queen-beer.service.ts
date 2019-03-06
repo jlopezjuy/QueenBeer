@@ -12,9 +12,10 @@ type EntityArrayResponseType = HttpResponse<IProductoQueenBeer[]>;
 @Injectable({ providedIn: 'root' })
 export class ProductoQueenBeerService {
     public resourceUrl = SERVER_API_URL + 'api/productos';
+    public resourceUrlFactura = SERVER_API_URL + 'api/productos/factura';
     public resourceSearchUrl = SERVER_API_URL + 'api/_search/productos';
 
-    constructor(private http: HttpClient) {}
+    constructor(protected http: HttpClient) {}
 
     create(producto: IProductoQueenBeer): Observable<EntityResponseType> {
         return this.http.post<IProductoQueenBeer>(this.resourceUrl, producto, { observe: 'response' });
@@ -31,6 +32,11 @@ export class ProductoQueenBeerService {
     query(req?: any): Observable<EntityArrayResponseType> {
         const options = createRequestOption(req);
         return this.http.get<IProductoQueenBeer[]>(this.resourceUrl, { params: options, observe: 'response' });
+    }
+
+    queryByFactura(facturaId: number, req?: any): Observable<EntityArrayResponseType> {
+        const options = createRequestOption(req);
+        return this.http.get<IProductoQueenBeer[]>(`${this.resourceUrlFactura}/${facturaId}`, { params: options, observe: 'response' });
     }
 
     delete(id: number): Observable<HttpResponse<any>> {

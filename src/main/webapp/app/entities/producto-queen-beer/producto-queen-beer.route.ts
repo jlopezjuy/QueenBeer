@@ -3,8 +3,8 @@ import { HttpResponse } from '@angular/common/http';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes } from '@angular/router';
 import { JhiPaginationUtil, JhiResolvePagingParams } from 'ng-jhipster';
 import { UserRouteAccessService } from 'app/core';
-import { of } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { filter, map } from 'rxjs/operators';
 import { ProductoQueenBeer } from 'app/shared/model/producto-queen-beer.model';
 import { ProductoQueenBeerService } from './producto-queen-beer.service';
 import { ProductoQueenBeerComponent } from './producto-queen-beer.component';
@@ -17,10 +17,13 @@ import { IProductoQueenBeer } from 'app/shared/model/producto-queen-beer.model';
 export class ProductoQueenBeerResolve implements Resolve<IProductoQueenBeer> {
     constructor(private service: ProductoQueenBeerService) {}
 
-    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<IProductoQueenBeer> {
         const id = route.params['id'] ? route.params['id'] : null;
         if (id) {
-            return this.service.find(id).pipe(map((producto: HttpResponse<ProductoQueenBeer>) => producto.body));
+            return this.service.find(id).pipe(
+                filter((response: HttpResponse<ProductoQueenBeer>) => response.ok),
+                map((producto: HttpResponse<ProductoQueenBeer>) => producto.body)
+            );
         }
         return of(new ProductoQueenBeer());
     }
@@ -28,7 +31,7 @@ export class ProductoQueenBeerResolve implements Resolve<IProductoQueenBeer> {
 
 export const productoRoute: Routes = [
     {
-        path: 'producto-queen-beer',
+        path: '',
         component: ProductoQueenBeerComponent,
         resolve: {
             pagingParams: JhiResolvePagingParams
@@ -41,7 +44,7 @@ export const productoRoute: Routes = [
         canActivate: [UserRouteAccessService]
     },
     {
-        path: 'producto-queen-beer/:id/view',
+        path: ':id/view',
         component: ProductoQueenBeerDetailComponent,
         resolve: {
             producto: ProductoQueenBeerResolve
@@ -53,7 +56,7 @@ export const productoRoute: Routes = [
         canActivate: [UserRouteAccessService]
     },
     {
-        path: 'producto-queen-beer/new',
+        path: 'new',
         component: ProductoQueenBeerUpdateComponent,
         resolve: {
             producto: ProductoQueenBeerResolve
@@ -65,7 +68,7 @@ export const productoRoute: Routes = [
         canActivate: [UserRouteAccessService]
     },
     {
-        path: 'producto-queen-beer/:id/edit',
+        path: ':id/edit',
         component: ProductoQueenBeerUpdateComponent,
         resolve: {
             producto: ProductoQueenBeerResolve
@@ -80,7 +83,7 @@ export const productoRoute: Routes = [
 
 export const productoPopupRoute: Routes = [
     {
-        path: 'producto-queen-beer/:id/delete',
+        path: ':id/delete',
         component: ProductoQueenBeerDeletePopupComponent,
         resolve: {
             producto: ProductoQueenBeerResolve

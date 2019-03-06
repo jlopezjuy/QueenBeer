@@ -1,13 +1,11 @@
-<nav class="navbar navbar-dark navbar-expand-md jh-navbar">
-    <div class="jh-logo-container float-left">
-        <a class="jh-navbar-toggler d-lg-none float-right" href="javascript:void(0);" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" (click)="toggleNavbar()">
-            <fa-icon icon="bars"></fa-icon>
-        </a>
-        <a class="navbar-brand logo float-left" routerLink="/" (click)="collapseNavbar()">
-            <span class="logo-img"></span>
-            <span jhiTranslate="global.title" class="navbar-title">QueenBeer</span> <span class="navbar-version">{{version}}</span>
-        </a>
-    </div>
+<nav class="navbar navbar-dark navbar-expand-md bg-dark">
+    <a class="navbar-brand logo" routerLink="/" (click)="collapseNavbar()">
+        <span class="logo-img"></span>
+        <span jhiTranslate="global.title" class="navbar-title">QueenBeer</span> <span class="navbar-version">{{version}}</span>
+    </a>
+    <a class="navbar-toggler d-lg-none" href="javascript:void(0);" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" (click)="toggleNavbar()">
+        <fa-icon icon="bars"></fa-icon>
+    </a>
     <div class="navbar-collapse collapse" id="navbarResponsive" [ngbCollapse]="isNavbarCollapsed" [ngSwitch]="isAuthenticated()">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
@@ -28,7 +26,32 @@
                         </span>
                     </span>
                 </a>
-                <ul class="dropdown-menu" ngbDropdownMenu>
+                <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="entity-menu">
+                    <li>
+                        <a class="dropdown-item" routerLink="factura-venta" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                            <span jhiTranslate="global.menu.entities.facturaVenta">Factura Venta</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="detalle-venta" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                            <span jhiTranslate="global.menu.entities.detalleVenta">Detalle Venta</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="producto-queen-beer" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                            <span jhiTranslate="global.menu.entities.productoQueenBeer">Producto Queen Beer</span>
+                        </a>
+                    </li>
+                    <!--<li>-->
+                        <!--<a class="dropdown-item" routerLink="producto-envase" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">-->
+                            <!--<fa-icon icon="asterisk" fixedWidth="true"></fa-icon>-->
+                            <!--<span jhiTranslate="global.menu.entities.productoEnvase">Producto Envase</span>-->
+                        <!--</a>-->
+                    <!--</li>-->
+                    <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
                     <li>
                         <a class="dropdown-item" routerLink="cliente-queen-beer" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
@@ -39,12 +62,6 @@
                         <a class="dropdown-item" routerLink="lista-precio-queen-beer" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
                             <span jhiTranslate="global.menu.entities.listaPrecioQueenBeer">Lista Precio Queen Beer</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="producto-queen-beer" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
-                            <span jhiTranslate="global.menu.entities.productoQueenBeer">Producto Queen Beer</span>
                         </a>
                     </li>
                     <li>
@@ -65,31 +82,30 @@
                             <span jhiTranslate="global.menu.entities.elaboracionQueenBeer">Elaboracion Queen Beer</span>
                         </a>
                     </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="elaboracion-insumo-queen-beer" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
-                            <span jhiTranslate="global.menu.entities.elaboracionInsumoQueenBeer">Elaboracion Insumo Queen Beer</span>
-                        </a>
-                    </li>
+                    <!--<li>-->
+                        <!--<a class="dropdown-item" routerLink="elaboracion-insumo-queen-beer" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">-->
+                            <!--<fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>-->
+                            <!--<span jhiTranslate="global.menu.entities.elaboracionInsumoQueenBeer">Elaboracion Insumo Queen Beer</span>-->
+                        <!--</a>-->
+                    <!--</li>-->
                     <li>
                         <a class="dropdown-item" routerLink="compra-queen-beer" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
                             <span jhiTranslate="global.menu.entities.compraQueenBeer">Compra Queen Beer</span>
                         </a>
                     </li>
+                    <!--<li>-->
+                        <!--<a class="dropdown-item" routerLink="compra-insumo-queen-beer" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">-->
+                            <!--<fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>-->
+                            <!--<span jhiTranslate="global.menu.entities.compraInsumoQueenBeer">Compra Insumo Queen Beer</span>-->
+                        <!--</a>-->
+                    <!--</li>-->
                     <li>
-                        <a class="dropdown-item" routerLink="compra-insumo-queen-beer" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
-                            <span jhiTranslate="global.menu.entities.compraInsumoQueenBeer">Compra Insumo Queen Beer</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="cliente-queen-beer" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                        <a class="dropdown-item" routerLink="envase" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
-                            <span jhiTranslate="global.menu.entities.clienteQueenBeer">Cliente Queen Beer</span>
+                            <span jhiTranslate="global.menu.entities.envase">Envase</span>
                         </a>
                     </li>
-                    <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
                 </ul>
             </li>
             <li *jhiHasAnyAuthority="'ROLE_ADMIN'" ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
@@ -99,7 +115,7 @@
                         <span jhiTranslate="global.menu.admin.main">Administration</span>
                     </span>
                 </a>
-                <ul class="dropdown-menu" ngbDropdownMenu>
+                <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="admin-menu">
                     <li>
                         <a class="dropdown-item" routerLink="admin/user-management" routerLinkActive="active" (click)="collapseNavbar()">
                             <fa-icon icon="user" fixedWidth="true"></fa-icon>
@@ -164,7 +180,7 @@
                         <span jhiTranslate="global.menu.language">Language</span>
                     </span>
                 </a>
-                <ul class="dropdown-menu" ngbDropdownMenu>
+                <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="languagesnavBarDropdown">
                     <li *ngFor="let language of languages">
                         <a class="dropdown-item" [jhiActiveMenu]="language" href="javascript:void(0);" (click)="changeLanguage(language);collapseNavbar();">{{language | findLanguageFromKey}}</a>
                     </li>
@@ -179,10 +195,10 @@
                     </span>
                   </span>
                   <span *ngIf="getImageUrl()">
-                      <img [src]="getImageUrl()" class="profile-image img-circle" alt="Avatar">
+                      <img [src]="getImageUrl()" class="profile-image rounded-circle" alt="Avatar">
                   </span>
                 </a>
-                <ul class="dropdown-menu" ngbDropdownMenu>
+                <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="account-menu">
                     <li *ngSwitchCase="true">
                         <a class="dropdown-item" routerLink="settings" routerLinkActive="active" (click)="collapseNavbar()">
                             <fa-icon icon="wrench" fixedWidth="true"></fa-icon>

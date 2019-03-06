@@ -36,6 +36,18 @@ public interface InsumoService {
     List<InsumoDTO> findAll();
 
     /**
+     * Get all the insumos whitouth pageable
+     * @return
+     */
+    List<InsumoDTO> findAllMalta();
+
+    /**
+     * Get all the insumos whitouth pageable
+     * @return
+     */
+    List<InsumoDTO> findAllLupulo();
+
+    /**
      * Get the "id" insumo.
      *
      * @param id the id of the entity

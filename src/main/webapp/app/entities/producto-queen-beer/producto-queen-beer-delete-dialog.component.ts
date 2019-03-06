@@ -15,9 +15,9 @@ export class ProductoQueenBeerDeleteDialogComponent {
     producto: IProductoQueenBeer;
 
     constructor(
-        private productoService: ProductoQueenBeerService,
+        protected productoService: ProductoQueenBeerService,
         public activeModal: NgbActiveModal,
-        private eventManager: JhiEventManager
+        protected eventManager: JhiEventManager
     ) {}
 
     clear() {
@@ -40,9 +40,9 @@ export class ProductoQueenBeerDeleteDialogComponent {
     template: ''
 })
 export class ProductoQueenBeerDeletePopupComponent implements OnInit, OnDestroy {
-    private ngbModalRef: NgbModalRef;
+    protected ngbModalRef: NgbModalRef;
 
-    constructor(private activatedRoute: ActivatedRoute, private router: Router, private modalService: NgbModal) {}
+    constructor(protected activatedRoute: ActivatedRoute, protected router: Router, protected modalService: NgbModal) {}
 
     ngOnInit() {
         this.activatedRoute.data.subscribe(({ producto }) => {
@@ -54,11 +54,11 @@ export class ProductoQueenBeerDeletePopupComponent implements OnInit, OnDestroy 
                 this.ngbModalRef.componentInstance.producto = producto;
                 this.ngbModalRef.result.then(
                     result => {
-                        this.router.navigate([{ outlets: { popup: null } }], { replaceUrl: true, queryParamsHandling: 'merge' });
+                        this.router.navigate(['/producto-queen-beer', { outlets: { popup: null } }]);
                         this.ngbModalRef = null;
                     },
                     reason => {
-                        this.router.navigate([{ outlets: { popup: null } }], { replaceUrl: true, queryParamsHandling: 'merge' });
+                        this.router.navigate(['/producto-queen-beer', { outlets: { popup: null } }]);
                         this.ngbModalRef = null;
                     }
                 );

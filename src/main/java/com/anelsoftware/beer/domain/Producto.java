@@ -1,5 +1,6 @@
 package com.anelsoftware.beer.domain;
 
+
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -22,7 +23,7 @@ import com.anelsoftware.beer.domain.enumeration.TipoProducto;
 public class Producto implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

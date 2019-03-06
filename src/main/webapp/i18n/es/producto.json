@@ -1,7 +1,6 @@
-
 {
     "queenBeerApp": {
-        "producto" : {
+        "producto": {
             "home": {
                 "title": "Productos",
                 "createLabel": "Crear nuevo Producto",

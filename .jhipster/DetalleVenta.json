@@ -1,0 +1,48 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [
+        {
+            "relationshipName": "facturaVenta",
+            "otherEntityName": "facturaVenta",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id",
+            "otherEntityRelationshipNameUndefined": false,
+            "otherEntityRelationshipName": "detalleVenta"
+        },
+        {
+            "relationshipName": "producto",
+            "otherEntityName": "producto",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id",
+            "otherEntityRelationshipNameUndefined": false,
+            "otherEntityRelationshipName": "detalleVenta"
+        },
+        {
+            "relationshipName": "envase",
+            "otherEntityName": "envase",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id",
+            "otherEntityRelationshipName": "detalleVenta",
+            "otherEntityRelationshipNameUndefined": false
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "cantidad",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "precioSubTotal",
+            "fieldType": "BigDecimal"
+        }
+    ],
+    "changelogDate": "20190217153227",
+    "dto": "mapstruct",
+    "searchEngine": "elasticsearch",
+    "service": "serviceImpl",
+    "entityTableName": "detalle_venta",
+    "databaseType": "sql",
+    "jpaMetamodelFiltering": false,
+    "pagination": "pagination"
+}

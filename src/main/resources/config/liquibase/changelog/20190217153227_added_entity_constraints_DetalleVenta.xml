@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity DetalleVenta.
+    -->
+    <changeSet id="20190217153227-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="factura_venta_id"
+                                 baseTableName="detalle_venta"
+                                 constraintName="fk_detalle_venta_factura_venta_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="factura_venta"/>
+
+        <addForeignKeyConstraint baseColumnNames="producto_id"
+                                 baseTableName="detalle_venta"
+                                 constraintName="fk_detalle_venta_producto_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="producto"/>
+
+        <addForeignKeyConstraint baseColumnNames="envase_id"
+                                 baseTableName="detalle_venta"
+                                 constraintName="fk_detalle_venta_envase_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="envase"/>
+
+    </changeSet>
+</databaseChangeLog>

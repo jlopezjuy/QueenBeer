@@ -1,5 +1,4 @@
 package com.anelsoftware.beer.service.dto;
-
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Objects;
@@ -27,6 +26,7 @@ public class ProductoDTO implements Serializable {
 
     @Lob
     private byte[] imagen;
+
     private String imagenContentType;
 
     public Long getId() {
