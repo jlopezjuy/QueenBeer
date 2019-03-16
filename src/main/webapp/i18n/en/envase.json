@@ -18,7 +18,8 @@
             },
             "nombre": "Nombre",
             "precio": "Precio",
-            "producto": "Producto"
+            "producto": "Producto",
+            "tipoEnvase": "Envase"
         }
     }
 }

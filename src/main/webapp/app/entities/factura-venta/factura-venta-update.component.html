@@ -46,7 +46,7 @@
                                                            jhiTranslate="queenBeerApp.facturaVenta.nroFactura"
                                                            for="field_nroFactura">Nro Factura</label>
                                                     <input type="text" class="form-control"
-                                                           name="nroFactura" id="field_nroFactura"
+                                                           name="nroFactura" id="field_nroFactura" required="true"
                                                            [(ngModel)]="facturaVenta.nroFactura"/>
 
 
@@ -59,7 +59,7 @@
                                                            for="field_tipoDocumento">Tipo Documento</label>
                                                     <select class="form-control" name="tipoDocumento"
                                                             [(ngModel)]="facturaVenta.tipoDocumento"
-                                                            id="field_tipoDocumento">
+                                                            id="field_tipoDocumento" required="true">
                                                         <option
                                                             value="FACTURA">{{'queenBeerApp.TipoDocumento.FACTURA' | translate}}</option>
                                                         <option
@@ -78,7 +78,7 @@
                                                            for="field_fecha">Fecha</label>
                                                     <div class="input-group">
                                                         <input id="field_fecha" type="text"
-                                                               class="form-control" name="fecha"
+                                                               class="form-control" name="fecha" required="true"
                                                                ngbDatepicker #fechaDp="ngbDatepicker"
                                                                [(ngModel)]="facturaVenta.fecha"
                                                         />
@@ -96,7 +96,7 @@
                                                            for="field_tipoMoneda">Tipo Moneda</label>
                                                     <select class="form-control" name="tipoMoneda"
                                                             [(ngModel)]="facturaVenta.tipoMoneda"
-                                                            id="field_tipoMoneda">
+                                                            id="field_tipoMoneda" required="true">
                                                         <option
                                                             value="PESOS_ARGENTINOS">{{'queenBeerApp.TipoMoneda.PESOS_ARGENTINOS' | translate}}</option>
                                                         <option
@@ -113,7 +113,7 @@
                                                            jhiTranslate="queenBeerApp.facturaVenta.cliente"
                                                            for="field_cliente">Cliente</label>
                                                     <select class="form-control" id="field_cliente"
-                                                            name="cliente"
+                                                            name="cliente" required="true"
                                                             [(ngModel)]="facturaVenta.clienteId">
                                                         <option [ngValue]="null"></option>
                                                         <option [ngValue]="clienteOption.id"
@@ -169,7 +169,11 @@
                                                         <fa-icon [icon]="'sort'"></fa-icon>
                                                     </th>
                                                     <th><span
-                                                        jhiTranslate="queenBeerApp.producto.precioLitro">Precio Litro</span>
+                                                        jhiTranslate="queenBeerApp.envase.tipoEnvase">Tipo Envase</span>
+                                                        <fa-icon [icon]="'sort'"></fa-icon>
+                                                    </th>
+                                                    <th><span
+                                                        jhiTranslate="queenBeerApp.envase.precio">Precio</span>
                                                         <fa-icon [icon]="'sort'"></fa-icon>
                                                     </th>
                                                     <th><span
@@ -189,6 +193,7 @@
                                                 <tbody>
                                                 <tr *ngFor="let producto of productosAlta ;trackBy: trackId">
                                                     <td>{{producto.nombreComercial}}</td>
+                                                    <td>{{producto.envaseDetalle}}</td>
                                                     <td>{{producto.precioLitro}}</td>
                                                     <td jhiTranslate="{{'queenBeerApp.TipoProducto.' + producto.tipoProducto}}">{{producto.tipoProducto}}</td>
                                                     <td>{{producto.cantidad}}</td>

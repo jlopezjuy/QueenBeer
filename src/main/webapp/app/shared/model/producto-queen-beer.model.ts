@@ -19,6 +19,7 @@ export interface IProductoQueenBeer {
     precioTotal?: number;
     envaseId?: number;
     productoId?: number;
+    envaseDetalle?: string;
 }
 
 export class ProductoQueenBeer implements IProductoQueenBeer {
@@ -36,6 +37,7 @@ export class ProductoQueenBeer implements IProductoQueenBeer {
         public cantidad?: number,
         public precioTotal?: number,
         public envaseId?: number,
-        public productoId?: number
+        public productoId?: number,
+        public envaseDetalle?: string
     ) {}
 }

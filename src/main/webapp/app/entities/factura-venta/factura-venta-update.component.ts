@@ -143,6 +143,7 @@ export class FacturaVentaUpdateComponent implements OnInit {
             resp.body.precioLitro = this.envase.precio;
             resp.body.precioTotal = this.cantidad * this.envase.precio;
             resp.body.envaseId = this.envase.id;
+            resp.body.envaseDetalle = this.envase.nombre;
             this.facturaVenta.totalNeto = this.facturaVenta.totalNeto + resp.body.precioTotal;
             console.log(resp);
             this.cantidad = null;
@@ -196,6 +197,7 @@ export class FacturaVentaUpdateComponent implements OnInit {
                     producto.cantidad = detalle.cantidad;
                     producto.precioLitro = respDeta.body.precio;
                     producto.precioTotal = detalle.cantidad * respDeta.body.precio;
+                    producto.envaseDetalle = respDeta.body.nombre;
                 });
                 this.productoService.find(detalle.productoId).subscribe(respProd => {
                     producto.nombreComercial = respProd.body.nombreComercial;
