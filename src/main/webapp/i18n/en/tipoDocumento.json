@@ -2,9 +2,9 @@
     "queenBeerApp": {
         "TipoDocumento": {
             "null": "",
-            "FACTURA": "FACTURA",
-            "REMITO": "REMITO",
-            "PRESUPUESTO": "PRESUPUESTO"
+            "FACTURA": "Invoice",
+            "REMITO": "Dispatch",
+            "PRESUPUESTO": "Budget"
         }
     }
 }

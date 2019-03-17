@@ -2,8 +2,8 @@
     "queenBeerApp": {
         "TipoMoneda": {
             "null": "",
-            "PESOS_ARGENTINOS": "PESOS_ARGENTINOS",
-            "DOLARES": "DOLARES"
+            "PESOS_ARGENTINOS": "Pesos Argentinos",
+            "DOLARES": "Dolares"
         }
     }
 }

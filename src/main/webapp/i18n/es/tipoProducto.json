@@ -2,9 +2,9 @@
     "queenBeerApp": {
         "TipoProducto": {
             "null": "",
-            "FIJO": "FIJO",
-            "ROTATIVO": "ROTATIVO",
-            "ESPECIAL": "ESPECIAL"
+            "FIJO": "Fijo",
+            "ROTATIVO": "Rotativo",
+            "ESPECIAL": "Especial"
         }
     }
 }

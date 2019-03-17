@@ -2,10 +2,10 @@
     "queenBeerApp": {
         "CondicionFiscal": {
             "null": "",
-            "RESPONSABLE_INSCRIPTO": "RESPONSABLE_INSCRIPTO",
-            "MONOTRIBUTISTA": "MONOTRIBUTISTA",
-            "CONSUMIDOR_FINAL": "CONSUMIDOR_FINAL",
-            "OTRO": "OTRO"
+            "RESPONSABLE_INSCRIPTO": "Responsable Inscripto",
+            "MONOTRIBUTISTA": "Monotributista",
+            "CONSUMIDOR_FINAL": "Consumidor Final",
+            "OTRO": "Otro"
         }
     }
 }
