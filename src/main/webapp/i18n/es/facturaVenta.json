@@ -2,7 +2,7 @@
     "queenBeerApp": {
         "facturaVenta": {
             "home": {
-                "title": "Factura Ventas",
+                "title": "Facturas, Ventas, Presupuestos",
                 "createLabel": "Crear nuevo Factura Venta",
                 "createOrEditLabel": "Crear o editar Factura Venta",
                 "search": "Search for Factura Venta"

@@ -29,16 +29,17 @@
                 <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="entity-menu">
                     <li>
                         <a class="dropdown-item" routerLink="factura-venta" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                            <fa-icon icon="shopping-cart" fixedWidth="true"></fa-icon>
+                            <i class="fab fa-store    "></i>
                             <span jhiTranslate="global.menu.entities.facturaVenta">Factura Venta</span>
                         </a>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a class="dropdown-item" routerLink="detalle-venta" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
                             <span jhiTranslate="global.menu.entities.detalleVenta">Detalle Venta</span>
                         </a>
-                    </li>
+                    </li> -->
                     <li>
                         <a class="dropdown-item" routerLink="producto-queen-beer" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
@@ -46,15 +47,15 @@
                         </a>
                     </li>
                     <!--<li>-->
-                        <!--<a class="dropdown-item" routerLink="producto-envase" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">-->
-                            <!--<fa-icon icon="asterisk" fixedWidth="true"></fa-icon>-->
-                            <!--<span jhiTranslate="global.menu.entities.productoEnvase">Producto Envase</span>-->
-                        <!--</a>-->
+                    <!--<a class="dropdown-item" routerLink="producto-envase" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">-->
+                    <!--<fa-icon icon="asterisk" fixedWidth="true"></fa-icon>-->
+                    <!--<span jhiTranslate="global.menu.entities.productoEnvase">Producto Envase</span>-->
+                    <!--</a>-->
                     <!--</li>-->
                     <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
                     <li>
                         <a class="dropdown-item" routerLink="cliente-queen-beer" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                            <fa-icon icon="user" [fixedWidth]="true"></fa-icon>
                             <span jhiTranslate="global.menu.entities.clienteQueenBeer">Cliente Queen Beer</span>
                         </a>
                     </li>
@@ -83,10 +84,10 @@
                         </a>
                     </li>
                     <!--<li>-->
-                        <!--<a class="dropdown-item" routerLink="elaboracion-insumo-queen-beer" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">-->
-                            <!--<fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>-->
-                            <!--<span jhiTranslate="global.menu.entities.elaboracionInsumoQueenBeer">Elaboracion Insumo Queen Beer</span>-->
-                        <!--</a>-->
+                    <!--<a class="dropdown-item" routerLink="elaboracion-insumo-queen-beer" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">-->
+                    <!--<fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>-->
+                    <!--<span jhiTranslate="global.menu.entities.elaboracionInsumoQueenBeer">Elaboracion Insumo Queen Beer</span>-->
+                    <!--</a>-->
                     <!--</li>-->
                     <li>
                         <a class="dropdown-item" routerLink="compra-queen-beer" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
@@ -95,17 +96,17 @@
                         </a>
                     </li>
                     <!--<li>-->
-                        <!--<a class="dropdown-item" routerLink="compra-insumo-queen-beer" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">-->
-                            <!--<fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>-->
-                            <!--<span jhiTranslate="global.menu.entities.compraInsumoQueenBeer">Compra Insumo Queen Beer</span>-->
-                        <!--</a>-->
+                    <!--<a class="dropdown-item" routerLink="compra-insumo-queen-beer" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">-->
+                    <!--<fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>-->
+                    <!--<span jhiTranslate="global.menu.entities.compraInsumoQueenBeer">Compra Insumo Queen Beer</span>-->
+                    <!--</a>-->
                     <!--</li>-->
-                    <li>
+                    <!-- <li>
                         <a class="dropdown-item" routerLink="envase" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
                             <span jhiTranslate="global.menu.entities.envase">Envase</span>
                         </a>
-                    </li>
+                    </li> -->
                 </ul>
             </li>
             <li *jhiHasAnyAuthority="'ROLE_ADMIN'" ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
@@ -188,13 +189,13 @@
             </li>
             <li ngbDropdown class="nav-item dropdown pointer" placement="bottom-right" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                 <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="account-menu">
-                  <span *ngIf="!getImageUrl()">
+                    <span *ngIf="!getImageUrl()">
                     <fa-icon icon="user"></fa-icon>
                     <span jhiTranslate="global.menu.account.main">
                       Account
                     </span>
-                  </span>
-                  <span *ngIf="getImageUrl()">
+                    </span>
+                    <span *ngIf="getImageUrl()">
                       <img [src]="getImageUrl()" class="profile-image rounded-circle" alt="Avatar">
                   </span>
                 </a>

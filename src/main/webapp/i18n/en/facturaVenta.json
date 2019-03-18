@@ -2,7 +2,7 @@
     "queenBeerApp": {
         "facturaVenta": {
             "home": {
-                "title": "Factura Ventas",
+                "title": "Facturas, Ventas, Presupuestos",
                 "createLabel": "Create a new Factura Venta",
                 "createOrEditLabel": "Create or edit a Factura Venta",
                 "search": "Search for Factura Venta"
@@ -16,12 +16,12 @@
             "detail": {
                 "title": "Factura Venta"
             },
-            "tipoDocumento": "Tipo Documento",
-            "fecha": "Fecha",
+            "tipoDocumento": "Document Type",
+            "fecha": "Date",
             "totalNeto": "Total Neto",
             "tipoMoneda": "Tipo Moneda",
             "nroFactura": "Nro Factura",
-            "cliente": "Cliente"
+            "cliente": "Client"
         }
     }
 }
